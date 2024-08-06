@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import TimeInputForForm from "./TimeInputForForm";
-import { Button, StyleSheet, Text, View } from "react-native";
-
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setWorkoutValues } from "../appSlices/timerSlice";
+import { useAppDispatch, useAppSelector } from "./hooks";
 
-type RootStackParamList = {
-  Form: undefined;
-  Workout: undefined;
-};
-
-type Props = NativeStackScreenProps<RootStackParamList, "Form">;
-
-function TimerForm({ navigation }: Props) {
-  const timerValues = useAppSelector((state) => state.timerInfo);
+function TimerForm() {
+  const timerValues = useAppSelector((state: any) => state.timerInfo);
   const dispatch = useAppDispatch();
 
   const [timeObject, setTimeObject] = useState<any>({});
@@ -28,9 +18,9 @@ function TimerForm({ navigation }: Props) {
     return finalObj;
   }
 
-  function getTotalTimer(obj) {
-    obj.hangtime + obj.offtime;
-  }
+  // function getTotalTimer(obj) {
+  //   obj.hangtime + obj.offtime;
+  // }
 
   console.log();
 
@@ -38,41 +28,35 @@ function TimerForm({ navigation }: Props) {
 
   return (
     <>
-      <View style={styles.field_view}>
-        <Text style={styles.form_title}>Fill In Your Workout</Text>
+      <div>
+        <p>Fill In Your Workout</p>
         {Object.keys(timerValues).map((el: string, i: number) => (
-          <View key={i}>
+          <div key={i}>
             <TimeInputForForm
               placeHolderData={timerValues}
               timeObject={timeObject}
               whichTimeInput={el}
               setTimeObject={setTimeObject}
             />
-          </View>
+          </div>
         ))}
-        <Text>{}</Text>
-        <Button
-          title={"Next Page"}
-          onPress={() => {
-            dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
-            navigation.navigate("Workout", { ...timeObject });
-          }}
-        />
-      </View>
+        <p>{}</p>
+        <button title={"Next Page"} />
+      </div>
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  field_view: {
-    display: "flex",
-    alignItems: "center",
-  },
-  form_title: {
-    fontSize: 30,
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-});
+// const styles = StyleSheet.create({
+//   field_div: {
+//     display: "flex",
+//     alignItems: "center",
+//   },
+//   form_title: {
+//     fontSize: 30,
+//     paddingTop: 20,
+//     paddingBottom: 20,
+//   },
+// });
 
 export default TimerForm;

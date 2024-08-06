@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
 import MainTime from "./MainTime";
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from "./hooks";
 import IncrementTime from "./IncrementTime";
 
 // import type {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -26,7 +25,7 @@ function Timer3UI() {
   //   settingUpTimingInterval(props),
   // );
 
-  const timerDataState = useAppSelector((state) => state.timerInfo);
+  const timerDataState = useAppSelector((state: any) => state.timerInfo);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("rest");
@@ -104,14 +103,14 @@ function Timer3UI() {
 
   return (
     <>
-      <Button
+      <button
         title="Start"
-        onPress={() => {
+        onClick={() => {
           setIsPaused(!isPaused);
         }}
       />
       <MainTime number={currActTime} curAct={currentAction} />
-      <View style={styles.container}>
+      <div>
         {/* <Text style={styles.items}>
           Hang:{" "}
           {currentAction === "hang" ? currActTime : timerDataState.hangTime}
@@ -141,19 +140,19 @@ function Timer3UI() {
           actionTime={currActTime}
           timerState={timerDataState.restTime}
         />
-      </View>
+      </div>
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    height: "15%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     height: "15%",
+//     display: "flex",
+//     flexDirection: "row",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+// });
 
 export default Timer3UI;

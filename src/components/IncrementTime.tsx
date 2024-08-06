@@ -10,8 +10,8 @@ interface IncrementTimeInt {
 function IncrementTime(props: IncrementTimeInt) {
   return (
     <>
-      <div style={styles(props.currentAct, props.action).items_container}>
-        <p style={styles(props.currentAct, props.action).items}>
+      <div>
+        <p>
           {props.action.at(0)?.toUpperCase().concat(props.action.slice(1))}:{" "}
           {props.currentAct === props.action
             ? props.actionTime
@@ -22,15 +22,15 @@ function IncrementTime(props: IncrementTimeInt) {
   );
 }
 
-const styles = (curAct: string, actionComp: string) =>
-  StyleSheet.create({
-    items: {
-      width: 100,
-      textAlign: "center",
-      fontWeight: curAct === actionComp ? "bold" : "regular",
-      fontSize: 20,
-    },
-    items_container: {},
-  });
+// const styles = (curAct: string, actionComp: string) =>
+//   StyleSheet.create({
+//     items: {
+//       width: 100,
+//       textAlign: "center",
+//       fontWeight: curAct === actionComp ? "bold" : "regular",
+//       fontSize: 20,
+//     },
+//     items_container: {},
+//   });
 
 export default IncrementTime;

@@ -1,5 +1,4 @@
-import React from 'react';
-import {Button} from 'react-native';
+import React from "react";
 
 // interface StartButton {
 //   settingIsStart;
@@ -9,9 +8,9 @@ import {Button} from 'react-native';
 function StartButton(func: any, initBoo: any) {
   return (
     <>
-      <Button
+      <button
         title="Press Me"
-        onPress={() => {
+        onClick={() => {
           func(!initBoo);
         }}
       />
