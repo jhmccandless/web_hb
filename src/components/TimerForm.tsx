@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TimeInputForForm from "./TimeInputForForm";
 import { setWorkoutValues } from "../appSlices/timerSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
@@ -22,13 +22,11 @@ function TimerForm() {
   //   obj.hangtime + obj.offtime;
   // }
 
-  console.log();
-
   console.log(Object.values(timerValues));
 
   return (
     <>
-      <div>
+      <form>
         <p>Fill In Your Workout</p>
         {Object.keys(timerValues).map((el: string, i: number) => (
           <div key={i}>
@@ -41,8 +39,16 @@ function TimerForm() {
           </div>
         ))}
         <p>{}</p>
-        <button title={"Next Page"} />
-      </div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            console.log("click");
+            dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
+          }}
+        >
+          Form finished
+        </button>
+      </form>
     </>
   );
 }

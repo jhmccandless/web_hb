@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface TimerState {
-  hangTime: string;
-  offTime: string;
-  restTime: string;
-  repCount: string;
-  setCount: string;
-  delayStartTime: string;
+  hangTime: number;
+  offTime: number;
+  restTime: number;
+  repCount: number;
+  setCount: number;
+  delayStartTime: number;
 }
 
 const initialState: TimerState = {
-  hangTime: "7",
-  offTime: "3",
-  restTime: "40",
-  repCount: "6",
-  setCount: "3",
-  delayStartTime: "4",
+  hangTime: 7,
+  offTime: 3,
+  restTime: 40,
+  repCount: 6,
+  setCount: 3,
+  delayStartTime: 4,
 };
 
 export const timerSlice = createSlice({

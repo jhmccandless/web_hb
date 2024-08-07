@@ -8,24 +8,35 @@ interface timeInputFormInt {
 }
 
 function TimeInputForForm(props: timeInputFormInt) {
-  function onTypeChange(text: string) {
-    const cleanedValue = text.replace(/[^0-9]/g, "");
-    const parsedValue = parseInt(cleanedValue, 10);
-    if (!isNaN(parsedValue)) {
-      props.setTimeObject(() => {
-        return {
-          ...props.timeObject,
-          [`${props.whichTimeInput}`]: parsedValue.toString(),
-        };
-      });
-    } else {
-      props.setTimeObject(() => {
-        return {
-          ...props.timeObject,
-          [`${props.whichTimeInput}`]: "",
-        };
-      });
-    }
+  // function onTypeChange(text: string) {
+  //   const cleanedValue = text.replace(/[^0-9]/g, "");
+  //   const parsedValue = parseInt(cleanedValue, 10);
+  //   if (!isNaN(parsedValue)) {
+  //     props.setTimeObject(() => {
+  //       return {
+  //         ...props.timeObject,
+  //         [`${props.whichTimeInput}`]: parsedValue.toString(),
+  //       };
+  //     });
+  //   } else {
+  //     props.setTimeObject(() => {
+  //       return {
+  //         ...props.timeObject,
+  //         [`${props.whichTimeInput}`]: "",
+  //       };
+  //     });
+  //   }
+  // }
+
+  function onInputChange(e: any) {
+    // e.preventDefaut();
+    // console.log(e.target.value);
+    props.setTimeObject(() => {
+      return {
+        ...props.timeObject,
+        [`${props.whichTimeInput}`]: e.target.value,
+      };
+    });
   }
 
   function placeHolderNameAdjust(name: string) {
@@ -36,17 +47,18 @@ function TimeInputForForm(props: timeInputFormInt) {
       .replace(/([a-z])([A-Z])/g, "$1 $2");
   }
 
+  console.log(props.timeObject);
+
   return (
     <>
       <div>
         <p>{placeHolderNameAdjust(props.whichTimeInput).concat(":")}</p>
         <div>
           <input
-            // keyboardType="numeric"
-            inputMode="numeric"
+            type="number"
             placeholder={props.placeHolderData[props.whichTimeInput]}
-            // onChangeText={onTypeChange}
             value={props.timeObject[`${props.whichTimeInput}`]}
+            onChange={(e) => onInputChange(e)}
           />
         </div>
       </div>
