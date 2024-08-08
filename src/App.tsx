@@ -5,6 +5,7 @@ import { store } from "./components/store";
 import AppLayout from "./components/AppLayout";
 import { Route, Routes } from "react-router-dom";
 import Timer3UI from "./components/Timer3UI";
+import NonRoute from "./components/NonRoute";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout desComp={<TimerForm />} />} />
         <Route path="/workout" element={<AppLayout desComp={<Timer3UI />} />} />
+        <Route path="*" element={<NonRoute />} />
       </Routes>
     </Provider>
   );
