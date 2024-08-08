@@ -52,8 +52,11 @@ function TimeInputForForm(props: timeInputFormInt) {
   return (
     <div style={{ textAlign: "center" }}>
       <label>
-        {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
+        <p style={{ margin: "0 0 10px 0" }}>
+          {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
+        </p>
         <input
+          style={{ width: "50px" }}
           name=""
           type="number"
           placeholder={props.placeHolderData[props.whichTimeInput]}

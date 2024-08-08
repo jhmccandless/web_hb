@@ -40,7 +40,7 @@ function TimerForm() {
       ))}
       <p>{}</p>
       <button
-        className="form-row"
+        className="form-row form-button"
         onClick={(e) => {
           e.preventDefault();
           console.log("click");
