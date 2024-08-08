@@ -5,32 +5,20 @@ interface IncrementTimeInt {
   currentAct: string;
   actionTime: number;
   timerState: string;
+  stylingProp: string;
 }
 
 function IncrementTime(props: IncrementTimeInt) {
   return (
-    <>
-      <div>
-        <p>
-          {props.action.at(0)?.toUpperCase().concat(props.action.slice(1))}:{" "}
-          {props.currentAct === props.action
-            ? props.actionTime
-            : props.timerState}
-        </p>
-      </div>
-    </>
+    <div className={props.stylingProp}>
+      <p>
+        {props.action.at(0)?.toUpperCase().concat(props.action.slice(1))}:{" "}
+        {props.currentAct === props.action
+          ? props.actionTime
+          : props.timerState}
+      </p>
+    </div>
   );
 }
-
-// const styles = (curAct: string, actionComp: string) =>
-//   StyleSheet.create({
-//     items: {
-//       width: 100,
-//       textAlign: "center",
-//       fontWeight: curAct === actionComp ? "bold" : "regular",
-//       fontSize: 20,
-//     },
-//     items_container: {},
-//   });
 
 export default IncrementTime;

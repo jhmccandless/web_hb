@@ -102,57 +102,39 @@ function Timer3UI() {
   }, [isPaused]);
 
   return (
-    <>
+    <div className="timer-wrapper">
       <button
-        title="Start"
+        className="timer-start-button form-button"
         onClick={() => {
           setIsPaused(!isPaused);
         }}
-      />
+      >
+        Start Timer
+      </button>
       <MainTime number={currActTime} curAct={currentAction} />
-      <div>
-        {/* <Text style={styles.items}>
-          Hang:{" "}
-          {currentAction === "hang" ? currActTime : timerDataState.hangTime}
-        </Text>
-        <Text style={styles.items}>
-          Off: {currentAction === "off" ? currActTime : timerDataState.offTime}
-        </Text>
-        <Text style={styles.items}>
-          Rest:{" "}
-          {currentAction === "rest" ? currActTime : timerDataState.restTime}
-        </Text> */}
-        <IncrementTime
-          action={"hang"}
-          currentAct={currentAction}
-          actionTime={currActTime}
-          timerState={timerDataState.hangTime}
-        />
-        <IncrementTime
-          action={"off"}
-          currentAct={currentAction}
-          actionTime={currActTime}
-          timerState={timerDataState.offTime}
-        />
-        <IncrementTime
-          action={"rest"}
-          currentAct={currentAction}
-          actionTime={currActTime}
-          timerState={timerDataState.restTime}
-        />
-      </div>
-    </>
+      <IncrementTime
+        action={"hang"}
+        currentAct={currentAction}
+        actionTime={currActTime}
+        timerState={timerDataState.hangTime}
+        stylingProp="timer-item-1"
+      />
+      <IncrementTime
+        action={"off"}
+        currentAct={currentAction}
+        actionTime={currActTime}
+        timerState={timerDataState.offTime}
+        stylingProp="timer-item-2"
+      />
+      <IncrementTime
+        action={"rest"}
+        currentAct={currentAction}
+        actionTime={currActTime}
+        timerState={timerDataState.restTime}
+        stylingProp="timer-item-3"
+      />
+    </div>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     height: "15%",
-//     display: "flex",
-//     flexDirection: "row",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-// });
 
 export default Timer3UI;
