@@ -18,7 +18,6 @@
 
 .main {
   grid-area: main;
-  border-style: solid;
   display: grid;
 }
 

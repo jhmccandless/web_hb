@@ -17,7 +17,6 @@ function App() {
         <div className="footer">
           <p>footer</p>
         </div>
-        {/* <TimerForm /> */}
       </div>
     </Provider>
   );
