@@ -38,6 +38,38 @@
   grid-column: 2 / span 2;
 }
 
+.timer-item-1 {
+  grid-column: 1 / span 2;
+  grid-row: 9;
+  justify-self: center;
+  /* grid-column: 1 / span 2; */
+}
+
+.timer-item-2 {
+  grid-column: 3 / span 2;
+  grid-row: 9;
+  justify-self: center;
+  /* grid-column: 1 / span 2; */
+}
+
+.timer-item-3 {
+  grid-column: 1 / span 4;
+  grid-row: 10;
+  justify-self: center;
+  /* align-self: center; */
+}
+
+.main-timer-div {
+  grid-column: 1 / span 4;
+  grid-row: 2 / span 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-radius: 12px;
+  border-width: 4px;
+}
+
 .page-title {
   grid-column: 1 / span 4;
   font-size: 30px;
@@ -50,6 +82,21 @@
 
 .form-button {
   height: 80%;
+}
+
+.timer-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(10, 10%);
+  /* grid-auto-flow: column; */
+  /* align-items: center; */
+}
+
+.timer-start-button {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+  justify-items: center;
+  align-self: center;
 }
 
 /* .App {
