@@ -7,7 +7,14 @@ function TimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
   const dispatch = useAppDispatch();
 
-  const [timeObject, setTimeObject] = useState<any>({});
+  const [timeObject, setTimeObject] = useState<any>({
+    hangTime: "",
+    offTime: "",
+    restTime: "",
+    repCount: "",
+    setCount: "",
+    delayStartTime: "",
+  });
 
   function checkValues(refObj: any, newObj: any) {
     const finalObj: any = {};
@@ -18,15 +25,13 @@ function TimerForm() {
     return finalObj;
   }
 
-  // function getTotalTimer(obj) {
-  //   obj.hangtime + obj.offtime;
-  // }
-
-  console.log(Object.values(timerValues));
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
+  }
 
   return (
-    // <div className="form-wrapper">
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <p className="form-row page-title">Fill In Your Workout</p>
       {Object.keys(timerValues).map((el: string, i: number) => (
         <div key={i} className="form-row">
@@ -39,31 +44,11 @@ function TimerForm() {
         </div>
       ))}
       <p>{}</p>
-      <button
-        className="form-row form-button"
-        onClick={(e) => {
-          e.preventDefault();
-          console.log("click");
-          dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
-        }}
-      >
+      <button type="submit" className="form-row form-button">
         Form finished
       </button>
     </form>
-    // </div>
   );
 }
-
-// const styles = StyleSheet.create({
-//   field_div: {
-//     display: "flex",
-//     alignItems: "center",
-//   },
-//   form_title: {
-//     fontSize: 30,
-//     paddingTop: 20,
-//     paddingBottom: 20,
-//   },
-// });
 
 export default TimerForm;
