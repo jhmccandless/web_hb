@@ -1,5 +1,4 @@
 import React from "react";
-import TimerForm from "./TimerForm";
 
 function AppLayout(props: any) {
   return (
