@@ -25,31 +25,32 @@ function TimerForm() {
   console.log(Object.values(timerValues));
 
   return (
-    <>
-      <form>
-        <p>Fill In Your Workout</p>
-        {Object.keys(timerValues).map((el: string, i: number) => (
-          <div key={i}>
-            <TimeInputForForm
-              placeHolderData={timerValues}
-              timeObject={timeObject}
-              whichTimeInput={el}
-              setTimeObject={setTimeObject}
-            />
-          </div>
-        ))}
-        <p>{}</p>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log("click");
-            dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
-          }}
-        >
-          Form finished
-        </button>
-      </form>
-    </>
+    // <div className="form-wrapper">
+    <form className="form">
+      <p className="form-row page-title">Fill In Your Workout</p>
+      {Object.keys(timerValues).map((el: string, i: number) => (
+        <div key={i} className="form-row">
+          <TimeInputForForm
+            placeHolderData={timerValues}
+            timeObject={timeObject}
+            whichTimeInput={el}
+            setTimeObject={setTimeObject}
+          />
+        </div>
+      ))}
+      <p>{}</p>
+      <button
+        className="form-row form-button"
+        onClick={(e) => {
+          e.preventDefault();
+          console.log("click");
+          dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
+        }}
+      >
+        Form finished
+      </button>
+    </form>
+    // </div>
   );
 }
 
