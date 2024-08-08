@@ -50,19 +50,18 @@ function TimeInputForForm(props: timeInputFormInt) {
   console.log(props.timeObject);
 
   return (
-    <>
-      <div>
-        <p>{placeHolderNameAdjust(props.whichTimeInput).concat(":")}</p>
-        <div>
-          <input
-            type="number"
-            placeholder={props.placeHolderData[props.whichTimeInput]}
-            value={props.timeObject[`${props.whichTimeInput}`]}
-            onChange={(e) => onInputChange(e)}
-          />
-        </div>
-      </div>
-    </>
+    <div style={{ textAlign: "center" }}>
+      <label>
+        {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
+        <input
+          name=""
+          type="number"
+          placeholder={props.placeHolderData[props.whichTimeInput]}
+          value={props.timeObject[`${props.whichTimeInput}`]}
+          onChange={(e) => onInputChange(e)}
+        />
+      </label>
+    </div>
   );
 }
 

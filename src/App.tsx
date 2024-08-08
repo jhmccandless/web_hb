@@ -7,8 +7,17 @@ import { store } from "./components/store";
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <TimerForm />
+      <div className="app-wrapper">
+        <div className="header">
+          <p>header</p>
+        </div>
+        <div className="main">
+          <TimerForm />
+        </div>
+        <div className="footer">
+          <p>footer</p>
+        </div>
+        {/* <TimerForm /> */}
       </div>
     </Provider>
   );
