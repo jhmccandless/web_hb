@@ -2,10 +2,12 @@ import { useState } from "react";
 import TimeInputForForm from "./TimeInputForForm";
 import { setWorkoutValues } from "../appSlices/timerSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
+import { useNavigate } from "react-router-dom";
 
 function TimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [timeObject, setTimeObject] = useState<any>({
     hangTime: "",
@@ -28,6 +30,7 @@ function TimerForm() {
   function handleSubmit(e: any) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
+    navigate("workout");
   }
 
   return (
