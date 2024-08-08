@@ -14,16 +14,24 @@
 .header {
   grid-area: header;
   border-style: solid;
-}
-
-.main {
-  grid-area: main;
+  border-width: 0 0 3px 0;
   display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
 }
 
 .footer {
   grid-area: footer;
   border-style: solid;
+  border-width: 3px 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+.main {
+  grid-area: main;
+  display: grid;
 }
 
 .form {

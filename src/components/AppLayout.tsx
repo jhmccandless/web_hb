@@ -1,15 +1,13 @@
 import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 function AppLayout(props: any) {
   return (
     <div className="app-wrapper">
-      <div className="header">
-        <p>header</p>
-      </div>
+      <Header />
       <div className="main">{props.desComp}</div>
-      <div className="footer">
-        <p>footer</p>
-      </div>
+      <Footer />
     </div>
   );
 }
