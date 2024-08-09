@@ -9,7 +9,7 @@ function AppLayout(props: any) {
 
   return (
     <div className="app-wrapper">
-      <AppMenu menuOpen={isMenuOpen} />
+      <AppMenu menuOpen={isMenuOpen} toggleButton={setIsMenuOpen} />
       <Header menuOpen={isMenuOpen} toggleButton={setIsMenuOpen} />
       <div className="main">{props.desComp}</div>
       <Footer />
