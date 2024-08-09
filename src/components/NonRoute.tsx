@@ -4,7 +4,7 @@ function NonRoute() {
   return (
     <div>
       <p>Not a route</p>
-      <Link to="/">Form for timer</Link>
+      <Link to="/">homepage</Link>
     </div>
   );
 }

@@ -30,7 +30,7 @@ function TimerForm() {
   function handleSubmit(e: any) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
-    navigate("workout");
+    navigate("/workout");
   }
 
   return (
