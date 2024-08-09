@@ -1,10 +1,7 @@
-import { useState } from "react";
-
-function AppMenuButton() {
-  const [menuOpen, setMenuOpen] = useState(false);
+function AppMenuButton(props: any) {
   function onMenuClick() {
-    // console.log("click");
-    setMenuOpen(!menuOpen);
+    console.log("click");
+    props.toggleButton(!props.menuOpen);
   }
 
   // console.log(menuOpen);

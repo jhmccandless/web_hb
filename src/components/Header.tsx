@@ -1,10 +1,13 @@
 import AppMenuButton from "./AppMenuButton";
 
-function Header() {
+function Header(props: any) {
   return (
     <div className="header">
       <p style={{ gridColumn: "1 / span 2" }}>Hangboarding</p>
-      <AppMenuButton />
+      <AppMenuButton
+        menuOpen={props.menuOpen}
+        toggleButton={props.toggleButton}
+      />
     </div>
   );
 }

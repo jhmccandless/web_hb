@@ -109,12 +109,12 @@
 }
 
 .menu-close {
-  opacity: 1;
+  opacity: 0;
 }
 
 .menu {
   width: 200px;
-  /* height: 60px; */
+  height: auto;
   /* transform: translate(0, 50px); */
   border-style: solid;
   /* grid-column-start: 3; */
@@ -123,6 +123,8 @@
   grid-row-start: 2;
   position: absolute;
   z-index: 10;
+  opacity: 1;
+  background-color: white;
 }
 
 /* .App {

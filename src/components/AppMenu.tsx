@@ -1,7 +1,9 @@
-function AppMenu() {
+import MenuCard from "./MenuCard";
+
+function AppMenu(props: any) {
   return (
-    <div className="menu">
-      <p>menu here</p>
+    <div className={`${props.menuOpen ? "menu" : "menu-close"}`}>
+      <MenuCard />
     </div>
   );
 }
