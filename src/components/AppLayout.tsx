@@ -2,13 +2,17 @@ import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import AppMenu from "./AppMenu";
+import { isMemberName } from "typescript";
 
 function AppLayout(props: any) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(isMenuOpen);
+
+  function onPageClick() {
+    if (isMenuOpen) setIsMenuOpen(false);
+  }
 
   return (
-    <div className="app-wrapper">
+    <div onClick={onPageClick} className="app-wrapper">
       <AppMenu menuOpen={isMenuOpen} toggleButton={setIsMenuOpen} />
       <Header menuOpen={isMenuOpen} toggleButton={setIsMenuOpen} />
       <div className="main">{props.desComp}</div>

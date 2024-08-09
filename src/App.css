@@ -90,6 +90,10 @@
   margin: 0;
 }
 
+.clickable-text {
+  cursor: default;
+}
+
 .form-button {
   height: 80%;
 }
