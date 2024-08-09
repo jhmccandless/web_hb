@@ -1,6 +1,6 @@
 function AppMenu() {
   return (
-    <div>
+    <div className="menu">
       <p>menu here</p>
     </div>
   );
