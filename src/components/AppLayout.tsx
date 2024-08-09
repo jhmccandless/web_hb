@@ -2,7 +2,6 @@ import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import AppMenu from "./AppMenu";
-import { isMemberName } from "typescript";
 
 function AppLayout(props: any) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
