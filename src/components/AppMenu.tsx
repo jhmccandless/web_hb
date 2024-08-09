@@ -9,8 +9,8 @@ function AppMenu(props: any) {
       onClick={onMenuSelectClick}
       className={`${props.menuOpen ? "menu" : "menu-close"}`}
     >
-      <MenuCard cardTitle={"About"} desNav={"/about"} />
       <MenuCard cardTitle={"Workout Input"} desNav={"/"} />
+      <MenuCard cardTitle={"About"} desNav={"/about"} />
     </div>
   );
 }
