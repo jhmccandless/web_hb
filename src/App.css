@@ -33,6 +33,7 @@
 .main {
   grid-area: main;
   display: grid;
+  z-index: 2;
 }
 
 .form {
@@ -111,6 +112,7 @@
 .menu-close {
   width: 200px;
   height: auto;
+  z-index: 1;
   /* transform: translate(0, 50px); */
   border-style: solid;
   /* grid-column-start: 3; */
@@ -118,8 +120,6 @@
   justify-self: end;
   grid-row-start: 2;
   position: absolute;
-  z-index: 10;
-
   opacity: 0;
   background-color: white;
 }
