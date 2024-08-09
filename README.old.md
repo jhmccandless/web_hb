@@ -36,3 +36,4 @@ app needs:
 - better routing
   maybe have /workout*{WORKOUT TYPE} or /form*{FORM TYPE}
 - ability to choose workout form type from the form page as well as the homepage
+- field validations
