@@ -10,6 +10,7 @@
   width: 100vw;
   height: 100vh;
   position: relative;
+  z-index: 2;
 }
 
 .header {
@@ -33,7 +34,6 @@
 .main {
   grid-area: main;
   display: grid;
-  z-index: 2;
 }
 
 .form {
@@ -116,7 +116,7 @@
 .menu-close {
   width: 200px;
   height: auto;
-  z-index: 1;
+
   /* transform: translate(0, 50px); */
   border-style: solid;
   /* grid-column-start: 3; */
@@ -126,6 +126,8 @@
   position: absolute;
   opacity: 0;
   background-color: white;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .menu {

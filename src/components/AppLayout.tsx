@@ -10,6 +10,8 @@ function AppLayout(props: any) {
     if (isMenuOpen) setIsMenuOpen(false);
   }
 
+  console.log(isMenuOpen);
+
   return (
     <div onClick={onPageClick} className="app-wrapper">
       <AppMenu menuOpen={isMenuOpen} toggleButton={setIsMenuOpen} />
