@@ -2,16 +2,23 @@ import { useState } from "react";
 import HomePageRadioInput from "./HomePageRadioInput";
 import { useAppDispatch } from "./hooks";
 import { useNavigate } from "react-router-dom";
+import { setWorkoutType } from "../appSlices/timerSlice";
 
 function HomePageForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("repeaters");
 
-  function onWorkoutTypeSubmit() {}
+  function onWorkoutTypeSubmit(e: any) {
+    e.preventDefault();
+    console.log(selectedOption);
+
+    dispatch(setWorkoutType(selectedOption));
+    navigate("/form");
+  }
 
   return (
-    <form>
+    <form onSubmit={onWorkoutTypeSubmit}>
       <HomePageRadioInput
         inputTitle={"repeaters"}
         currentOption={selectedOption}

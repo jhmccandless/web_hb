@@ -29,14 +29,19 @@ export const timerSlice = createSlice({
   initialState,
   reducers: {
     setWorkoutValues: (state: any, action: PayloadAction<TimerState>) => {
-      console.log(action.payload);
-      console.log(current(state));
+      // console.log(action.payload);
+      // console.log(current(state));
       return { ...current(state), timerTimes: action.payload };
+    },
+    setWorkoutType: (state: any, action: PayloadAction<String>) => {
+      console.log(action.payload);
+      // console.log(current(state));
+      return { ...current(state), timerType: action.payload };
     },
   },
 });
 
-export const { setWorkoutValues } = timerSlice.actions;
+export const { setWorkoutValues, setWorkoutType } = timerSlice.actions;
 
 // export const selectCount = (state: RootState) => state.counter.value;
 
