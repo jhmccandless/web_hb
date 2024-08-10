@@ -35,9 +35,7 @@ function HomePageForm() {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("repeaters");
 
-  const timerValues = useAppSelector(
-    (state: any) => state.timerInfo.timerTimes
-  );
+  const timerObject = useAppSelector((state: any) => state.timerInfo);
 
   function getTimerValueTemplate(timerType: string) {
     let woType = timerType;
@@ -65,7 +63,7 @@ function HomePageForm() {
     dispatch(
       setWorkoutType({
         timerTimes: checkValues(
-          timerValues,
+          timerObject.timerTimes,
           getTimerValueTemplate(selectedOption)
         ),
         timerType: selectedOption,

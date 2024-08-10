@@ -21,12 +21,12 @@ function TimerForm() {
   const navigate = useNavigate();
 
   const [timeObject, setTimeObject] = useState<any>({
-    hangTime: "",
-    offTime: "",
-    restTime: "",
-    repCount: "",
-    setCount: "",
-    delayStartTime: "",
+    // hangTime: "",
+    // offTime: "",
+    // restTime: "",
+    // repCount: "",
+    // setCount: "",
+    // delayStartTime: "",
   });
 
   // function checkValues(refObj: any, newObj: any) {

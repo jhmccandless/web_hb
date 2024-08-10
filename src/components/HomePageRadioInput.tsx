@@ -1,19 +1,13 @@
-import { useRef } from "react";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { setWorkoutValues } from "../appSlices/timerSlice";
+import { useAppDispatch } from "./hooks";
+import { initialState, setWorkoutValues } from "../appSlices/timerSlice";
 
 function HomePageRadioInput(props: any) {
   const dispatch = useAppDispatch();
-  const initialStateCopy = useAppSelector(
-    (state: any) => state.timerInfo.timerTimes
-  );
 
-  const track = useRef<any>(initialStateCopy);
+  console.log(initialState.timerTimes);
 
-  // console.log(track);
   function onRadioSelect() {
-    console.log(track.current);
-    dispatch(setWorkoutValues(track.current));
+    dispatch(setWorkoutValues(initialState.timerTimes));
     props.changeSelected(props.inputTitle);
   }
 

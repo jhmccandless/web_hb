@@ -12,7 +12,7 @@ export interface TimerState {
   timerType: string;
 }
 
-const initialState: TimerState = {
+export const initialState: TimerState = {
   timerTimes: {
     hangTime: -1,
     offTime: -1,
@@ -28,7 +28,7 @@ export const timerSlice = createSlice({
   name: "timerInfo",
   initialState,
   reducers: {
-    setWorkoutValues: (state: any, action: PayloadAction<TimerState>) => {
+    setWorkoutValues: (state: any, action: PayloadAction<any>) => {
       // console.log(action.payload);
       // console.log(current(state));
       return { ...current(state), timerTimes: action.payload };
