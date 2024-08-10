@@ -5,7 +5,9 @@ import { useAppDispatch, useAppSelector } from "./hooks";
 import { useNavigate } from "react-router-dom";
 
 function TimerForm() {
-  const timerValues = useAppSelector((state: any) => state.timerInfo);
+  const timerValues = useAppSelector(
+    (state: any) => state.timerInfo.timerTimes
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

@@ -25,7 +25,9 @@ function RepeaterTimer() {
   //   settingUpTimingInterval(props),
   // );
 
-  const timerDataState = useAppSelector((state: any) => state.timerInfo);
+  const timerDataState = useAppSelector(
+    (state: any) => state.timerInfo.timerTimes
+  );
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("rest");

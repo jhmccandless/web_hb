@@ -1,20 +1,38 @@
 import { useState } from "react";
 import HomePageRadioInput from "./HomePageRadioInput";
+import { useAppDispatch } from "./hooks";
+import { useNavigate } from "react-router-dom";
 
 function HomePageForm() {
-  const [selectedOption, setSelectedOption] = useState("option1");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState("repeaters");
+
+  function onWorkoutTypeSubmit() {}
+
   return (
     <form>
       <HomePageRadioInput
-        inputTitle={"option1"}
+        inputTitle={"repeaters"}
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
       />
       <HomePageRadioInput
-        inputTitle={"option2"}
+        inputTitle={"on-off"}
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
       />
+      <HomePageRadioInput
+        inputTitle={"normal"}
+        currentOption={selectedOption}
+        changeSelected={setSelectedOption}
+      />
+      <HomePageRadioInput
+        inputTitle={"circuit"}
+        currentOption={selectedOption}
+        changeSelected={setSelectedOption}
+      />
+      <button type="submit">Next</button>
     </form>
   );
 }
