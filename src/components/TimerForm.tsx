@@ -5,7 +5,9 @@ import { useAppDispatch, useAppSelector } from "./hooks";
 import { useNavigate } from "react-router-dom";
 
 function TimerForm() {
-  const timerValues = useAppSelector((state: any) => state.timerInfo);
+  const timerValues = useAppSelector(
+    (state: any) => state.timerInfo.timerTimes
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -30,12 +32,25 @@ function TimerForm() {
   function handleSubmit(e: any) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
-    navigate("workout");
+    navigate("/workout");
   }
 
   return (
     <form className="form" onSubmit={handleSubmit}>
       <p className="form-row page-title">Fill In Your Workout</p>
+      <div className="form-row">
+        <label>
+          Choose Workout Type
+          <select>
+            <option value="none" style={{ display: "none" }}>
+              Select...
+            </option>
+            <option value="repeaters">Repeaters</option>
+            <option value="on-off">On-Off</option>
+            <option value="circuit">Circuit</option>
+          </select>
+        </label>
+      </div>
       {Object.keys(timerValues).map((el: string, i: number) => (
         <div key={i} className="form-row">
           <TimeInputForForm

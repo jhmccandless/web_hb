@@ -10,7 +10,7 @@ import IncrementTime from "./IncrementTime";
 //   Workout: undefined;
 // };
 
-export interface Timer3UIInt {
+export interface RepeaterTimerInt {
   hangTime: number;
   offTime: number;
   restTime: number;
@@ -20,12 +20,14 @@ export interface Timer3UIInt {
 }
 // type Props = NativeStackScreenProps<RootStackParamList, 'Workout'>;
 
-function Timer3UI() {
+function RepeaterTimer() {
   // let timeArray: React.MutableRefObject<(string | number)[][]> = useRef(
   //   settingUpTimingInterval(props),
   // );
 
-  const timerDataState = useAppSelector((state: any) => state.timerInfo);
+  const timerDataState = useAppSelector(
+    (state: any) => state.timerInfo.timerTimes
+  );
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("rest");
@@ -38,7 +40,7 @@ function Timer3UI() {
   useEffect(() => {}, []);
 
   // ---Creates array to go through---
-  function settingUpTimingInterval(obj: Timer3UIInt) {
+  function settingUpTimingInterval(obj: RepeaterTimerInt) {
     const finalArray = [];
 
     finalArray.push(["rest", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
@@ -137,4 +139,4 @@ function Timer3UI() {
   );
 }
 
-export default Timer3UI;
+export default RepeaterTimer;
