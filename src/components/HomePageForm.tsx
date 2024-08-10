@@ -1,19 +1,76 @@
 import { useState } from "react";
 import HomePageRadioInput from "./HomePageRadioInput";
-import { useAppDispatch } from "./hooks";
+import { useAppDispatch, useAppSelector } from "./hooks";
 import { useNavigate } from "react-router-dom";
 import { setWorkoutType } from "../appSlices/timerSlice";
+import { checkValues } from "./TimerForm";
+
+const repeaterTemplateObj = {
+  hangTime: 7,
+  offTime: 3,
+  restTime: 40,
+  repCount: 6,
+  setCount: 3,
+  delayStartTime: 4,
+};
+const onOffTemplateObj = {
+  hangTime: 7,
+  // offTime: -1,
+  restTime: 40,
+  // repCount: -1,
+  setCount: 3,
+  delayStartTime: 4,
+};
+const cicuitTemplateObj = {
+  hangTime: 7,
+  // offTime: -1,
+  restTime: 40,
+  repCount: 6,
+  setCount: 3,
+  delayStartTime: 4,
+};
 
 function HomePageForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("repeaters");
 
+  const timerValues = useAppSelector(
+    (state: any) => state.timerInfo.timerTimes
+  );
+
+  function getTimerValueTemplate(timerType: string) {
+    let woType = timerType;
+    switch (woType) {
+      case "repeaters":
+        return repeaterTemplateObj;
+
+      // break;
+      case "on-off":
+        return onOffTemplateObj;
+
+      // break;
+      case "circuit":
+        return cicuitTemplateObj;
+
+      // break;
+
+      default:
+        break;
+    }
+  }
+
   function onWorkoutTypeSubmit(e: any) {
     e.preventDefault();
-    console.log(selectedOption);
-
-    dispatch(setWorkoutType(selectedOption));
+    dispatch(
+      setWorkoutType({
+        timerTimes: checkValues(
+          timerValues,
+          getTimerValueTemplate(selectedOption)
+        ),
+        timerType: selectedOption,
+      })
+    );
     navigate("/form");
   }
 
@@ -29,11 +86,11 @@ function HomePageForm() {
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
       />
-      <HomePageRadioInput
+      {/* <HomePageRadioInput
         inputTitle={"normal"}
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
-      />
+      /> */}
       <HomePageRadioInput
         inputTitle={"circuit"}
         currentOption={selectedOption}

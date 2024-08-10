@@ -4,6 +4,15 @@ import { setWorkoutValues } from "../appSlices/timerSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { useNavigate } from "react-router-dom";
 
+export function checkValues(refObj: any, newObj: any) {
+  const finalObj: any = {};
+  Object.entries(refObj).forEach(([key, val]) => {
+    finalObj[key] = newObj[key] ? newObj[key] : val;
+  });
+
+  return finalObj;
+}
+
 function TimerForm() {
   const timerValues = useAppSelector(
     (state: any) => state.timerInfo.timerTimes
@@ -20,14 +29,14 @@ function TimerForm() {
     delayStartTime: "",
   });
 
-  function checkValues(refObj: any, newObj: any) {
-    const finalObj: any = {};
-    Object.entries(refObj).forEach(([key, val]) => {
-      finalObj[key] = newObj[key] ? newObj[key] : val;
-    });
+  // function checkValues(refObj: any, newObj: any) {
+  //   const finalObj: any = {};
+  //   Object.entries(refObj).forEach(([key, val]) => {
+  //     finalObj[key] = newObj[key] ? newObj[key] : val;
+  //   });
 
-    return finalObj;
-  }
+  //   return finalObj;
+  // }
 
   function handleSubmit(e: any) {
     e.preventDefault();
