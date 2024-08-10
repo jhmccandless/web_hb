@@ -44,10 +44,14 @@ function TimerForm() {
     navigate("/workout");
   }
 
+  function onChangeWorkoutClick() {
+    navigate("/");
+  }
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <p className="form-row page-title">Fill In Your Workout</p>
-      <div className="form-row">
+      {/* <div className="form-row">
         <label>
           <select style={{ width: "100px" }}>
             <option value="none" style={{ display: "none" }}>
@@ -58,7 +62,7 @@ function TimerForm() {
             <option value="circuit">Circuit</option>
           </select>
         </label>
-      </div>
+      </div> */}
       {Object.keys(timerValues).map((el: string, i: number) => (
         <div key={i} className="form-row">
           <TimeInputForForm
@@ -70,9 +74,18 @@ function TimerForm() {
         </div>
       ))}
       <p>{}</p>
-      <button type="submit" className="form-row form-button">
-        Form finished
-      </button>
+      <div className="form-row">
+        <button type="submit" className="form-button">
+          Form finished
+        </button>
+        <button
+          type="button"
+          className="form-button"
+          onClick={onChangeWorkoutClick}
+        >
+          another workout
+        </button>
+      </div>
     </form>
   );
 }
