@@ -3,13 +3,6 @@ import MainTime from "./MainTime";
 import { useAppSelector } from "./hooks";
 import IncrementTime from "./IncrementTime";
 
-// import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-// type RootStackParamList = {
-//   Form: undefined;
-//   Workout: undefined;
-// };
-
 export interface RepeaterTimerInt {
   hangTime: number;
   offTime: number;
@@ -18,13 +11,8 @@ export interface RepeaterTimerInt {
   setCount: number;
   delayStartTime: number;
 }
-// type Props = NativeStackScreenProps<RootStackParamList, 'Workout'>;
 
 function RepeaterTimer() {
-  // let timeArray: React.MutableRefObject<(string | number)[][]> = useRef(
-  //   settingUpTimingInterval(props),
-  // );
-
   const timerDataState = useAppSelector(
     (state: any) => state.timerInfo.timerTimes
   );

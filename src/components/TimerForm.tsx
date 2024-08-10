@@ -40,10 +40,9 @@ function TimerForm() {
       <p className="form-row page-title">Fill In Your Workout</p>
       <div className="form-row">
         <label>
-          Choose Workout Type
-          <select>
+          <select style={{ width: "100px" }}>
             <option value="none" style={{ display: "none" }}>
-              Select...
+              Workout Type Select
             </option>
             <option value="repeaters">Repeaters</option>
             <option value="on-off">On-Off</option>
