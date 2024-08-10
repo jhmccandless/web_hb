@@ -38,6 +38,19 @@ function TimerForm() {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <p className="form-row page-title">Fill In Your Workout</p>
+      <div className="form-row">
+        <label>
+          Choose Workout Type
+          <select>
+            <option value="none" style={{ display: "none" }}>
+              Select...
+            </option>
+            <option value="repeaters">Repeaters</option>
+            <option value="on-off">On-Off</option>
+            <option value="circuit">Circuit</option>
+          </select>
+        </label>
+      </div>
       {Object.keys(timerValues).map((el: string, i: number) => (
         <div key={i} className="form-row">
           <TimeInputForForm
