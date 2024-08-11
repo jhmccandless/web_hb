@@ -13,14 +13,12 @@ export interface RepeaterTimerInt {
 }
 
 function RepeaterTimer() {
-  const timerDataState = useAppSelector(
-    (state: any) => state.timerInfo.timerTimes
-  );
+  const timerDataState = useAppSelector((state: any) => state.timerInfo);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("rest");
   const [currActTime, setCurrActTime] = useState<number>(
-    Number(timerDataState.delayStartTime)
+    Number(timerDataState.timerTimes.delayStartTime)
   );
   const [isPaused, setIsPaused] = useState(true);
   // console.log(timeArray);
@@ -32,27 +30,52 @@ function RepeaterTimer() {
     const finalArray = [];
 
     finalArray.push(["rest", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
-    for (let j = obj.repCount; j > 0; j--) {
+    if (timerDataState.timerType === "repeaters") {
+      for (let j = obj.setCount; j > 0; j--) {
+        for (let i = obj.repCount; i > 0; i--) {
+          if (i > 1) {
+            finalArray.push(["hang", obj.hangTime]);
+            finalArray.push(["off", obj.offTime]);
+          } else {
+            finalArray.push(["hang", obj.hangTime]);
+          }
+        }
+        if (j > 1) {
+          finalArray.push(["rest", obj.restTime]);
+        }
+      }
+    } else if (timerDataState.timerType === "on-off") {
       for (let i = obj.setCount; i > 0; i--) {
         if (i > 1) {
           finalArray.push(["hang", obj.hangTime]);
-          finalArray.push(["off", obj.offTime]);
+          if (obj.offTime !== -1) {
+            finalArray.push(["off", obj.offTime]);
+          }
+          finalArray.push(["rest", obj.restTime]);
         } else {
           finalArray.push(["hang", obj.hangTime]);
         }
       }
-      if (j > 1) {
-        finalArray.push(["rest", obj.restTime]);
+    } else if (timerDataState.timerType === "circuit") {
+      console.log("circuit");
+      for (let j = obj.setCount; j > 0; j--) {
+        for (let i = obj.repCount; i > 0; i--) {
+          finalArray.push(["hang", obj.hangTime]);
+        }
+        if (j > 1) {
+          finalArray.push(["rest", obj.restTime]);
+        }
       }
     }
+
     // console.log(finalArray);
     return finalArray;
   }
-  // console.log(timeArray);
+  console.log(timeArray);
 
   useEffect(() => {
     const timerDataStateNumbers: any = {};
-    Object.entries(timerDataState).forEach(([key, val]) => {
+    Object.entries(timerDataState.timerTimes).forEach(([key, val]) => {
       timerDataStateNumbers[key] = Number(val);
     });
     setTimeArray(settingUpTimingInterval(timerDataStateNumbers));
@@ -62,7 +85,8 @@ function RepeaterTimer() {
     // ---Takes in an array of the times to do in sequence--
     function timer1(arr: (string | number)[][]): void {
       let arrayCounter: number = 0;
-      let intervalTime: any = Number(timerDataState.delayStartTime) - 1;
+      let intervalTime: any =
+        Number(timerDataState.timerTimes.delayStartTime) - 1;
 
       const int1 = setInterval(() => {
         if (intervalTime > 1) {
@@ -106,21 +130,21 @@ function RepeaterTimer() {
         action={"hang"}
         currentAct={currentAction}
         actionTime={currActTime}
-        timerState={timerDataState.hangTime}
+        timerState={timerDataState.timerTimes.hangTime}
         stylingProp="timer-item-1"
       />
       <IncrementTime
         action={"off"}
         currentAct={currentAction}
         actionTime={currActTime}
-        timerState={timerDataState.offTime}
+        timerState={timerDataState.timerTimes.offTime}
         stylingProp="timer-item-2"
       />
       <IncrementTime
         action={"rest"}
         currentAct={currentAction}
         actionTime={currActTime}
-        timerState={timerDataState.restTime}
+        timerState={timerDataState.timerTimes.restTime}
         stylingProp="timer-item-3"
       />
     </div>
