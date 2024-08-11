@@ -63,16 +63,18 @@ function TimerForm() {
           </select>
         </label>
       </div> */}
-      {Object.keys(timerValues).map((el: string, i: number) => (
-        <div key={i} className="form-row">
-          <TimeInputForForm
-            placeHolderData={timerValues}
-            timeObject={timeObject}
-            whichTimeInput={el}
-            setTimeObject={setTimeObject}
-          />
-        </div>
-      ))}
+      {Object.entries(timerValues)
+        .filter(([key, val]) => val !== -1)
+        .map(([key, val], i: number) => (
+          <div key={i} className="form-row">
+            <TimeInputForForm
+              placeHolderData={timerValues}
+              timeObject={timeObject}
+              whichTimeInput={key}
+              setTimeObject={setTimeObject}
+            />
+          </div>
+        ))}
       <p>{}</p>
       <div className="form-row">
         <button type="submit" className="form-button">
