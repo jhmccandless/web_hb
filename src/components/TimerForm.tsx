@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TimeInputForForm from "./TimeInputForForm";
 import { setWorkoutValues } from "../appSlices/timerSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
@@ -14,9 +14,7 @@ export function checkValues(refObj: any, newObj: any) {
 }
 
 function TimerForm() {
-  const timerValues = useAppSelector(
-    (state: any) => state.timerInfo.timerTimes
-  );
+  const timerValues = useAppSelector((state: any) => state.timerInfo);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -27,6 +25,12 @@ function TimerForm() {
     // repCount: "",
     // setCount: "",
     // delayStartTime: "",
+  });
+
+  useEffect(() => {
+    if (!timerValues.timerType) {
+      navigate("/");
+    }
   });
 
   // function checkValues(refObj: any, newObj: any) {
@@ -40,7 +44,7 @@ function TimerForm() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    dispatch(setWorkoutValues(checkValues(timerValues, timeObject)));
+    dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
     navigate("/workout");
   }
 
@@ -63,12 +67,12 @@ function TimerForm() {
           </select>
         </label>
       </div> */}
-      {Object.entries(timerValues)
+      {Object.entries(timerValues.timerTimes)
         .filter(([key, val]) => val !== -1)
         .map(([key, val], i: number) => (
           <div key={i} className="form-row">
             <TimeInputForForm
-              placeHolderData={timerValues}
+              placeHolderData={timerValues.timerTimes}
               timeObject={timeObject}
               whichTimeInput={key}
               setTimeObject={setTimeObject}
