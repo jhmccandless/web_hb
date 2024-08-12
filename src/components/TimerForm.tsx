@@ -54,7 +54,12 @@ function TimerForm() {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <h2 className="form-row">Fill In Your Workout</h2>
+      <h2
+        className="form-row"
+        style={{ display: "flex", alignItems: "center", margin: "0" }}
+      >
+        Fill In Your Workout
+      </h2>
       {/* <div className="form-row">
         <label>
           <select style={{ width: "100px" }}>
