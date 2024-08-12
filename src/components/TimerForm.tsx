@@ -44,9 +44,9 @@ function TimerForm() {
     navigate("/workout");
   }
 
-  function onChangeWorkoutClick() {
-    navigate("/");
-  }
+  // function onChangeWorkoutClick() {
+  //   navigate("/");
+  // }
 
   return (
     <form className="form" onSubmit={handleSubmit}>
