@@ -10,7 +10,7 @@ function MenuCard(props: any) {
 
   return (
     <div className="menu-card clickable-text" onClick={onCardClick}>
-      <p>{props.cardTitle}</p>
+      <p className="menu-card-text">{props.cardTitle}</p>
     </div>
   );
 }

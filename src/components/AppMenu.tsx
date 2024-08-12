@@ -10,7 +10,7 @@ function AppMenu(props: any) {
       className={`${props.menuOpen ? "menu" : "menu-close"}`}
     >
       <MenuCard cardTitle={"Home"} desNav={"/"} />
-      <MenuCard cardTitle={"Workout Input"} desNav={"/form"} />
+      {/* <MenuCard cardTitle={"Workout Input"} desNav={"/form"} /> */}
       <MenuCard cardTitle={"About"} desNav={"/about"} />
     </div>
   );

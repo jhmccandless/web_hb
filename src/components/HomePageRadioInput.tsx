@@ -1,16 +1,26 @@
-function HomePageRadioInput(props: any) {
-  function onRadioSelect() {
-    console.log("select");
+import { useAppDispatch } from "./hooks";
+import { initialState, setWorkoutValues } from "../appSlices/timerSlice";
 
-    props.changeSelected(props.inputTitle);
+function HomePageRadioInput(props: any) {
+  const dispatch = useAppDispatch();
+
+  console.log(initialState.timerTimes);
+
+  function onRadioSelect() {
+    dispatch(setWorkoutValues(initialState.timerTimes));
+    props.changeSelected(props.inputTitle.toLowerCase());
   }
 
   return (
-    <div>
+    <div className="home-page-select-wrapper">
       <label>
         <input
           type="radio"
-          checked={props.currentOption === props.inputTitle ? true : false}
+          checked={
+            props.currentOption === props.inputTitle.toLowerCase()
+              ? true
+              : false
+          }
           value={props.inputTitle}
           onChange={onRadioSelect}
         />
