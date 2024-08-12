@@ -73,14 +73,14 @@ function HomePageForm() {
   }
 
   return (
-    <form onSubmit={onWorkoutTypeSubmit}>
+    <form className="type-form form-row-5" onSubmit={onWorkoutTypeSubmit}>
       <HomePageRadioInput
-        inputTitle={"repeaters"}
+        inputTitle={"Repeaters"}
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
       />
       <HomePageRadioInput
-        inputTitle={"on-off"}
+        inputTitle={"On-Off"}
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
       />
@@ -89,12 +89,18 @@ function HomePageForm() {
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
       /> */}
-      <HomePageRadioInput
+      {/* <HomePageRadioInput
         inputTitle={"circuit"}
         currentOption={selectedOption}
         changeSelected={setSelectedOption}
-      />
-      <button type="submit">Next</button>
+      /> */}
+      <button
+        className="form-button"
+        style={{ width: "65px", justifySelf: "center", alignSelf: "end" }}
+        type="submit"
+      >
+        Next
+      </button>
     </form>
   );
 }

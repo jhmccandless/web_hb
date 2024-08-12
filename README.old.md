@@ -38,3 +38,4 @@ app needs:
 - ability to choose workout form type from the form page as well as the homepage
 - field validations
 - using more exact time keeping with using dates
+- dual timers for two ppl doing the workout at once

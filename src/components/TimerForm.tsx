@@ -50,7 +50,7 @@ function TimerForm() {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <p className="form-row page-title">Fill In Your Workout</p>
+      <h2 className="form-row">Fill In Your Workout</h2>
       {/* <div className="form-row">
         <label>
           <select style={{ width: "100px" }}>
@@ -80,13 +80,13 @@ function TimerForm() {
         <button type="submit" className="form-button">
           Form finished
         </button>
-        <button
+        {/* <button
           type="button"
           className="form-button"
           onClick={onChangeWorkoutClick}
         >
           another workout
-        </button>
+        </button> */}
       </div>
     </form>
   );
