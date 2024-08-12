@@ -48,9 +48,9 @@ function TimerForm() {
     navigate("/workout");
   }
 
-  // function onChangeWorkoutClick() {
-  //   navigate("/");
-  // }
+  function onChangeWorkoutClick() {
+    navigate("/");
+  }
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -79,19 +79,23 @@ function TimerForm() {
             />
           </div>
         ))}
-      <p>{}</p>
-      <div className="form-row">
-        <button type="submit" className="form-button">
-          Form finished
-        </button>
-        {/* <button
-          type="button"
-          className="form-button"
-          onClick={onChangeWorkoutClick}
-        >
-          another workout
-        </button> */}
-      </div>
+      {/* <div className="form-row-buttons"> */}
+      <button
+        type="submit"
+        className="form-button"
+        style={{ gridColumn: "1 / span 2" }}
+      >
+        Workout!
+      </button>
+      <button
+        type="button"
+        className="form-button"
+        style={{ gridColumn: "3 / span 4" }}
+        onClick={onChangeWorkoutClick}
+      >
+        Back
+      </button>
+      {/* </div> */}
     </form>
   );
 }

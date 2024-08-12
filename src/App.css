@@ -108,6 +108,7 @@
 
 .form-button {
   height: 80%;
+  width: 80%;
 }
 
 .timer-wrapper {
@@ -121,8 +122,10 @@
 .timer-start-button {
   grid-column: 2 / span 2;
   grid-row: 1;
-  justify-items: center;
+  justify-self: center;
   align-self: center;
+  height: 80%;
+  width: 80%;
 }
 
 .menu-close {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MainTime from "./MainTime";
 import { useAppSelector } from "./hooks";
 import IncrementTime from "./IncrementTime";
+import { useNavigate } from "react-router-dom";
 
 export interface RepeaterTimerInt {
   hangTime: number;
@@ -13,6 +14,7 @@ export interface RepeaterTimerInt {
 }
 
 function RepeaterTimer() {
+  const navigate = useNavigate();
   const timerDataState = useAppSelector((state: any) => state.timerInfo);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
@@ -23,7 +25,11 @@ function RepeaterTimer() {
   const [isPaused, setIsPaused] = useState(true);
   // console.log(timeArray);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!timerDataState.timerType) {
+      navigate("/");
+    }
+  });
 
   // ---Creates array to go through---
   function settingUpTimingInterval(obj: RepeaterTimerInt) {
@@ -118,7 +124,7 @@ function RepeaterTimer() {
   return (
     <div className="timer-wrapper">
       <button
-        className="timer-start-button form-button"
+        className="timer-start-button"
         onClick={() => {
           setIsPaused(!isPaused);
         }}
