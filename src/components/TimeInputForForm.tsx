@@ -1,4 +1,5 @@
 import React from "react";
+import { setAlertActive } from "../appSlices/timerSlice";
 
 interface timeInputFormInt {
   timeObject: any;
@@ -9,7 +10,9 @@ interface timeInputFormInt {
 
 function TimeInputForForm(props: timeInputFormInt) {
   function onInputChange(e: any) {
+    setAlertActive(true);
     console.log(e.target.value);
+
     props.setTimeObject(() => {
       return {
         ...props.timeObject,
