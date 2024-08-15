@@ -10,7 +10,7 @@ export interface TimerState {
     delayStartTime: number;
   };
   timerType: string;
-  turnAlertOn: boolean;
+  dirtyFields: {};
 }
 
 export const initialState: TimerState = {
@@ -23,7 +23,7 @@ export const initialState: TimerState = {
     delayStartTime: -1,
   },
   timerType: "",
-  turnAlertOn: false,
+  dirtyFields: {},
 };
 
 export const timerSlice = createSlice({
@@ -37,15 +37,15 @@ export const timerSlice = createSlice({
     },
     setWorkoutType: (state: any, action: PayloadAction<any>) => {
       // console.log(current(state));
-      return { ...action.payload, ...current(state).turnAlertOn };
+      return { ...action.payload };
     },
-    setAlertActive: (state: any, action: PayloadAction<any>) => {
-      return { ...state, timerAlertOn: action.payload };
+    setDirtyFields: (state: any, action: PayloadAction<any>) => {
+      return { ...state };
     },
   },
 });
 
-export const { setWorkoutValues, setWorkoutType, setAlertActive } =
+export const { setWorkoutValues, setWorkoutType, setDirtyFields } =
   timerSlice.actions;
 
 // export const selectCount = (state: RootState) => state.counter.value;

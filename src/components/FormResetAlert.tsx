@@ -1,18 +1,20 @@
 import { useState } from "react";
+import { useAppSelector } from "./hooks";
 
-function FormResetAlert() {
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
-
+function FormResetAlert(props: any) {
   function onAlertOk() {
-    setIsAlertOpen(false);
+    props.setIsAlertOpen(false);
   }
 
   function onAlertCancel() {
-    setIsAlertOpen(false);
+    props.setIsAlertOpen(false);
   }
+
   return (
     <div
-      className={`full-screen-disable-div ${isAlertOpen ? "" : "div-close"}`}
+      className={`full-screen-disable-div ${
+        props.openAlert ? "" : "div-close"
+      }`}
       // className={
       //   isAlertOpen
       //     ? "alert-location alert-popup"
