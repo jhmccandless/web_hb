@@ -4,8 +4,6 @@ import { initialState, setWorkoutValues } from "../appSlices/timerSlice";
 function HomePageRadioInput(props: any) {
   const dispatch = useAppDispatch();
 
-  console.log(initialState.timerTimes);
-
   function onRadioSelect() {
     dispatch(setWorkoutValues(initialState.timerTimes));
     props.changeSelected(props.inputTitle.toLowerCase());

@@ -1,5 +1,4 @@
 import React from "react";
-import { setAlertActive } from "../appSlices/timerSlice";
 
 interface timeInputFormInt {
   timeObject: any;
@@ -10,9 +9,6 @@ interface timeInputFormInt {
 
 function TimeInputForForm(props: timeInputFormInt) {
   function onInputChange(e: any) {
-    setAlertActive(true);
-    console.log(e.target.value);
-
     props.setTimeObject(() => {
       return {
         ...props.timeObject,
@@ -40,7 +36,7 @@ function TimeInputForForm(props: timeInputFormInt) {
           name={props.whichTimeInput}
           type="number"
           placeholder={props.placeHolderData[props.whichTimeInput]}
-          value={props.timeObject[`${props.whichTimeInput}`]}
+          defaultValue={props.timeObject[`${props.whichTimeInput}`]}
           onChange={onInputChange}
         />
       </label>

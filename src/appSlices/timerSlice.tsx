@@ -36,7 +36,6 @@ export const timerSlice = createSlice({
       return { ...current(state), timerTimes: action.payload };
     },
     setWorkoutType: (state: any, action: PayloadAction<any>) => {
-      console.log(action.payload);
       // console.log(current(state));
       return { ...action.payload, ...current(state).turnAlertOn };
     },

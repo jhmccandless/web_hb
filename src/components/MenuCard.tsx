@@ -4,7 +4,6 @@ function MenuCard(props: any) {
   const navigate = useNavigate();
 
   function onCardClick() {
-    console.log("card click");
     navigate(props.desNav);
   }
 
