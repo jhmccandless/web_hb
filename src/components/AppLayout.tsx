@@ -7,7 +7,7 @@ import { useAppSelector } from "./hooks";
 
 function AppLayout(props: any) {
   const dirtyFields = useAppSelector(
-    (state: any) => state.timerInfo.dirtyFields
+    (state: any) => state.formState.dirtyFields
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);

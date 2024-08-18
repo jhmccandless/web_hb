@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch } from "./hooks";
-import { setDirtyFields } from "../appSlices/timerSlice";
+import { setDirtyFields } from "../appSlices/formSlice";
 
 interface timeInputFormInt {
   timeObject: any;

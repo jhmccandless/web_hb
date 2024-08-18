@@ -15,6 +15,7 @@ export function checkValues(refObj: any, newObj: any) {
 
 function TimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
+  const formStateValues = useAppSelector((state: any) => state.formInfo);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -51,7 +52,7 @@ function TimerForm() {
   }
 
   function onBackClick() {
-    if (Object.keys(timerValues.dirtyFields).length === 0) navigate("/");
+    if (Object.keys(formStateValues.dirtyFields).length === 0) navigate("/");
     else {
       console.log("alert me");
     }
