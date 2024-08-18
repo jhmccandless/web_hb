@@ -18,6 +18,8 @@ function TimerForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  console.log(timerValues);
+
   const [timeObject, setTimeObject] = useState<any>({
     // hangTime: "",
     // offTime: "",
@@ -48,8 +50,11 @@ function TimerForm() {
     navigate("/workout");
   }
 
-  function onChangeWorkoutClick() {
-    navigate("/");
+  function onBackClick() {
+    if (Object.keys(timerValues.dirtyFields).length === 0) navigate("/");
+    else {
+      console.log("alert me");
+    }
   }
 
   return (
@@ -96,7 +101,7 @@ function TimerForm() {
         type="button"
         className="form-button"
         style={{ gridColumn: "3 / span 4" }}
-        onClick={onChangeWorkoutClick}
+        onClick={onBackClick}
       >
         Back
       </button>

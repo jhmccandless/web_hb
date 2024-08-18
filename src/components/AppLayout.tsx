@@ -17,8 +17,8 @@ function AppLayout(props: any) {
   }
 
   function checkIfDirty(dfields: any): boolean {
-    if (Object.entries(dfields)) return true;
-    return false;
+    if (Object.entries(dfields).length === 0) return false;
+    return true;
   }
 
   return (

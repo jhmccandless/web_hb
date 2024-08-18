@@ -1,4 +1,6 @@
 import React from "react";
+import { useAppDispatch } from "./hooks";
+import { setDirtyFields } from "../appSlices/timerSlice";
 
 interface timeInputFormInt {
   timeObject: any;
@@ -8,6 +10,8 @@ interface timeInputFormInt {
 }
 
 function TimeInputForForm(props: timeInputFormInt) {
+  const dispatch = useAppDispatch();
+
   function onInputChange(e: any) {
     props.setTimeObject(() => {
       return {
@@ -15,6 +19,7 @@ function TimeInputForForm(props: timeInputFormInt) {
         [`${props.whichTimeInput}`]: e.target.value,
       };
     });
+    dispatch(setDirtyFields({ [`${props.whichTimeInput}`]: e.target.value }));
   }
 
   function placeHolderNameAdjust(name: string) {
