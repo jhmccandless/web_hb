@@ -1,17 +1,17 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 
 export interface FormState {
-  isAlertOpen: boolean;
+  // isAlertOpen: boolean;
   dirtyFields: any;
 }
 
 export const initialState: FormState = {
-  isAlertOpen: false,
+  // isAlertOpen: false,
   dirtyFields: {},
 };
 
-export const timerSlice = createSlice({
-  name: "timerInfo",
+export const formSlice = createSlice({
+  name: "formInfo",
   initialState,
   reducers: {
     setDirtyFields: (state: any, action: PayloadAction<any>) => {
@@ -24,16 +24,22 @@ export const timerSlice = createSlice({
         },
       };
     },
-    setIsAlertOpen: (state: any, action: PayloadAction<any>) => {
+    clearDirtyFields: (state: any, action: PayloadAction<any>) => {
       return {
         ...current(state),
+        dirtyFields: {},
       };
     },
+    // setIsAlertOpen: (state: any, action: PayloadAction<any>) => {
+    //   return {
+    //     ...current(state),
+    //   };
+    // },
   },
 });
 
-export const { setDirtyFields, setIsAlertOpen } = timerSlice.actions;
+export const { setDirtyFields, clearDirtyFields } = formSlice.actions;
 
 // export const selectCount = (state: RootState) => state.counter.value;
 
-export default timerSlice.reducer;
+export default formSlice.reducer;
