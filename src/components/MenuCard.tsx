@@ -5,6 +5,7 @@ function MenuCard(props: any) {
 
   function onCardClick() {
     navigate(props.desNav);
+    props.toggleButton(false);
   }
 
   return (
