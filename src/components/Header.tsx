@@ -1,10 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import AppMenuButton from "./AppMenuButton";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "./hooks";
+import { openAlert } from "../appSlices/formSlice";
 
 function Header(props: any) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const formStateValues = useAppSelector((state: any) => state.formState);
+
   function onAppTitleClick() {
-    navigate("/");
+    if (Object.keys(formStateValues.dirtyFields).length === 0) {
+      navigate("/");
+    } else {
+      dispatch(openAlert("/"));
+    }
   }
   return (
     <div className="header">
