@@ -3,7 +3,7 @@ import { clearDirtyFields, closeAlert } from "../appSlices/formSlice";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "./hooks";
 
-function FormResetAlert(props: any) {
+function FormResetAlert() {
   const formStateValues = useAppSelector((state: any) => state.formState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ function FormResetAlert(props: any) {
 
   function onAlertCancel() {
     dispatch(closeAlert(""));
-    // props.setIsAlertOpen(false);
   }
 
   return (

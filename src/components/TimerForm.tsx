@@ -3,7 +3,6 @@ import TimeInputForForm from "./TimeInputForForm";
 import { setWorkoutValues } from "../appSlices/timerSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { useNavigate } from "react-router-dom";
-import FormResetAlert from "./FormResetAlert";
 import { openAlert } from "../appSlices/formSlice";
 
 export function checkValues(refObj: any, newObj: any) {
@@ -21,9 +20,6 @@ function TimerForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  console.log(timerValues);
-
-  // const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [timeObject, setTimeObject] = useState<any>({
     // hangTime: "",
     // offTime: "",
@@ -39,15 +35,6 @@ function TimerForm() {
     }
   });
 
-  // function checkValues(refObj: any, newObj: any) {
-  //   const finalObj: any = {};
-  //   Object.entries(refObj).forEach(([key, val]) => {
-  //     finalObj[key] = newObj[key] ? newObj[key] : val;
-  //   });
-
-  //   return finalObj;
-  // }
-
   function handleSubmit(e: any) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
@@ -59,12 +46,6 @@ function TimerForm() {
     else {
       dispatch(openAlert("/"));
     }
-    // else {
-    //   setIsAlertOpen(true);
-    // }
-
-    // console.log("click");
-    // console.log(formStateValues.dirtyFields);
   }
 
   return (

@@ -12,11 +12,9 @@ function MenuCard(props: any) {
   function onCardClick() {
     if (Object.keys(formStateValues.dirtyFields).length === 0) {
       navigate(props.desNav);
-      props.toggleButton(false);
     } else {
       dispatch(openAlert(props.desNav));
     }
-    // navigate(props.desNav);
   }
 
   return (
