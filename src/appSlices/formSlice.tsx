@@ -17,7 +17,7 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     setDirtyFields: (state: any, action: PayloadAction<any>) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...current(state),
         dirtyFields: {
@@ -33,7 +33,7 @@ export const formSlice = createSlice({
       };
     },
     closeAlert: (state: any, action: PayloadAction<any>) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...current(state),
         isAlertOpen: false,
@@ -41,24 +41,17 @@ export const formSlice = createSlice({
       };
     },
     openAlert: (state: any, action: PayloadAction<any>) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...current(state),
         isAlertOpen: true,
         desURL: action.payload,
       };
     },
-    // setIsAlertOpen: (state: any, action: PayloadAction<any>) => {
-    //   return {
-    //     ...current(state),
-    //   };
-    // },
   },
 });
 
 export const { setDirtyFields, clearDirtyFields, closeAlert, openAlert } =
   formSlice.actions;
-
-// export const selectCount = (state: RootState) => state.counter.value;
 
 export default formSlice.reducer;
