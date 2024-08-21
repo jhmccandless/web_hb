@@ -77,7 +77,6 @@ function RepeaterTimer() {
     // console.log(finalArray);
     return finalArray;
   }
-  console.log(timeArray);
 
   useEffect(() => {
     const timerDataStateNumbers: any = {};

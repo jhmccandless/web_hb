@@ -3,6 +3,7 @@ import TimeInputForForm from "./TimeInputForForm";
 import { setWorkoutValues } from "../appSlices/timerSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { useNavigate } from "react-router-dom";
+import { openAlert } from "../appSlices/formSlice";
 
 export function checkValues(refObj: any, newObj: any) {
   const finalObj: any = {};
@@ -15,6 +16,7 @@ export function checkValues(refObj: any, newObj: any) {
 
 function TimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
+  const formStateValues = useAppSelector((state: any) => state.formState);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -33,23 +35,17 @@ function TimerForm() {
     }
   });
 
-  // function checkValues(refObj: any, newObj: any) {
-  //   const finalObj: any = {};
-  //   Object.entries(refObj).forEach(([key, val]) => {
-  //     finalObj[key] = newObj[key] ? newObj[key] : val;
-  //   });
-
-  //   return finalObj;
-  // }
-
   function handleSubmit(e: any) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
     navigate("/workout");
   }
 
-  function onChangeWorkoutClick() {
-    navigate("/");
+  function onBackClick() {
+    if (Object.keys(formStateValues.dirtyFields).length === 0) navigate("/");
+    else {
+      dispatch(openAlert("/"));
+    }
   }
 
   return (
@@ -96,7 +92,7 @@ function TimerForm() {
         type="button"
         className="form-button"
         style={{ gridColumn: "3 / span 4" }}
-        onClick={onChangeWorkoutClick}
+        onClick={onBackClick}
       >
         Back
       </button>

@@ -1,6 +1,5 @@
 function AppMenuButton(props: any) {
   function onMenuClick() {
-    console.log("click");
     props.toggleButton(!props.menuOpen);
   }
 
