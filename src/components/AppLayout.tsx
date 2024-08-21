@@ -16,8 +16,6 @@ function AppLayout(props: any) {
     if (Object.keys(formStateValues.dirtyFields).length !== 0) {
       const handleBeforeUnload = (e: any) => {
         e.preventDefault();
-
-        // dispatch(openAlert("/"));
       };
       window.addEventListener("beforeunload", handleBeforeUnload);
       return () => {
