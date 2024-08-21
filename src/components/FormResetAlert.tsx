@@ -1,24 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import { clearDirtyFields } from "../appSlices/formSlice";
+import { clearDirtyFields, closeAlert } from "../appSlices/formSlice";
 import { useDispatch } from "react-redux";
+import { useAppSelector } from "./hooks";
 
 function FormResetAlert(props: any) {
+  const formStateValues = useAppSelector((state: any) => state.formState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   function onAlertOk() {
-    props.setIsAlertOpen(false);
+    dispatch(closeAlert(""));
     dispatch(clearDirtyFields(""));
-    navigate(props.pageNavTo);
+    navigate(formStateValues.desURL);
   }
 
   function onAlertCancel() {
-    props.setIsAlertOpen(false);
+    dispatch(closeAlert(""));
+    // props.setIsAlertOpen(false);
   }
 
   return (
     <div
       className={`full-screen-disable-div ${
-        props.isAlertOpen ? "" : "div-close"
+        formStateValues.isAlertOpen ? "" : "div-close"
       }`}
       // className={
       //   isAlertOpen

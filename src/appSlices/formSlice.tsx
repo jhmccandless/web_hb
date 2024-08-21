@@ -1,13 +1,15 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 
 export interface FormState {
-  // isAlertOpen: boolean;
+  isAlertOpen: boolean;
   dirtyFields: any;
+  desURL: string;
 }
 
 export const initialState: FormState = {
-  // isAlertOpen: false,
+  isAlertOpen: false,
   dirtyFields: {},
+  desURL: "/",
 };
 
 export const formSlice = createSlice({
@@ -30,6 +32,22 @@ export const formSlice = createSlice({
         dirtyFields: {},
       };
     },
+    closeAlert: (state: any, action: PayloadAction<any>) => {
+      console.log(action.payload);
+      return {
+        ...current(state),
+        isAlertOpen: false,
+        // desURL: action.payload,
+      };
+    },
+    openAlert: (state: any, action: PayloadAction<any>) => {
+      console.log(action.payload);
+      return {
+        ...current(state),
+        isAlertOpen: true,
+        desURL: action.payload,
+      };
+    },
     // setIsAlertOpen: (state: any, action: PayloadAction<any>) => {
     //   return {
     //     ...current(state),
@@ -38,7 +56,8 @@ export const formSlice = createSlice({
   },
 });
 
-export const { setDirtyFields, clearDirtyFields } = formSlice.actions;
+export const { setDirtyFields, clearDirtyFields, closeAlert, openAlert } =
+  formSlice.actions;
 
 // export const selectCount = (state: RootState) => state.counter.value;
 

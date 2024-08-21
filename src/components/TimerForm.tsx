@@ -4,6 +4,7 @@ import { setWorkoutValues } from "../appSlices/timerSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { useNavigate } from "react-router-dom";
 import FormResetAlert from "./FormResetAlert";
+import { openAlert } from "../appSlices/formSlice";
 
 export function checkValues(refObj: any, newObj: any) {
   const finalObj: any = {};
@@ -22,7 +23,7 @@ function TimerForm() {
 
   console.log(timerValues);
 
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  // const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [timeObject, setTimeObject] = useState<any>({
     // hangTime: "",
     // offTime: "",
@@ -56,9 +57,11 @@ function TimerForm() {
   function onBackClick() {
     if (Object.keys(formStateValues.dirtyFields).length === 0) navigate("/");
     else {
-      setIsAlertOpen(true);
+      dispatch(openAlert("/"));
     }
-    console.log(Object.keys(formStateValues.dirtyFields));
+    // else {
+    //   setIsAlertOpen(true);
+    // }
 
     // console.log("click");
     // console.log(formStateValues.dirtyFields);
@@ -66,11 +69,6 @@ function TimerForm() {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <FormResetAlert
-        isAlertOpen={isAlertOpen}
-        setIsAlertOpen={setIsAlertOpen}
-        pageNavTo={"/"}
-      />
       <h2
         className="form-row"
         style={{ display: "flex", alignItems: "center", margin: "0" }}
