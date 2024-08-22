@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppDispatch } from "./hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
+import { TimePicker } from "@mui/x-date-pickers";
 
 interface timeInputFormInt {
   timeObject: any;
@@ -36,14 +37,19 @@ function TimeInputForForm(props: timeInputFormInt) {
         <p style={{ margin: "0 0 10px 0" }}>
           {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
         </p>
-        <input
+        <TimePicker
+          views={["minutes", "seconds"]}
+          format="mm:ss"
+          timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
+        />
+        {/* <input
           style={{ width: "50px" }}
           name={props.whichTimeInput}
           type="number"
           placeholder={props.placeHolderData[props.whichTimeInput]}
           defaultValue={props.timeObject[`${props.whichTimeInput}`]}
           onChange={onInputChange}
-        />
+        /> */}
       </label>
     </div>
   );
