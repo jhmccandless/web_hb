@@ -47,27 +47,34 @@ function TimeInputForForm(props: timeInputFormInt) {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <label>
-        <p style={{ margin: "0 0 10px 0" }}>
-          {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
-        </p>
-        <input
-          style={{ width: "50px" }}
-          name={props.whichTimeInput.concat("Minutes")}
-          type="number"
-          placeholder={props.placeHolderData[props.whichTimeInput]}
-          value={minutes}
-          onChange={updateMinutes}
-        />
-        <input
-          style={{ width: "50px" }}
-          name={props.whichTimeInput.concat("Seconds")}
-          type="number"
-          placeholder={props.placeHolderData[props.whichTimeInput]}
-          value={seconds}
-          onChange={updateSeconds}
-        />
-      </label>
+      <h3 style={{ margin: "0 0 10px 0" }}>
+        {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
+      </h3>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <label>
+          <input
+            style={{ width: "50px" }}
+            name={props.whichTimeInput.concat("Minutes")}
+            type="number"
+            placeholder={props.placeHolderData[props.whichTimeInput]}
+            value={minutes}
+            onChange={updateMinutes}
+          />
+          <p style={{ margin: "0", fontSize: "12px" }}>{"Min"}</p>
+        </label>
+        <p>:</p>
+        <label>
+          <input
+            style={{ width: "50px" }}
+            name={props.whichTimeInput.concat("Seconds")}
+            type="number"
+            placeholder={props.placeHolderData[props.whichTimeInput]}
+            value={seconds}
+            onChange={updateSeconds}
+          />
+          <p style={{ margin: "0", fontSize: "12px" }}>{"Sec"}</p>
+        </label>
+      </div>
     </div>
   );
 }
