@@ -52,26 +52,51 @@ function TimeInputForForm(props: timeInputFormInt) {
       </h3>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <label>
-          <input
+          <select
             style={{ width: "50px" }}
+            // type="number"
             name={props.whichTimeInput.concat("Minutes")}
-            type="number"
-            placeholder={props.placeHolderData[props.whichTimeInput]}
             value={minutes}
             onChange={updateMinutes}
-          />
+          >
+            {Array(16)
+              .fill(0)
+              .map((_, index) => index)
+              .map((el, i) => (
+                <option key={i} value={el}>
+                  {el}
+                </option>
+              ))}
+          </select>
+
           <p style={{ margin: "0", fontSize: "12px" }}>{"Min"}</p>
         </label>
         <p>:</p>
         <label>
-          <input
+          {/* <input
             style={{ width: "50px" }}
             name={props.whichTimeInput.concat("Seconds")}
             type="number"
             placeholder={props.placeHolderData[props.whichTimeInput]}
             value={seconds}
             onChange={updateSeconds}
-          />
+          /> */}
+          <select
+            style={{ width: "50px" }}
+            // type="number"
+            name={props.whichTimeInput.concat("Seconds")}
+            value={seconds}
+            onChange={updateSeconds}
+          >
+            {Array(60)
+              .fill(0)
+              .map((_, index) => index)
+              .map((el, i) => (
+                <option key={i} value={el}>
+                  {el}
+                </option>
+              ))}
+          </select>
           <p style={{ margin: "0", fontSize: "12px" }}>{"Sec"}</p>
         </label>
       </div>
