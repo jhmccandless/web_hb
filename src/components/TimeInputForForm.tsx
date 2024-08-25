@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch } from "./hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
 
@@ -10,16 +10,31 @@ interface timeInputFormInt {
 }
 
 function TimeInputForForm(props: timeInputFormInt) {
+  const [seconds, setSeconds] = useState<number>(7);
+  const [minutes, setMinutes] = useState<number>(8);
   const dispatch = useAppDispatch();
 
-  function onInputChange(e: any) {
+  function updateMinutes(e: any) {
+    console.log(e.target);
+    setMinutes(e.target.value);
+    onInputChange(e.target.value, seconds);
+  }
+
+  function updateSeconds(e: any) {
+    console.log(e.target);
+    setSeconds(e.target.value);
+    onInputChange(minutes, e.target.value);
+  }
+
+  function onInputChange(min: number, sec: number) {
+    let timeSum = min * 60 + +sec;
     props.setTimeObject(() => {
       return {
         ...props.timeObject,
-        [`${props.whichTimeInput}`]: e.target.value,
+        [`${props.whichTimeInput}`]: timeSum,
       };
     });
-    dispatch(setDirtyFields({ [`${props.whichTimeInput}`]: e.target.value }));
+    dispatch(setDirtyFields({ [`${props.whichTimeInput}`]: timeSum }));
   }
 
   function placeHolderNameAdjust(name: string) {
@@ -38,11 +53,19 @@ function TimeInputForForm(props: timeInputFormInt) {
         </p>
         <input
           style={{ width: "50px" }}
-          name={props.whichTimeInput}
+          name={props.whichTimeInput.concat("Minutes")}
           type="number"
           placeholder={props.placeHolderData[props.whichTimeInput]}
-          defaultValue={props.timeObject[`${props.whichTimeInput}`]}
-          onChange={onInputChange}
+          value={minutes}
+          onChange={updateMinutes}
+        />
+        <input
+          style={{ width: "50px" }}
+          name={props.whichTimeInput.concat("Seconds")}
+          type="number"
+          placeholder={props.placeHolderData[props.whichTimeInput]}
+          value={seconds}
+          onChange={updateSeconds}
         />
       </label>
     </div>

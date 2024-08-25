@@ -29,6 +29,8 @@ function TimerForm() {
     // delayStartTime: "",
   });
 
+  console.log(timeObject);
+
   useEffect(() => {
     if (!timerValues.timerType) {
       navigate("/");
