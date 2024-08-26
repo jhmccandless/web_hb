@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useAppDispatch } from "./hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
 
-interface timeInputFormInt {
+interface CountInputFormInt {
   timeObject: any;
   setTimeObject: React.Dispatch<React.SetStateAction<any>>;
   whichTimeInput: string;
   placeHolderData: any;
 }
 
-function TimeInputForForm(props: timeInputFormInt) {
+function CountInputForForm(props: CountInputFormInt) {
   const dispatch = useAppDispatch();
   const [seconds, setSeconds] = useState<number>(
     setSecondsFunc(props.placeHolderData[`${props.whichTimeInput}`])
@@ -84,56 +84,18 @@ function TimeInputForForm(props: timeInputFormInt) {
       </h3>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <label>
-          <select
-            style={{ width: "50px" }}
-            // type="number"
-            name={props.whichTimeInput.concat("Minutes")}
-            value={minutes}
-            onChange={updateMinutes}
-          >
-            {Array(16)
-              .fill(0)
-              .map((_, index) => index)
-              .map((el, i) => (
-                <option key={i} value={el}>
-                  {el}
-                </option>
-              ))}
-          </select>
-
-          <p style={{ margin: "0", fontSize: "12px" }}>{"Min"}</p>
-        </label>
-        <p>:</p>
-        <label>
-          {/* <input
+          <input
             style={{ width: "50px" }}
             name={props.whichTimeInput.concat("Seconds")}
             type="number"
             placeholder={props.placeHolderData[props.whichTimeInput]}
             value={seconds}
             onChange={updateSeconds}
-          /> */}
-          <select
-            style={{ width: "50px" }}
-            // type="number"
-            name={props.whichTimeInput.concat("Seconds")}
-            value={seconds}
-            onChange={updateSeconds}
-          >
-            {Array(60)
-              .fill(0)
-              .map((_, index) => index)
-              .map((el, i) => (
-                <option key={i} value={el}>
-                  {el}
-                </option>
-              ))}
-          </select>
-          <p style={{ margin: "0", fontSize: "12px" }}>{"Sec"}</p>
+          />
         </label>
       </div>
     </div>
   );
 }
 
-export default TimeInputForForm;
+export default CountInputForForm;

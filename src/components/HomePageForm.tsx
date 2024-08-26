@@ -8,10 +8,10 @@ import { checkValues } from "./TimerForm";
 const repeaterTemplateObj = {
   hangTime: 7,
   offTime: 3,
-  restTime: 40,
+  restTime: 240,
   repCount: 6,
   setCount: 3,
-  delayStartTime: 4,
+  delayStartTime: 10,
 };
 const onOffTemplateObj = {
   hangTime: 7,
