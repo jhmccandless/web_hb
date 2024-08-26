@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MainTime from "./MainTime";
-import { useAppSelector } from "./hooks";
+import { useAppSelector } from "../hooks/hooks";
 import IncrementTime from "./IncrementTime";
 import { useNavigate } from "react-router-dom";
 
@@ -136,15 +136,22 @@ function RepeaterTimer() {
         currentAct={currentAction}
         actionTime={currActTime}
         timerState={timerDataState.timerTimes.hangTime}
-        stylingProp="timer-item-1"
+        stylingProp={
+          timerDataState.timerTimes.offTime > -1
+            ? "timer-item-1"
+            : "timer-item-1-5"
+        }
       />
-      <IncrementTime
-        action={"off"}
-        currentAct={currentAction}
-        actionTime={currActTime}
-        timerState={timerDataState.timerTimes.offTime}
-        stylingProp="timer-item-2"
-      />
+      {timerDataState.timerTimes.offTime > -1 && (
+        <IncrementTime
+          action={"off"}
+          currentAct={currentAction}
+          actionTime={currActTime}
+          timerState={timerDataState.timerTimes.offTime}
+          stylingProp="timer-item-2"
+        />
+      )}
+
       <IncrementTime
         action={"rest"}
         currentAct={currentAction}

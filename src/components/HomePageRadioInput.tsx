@@ -1,4 +1,4 @@
-import { useAppDispatch } from "./hooks";
+import { useAppDispatch } from "../hooks/hooks";
 import { initialState, setWorkoutValues } from "../appSlices/timerSlice";
 
 function HomePageRadioInput(props: any) {

@@ -66,6 +66,12 @@
   justify-self: center;
   /* grid-column: 1 / span 2; */
 }
+.timer-item-1-5 {
+  grid-column: 1 / span 4;
+  grid-row: 9;
+  justify-self: center;
+  /* grid-column: 1 / span 2; */
+}
 
 .timer-item-2 {
   grid-column: 3 / span 2;

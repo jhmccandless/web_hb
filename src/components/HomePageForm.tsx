@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HomePageRadioInput from "./HomePageRadioInput";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { setWorkoutType } from "../appSlices/timerSlice";
 import { checkValues } from "./TimerForm";
@@ -8,10 +8,10 @@ import { checkValues } from "./TimerForm";
 const repeaterTemplateObj = {
   hangTime: 7,
   offTime: 3,
-  restTime: 40,
+  restTime: 240,
   repCount: 6,
   setCount: 3,
-  delayStartTime: 4,
+  delayStartTime: 10,
 };
 const onOffTemplateObj = {
   hangTime: 7,

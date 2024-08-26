@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import AppMenu from "./AppMenu";
 import FormResetAlert from "./FormResetAlert";
-import { useAppSelector } from "./hooks";
 
 function AppLayout(props: any) {
   // const dispatch = useAppDispatch();
 
-  const formStateValues = useAppSelector((state: any) => state.formState);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  /*
+  const formStateValues = useAppSelector((state: any) => state.formState);
+  This is for the refresh functionality
   useEffect(() => {
     if (Object.keys(formStateValues.dirtyFields).length !== 0) {
       const handleBeforeUnload = (e: any) => {
@@ -23,6 +22,7 @@ function AppLayout(props: any) {
       };
     }
   });
+  */
 
   function onPageClick() {
     if (isMenuOpen) setIsMenuOpen(false);

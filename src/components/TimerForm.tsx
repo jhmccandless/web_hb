@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import TimeInputForForm from "./TimeInputForForm";
 import { setWorkoutValues } from "../appSlices/timerSlice";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
+import CounterInputForForm from "./CounterInputForForm";
 
 export function checkValues(refObj: any, newObj: any) {
   const finalObj: any = {};
@@ -28,6 +29,8 @@ function TimerForm() {
     // setCount: "",
     // delayStartTime: "",
   });
+
+  console.log(timeObject);
 
   useEffect(() => {
     if (!timerValues.timerType) {
@@ -70,16 +73,33 @@ function TimerForm() {
       </div> */}
       {Object.entries(timerValues.timerTimes)
         .filter(([key, val]) => val !== -1)
-        .map(([key, val], i: number) => (
-          <div key={i} className="form-row">
-            <TimeInputForForm
-              placeHolderData={timerValues.timerTimes}
-              timeObject={timeObject}
-              whichTimeInput={key}
-              setTimeObject={setTimeObject}
-            />
-          </div>
-        ))}
+        .map(([key, val], i: number) => {
+          if (key.includes("Time")) {
+            console.log(key);
+            return (
+              <div key={i} className="form-row">
+                <TimeInputForForm
+                  placeHolderData={timerValues.timerTimes}
+                  timeObject={timeObject}
+                  whichTimeInput={key}
+                  setTimeObject={setTimeObject}
+                />
+              </div>
+            );
+          } else {
+            console.log(key);
+            return (
+              <div key={i} className="form-row">
+                <CounterInputForForm
+                  placeHolderData={timerValues.timerTimes}
+                  timeObject={timeObject}
+                  whichTimeInput={key}
+                  setTimeObject={setTimeObject}
+                />
+              </div>
+            );
+          }
+        })}
       {/* <div className="form-row-buttons"> */}
       <button
         type="submit"

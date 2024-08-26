@@ -1,4 +1,5 @@
 import React from "react";
+import { secondsToTimeString } from "./IncrementTime";
 
 interface MainTimeInterface {
   number: number;
@@ -6,9 +7,17 @@ interface MainTimeInterface {
 }
 
 function MainTime(props: MainTimeInterface) {
+  function mainSecondsToTimeString(sec: number) {
+    if (sec / 60 >= 1) {
+      return secondsToTimeString(sec);
+    } else {
+      return sec;
+    }
+  }
+
   return (
     <div className="main-timer-div">
-      <p>{props.number}</p>
+      <p>{mainSecondsToTimeString(props.number)}</p>
     </div>
   );
 }
