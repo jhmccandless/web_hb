@@ -42,15 +42,37 @@ function CounterInputForForm(props: CounterInputFormInt) {
         <h3 style={{ margin: "0 0 10px 0" }}>
           {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
         </h3>
+        <select
+          style={{ width: "50px" }}
+          name={props.whichTimeInput}
+          // placeholder={props.placeHolderData[props.whichTimeInput]}
+          value={counter}
+          onChange={onInputChange}
+        >
+          {Array(20)
+            .fill(0)
+            .map((_, index) => index)
+            .map((el, i) => (
+              <option key={i} value={el}>
+                {el}
+              </option>
+            ))}
+        </select>
+      </label>
+      {/* <label>
+        <h3 style={{ margin: "0 0 10px 0" }}>
+          {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
+        </h3>
         <input
           style={{ width: "50px" }}
           name={props.whichTimeInput}
           type="number"
           // placeholder={props.placeHolderData[props.whichTimeInput]}
+          min={1}
           value={counter}
           onChange={onInputChange}
         />
-      </label>
+      </label> */}
     </div>
   );
 }
