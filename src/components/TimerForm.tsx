@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TimeInputForForm from "./TimeInputForForm";
 import { setWorkoutValues } from "../appSlices/timerSlice";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
 import CounterInputForForm from "./CounterInputForForm";

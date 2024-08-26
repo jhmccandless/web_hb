@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HomePageRadioInput from "./HomePageRadioInput";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { setWorkoutType } from "../appSlices/timerSlice";
 import { checkValues } from "./TimerForm";

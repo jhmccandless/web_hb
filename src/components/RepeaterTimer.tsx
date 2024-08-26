@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MainTime from "./MainTime";
-import { useAppSelector } from "./hooks";
+import { useAppSelector } from "../hooks/hooks";
 import IncrementTime from "./IncrementTime";
 import { useNavigate } from "react-router-dom";
 

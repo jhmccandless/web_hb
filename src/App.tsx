@@ -1,7 +1,7 @@
 import "./App.css";
 import TimerForm from "./components/TimerForm";
 import { Provider } from "react-redux";
-import { store } from "./components/store";
+import { store } from "./appSlices/store";
 import AppLayout from "./components/AppLayout";
 import { Route, Routes } from "react-router-dom";
 import Timer3UI from "./components/RepeaterTimer";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "./hooks";
+import { useAppDispatch } from "../hooks/hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
 
 interface CounterInputFormInt {

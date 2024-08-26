@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "./hooks";
+import { useAppSelector } from "../hooks/hooks";
 import { useDispatch } from "react-redux";
 import { openAlert } from "../appSlices/formSlice";
 

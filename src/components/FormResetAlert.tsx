@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { clearDirtyFields, closeAlert } from "../appSlices/formSlice";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "./hooks";
+import { useAppSelector } from "../hooks/hooks";
 
 function FormResetAlert() {
   const formStateValues = useAppSelector((state: any) => state.formState);

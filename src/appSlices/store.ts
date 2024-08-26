@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import timerSlice from "../appSlices/timerSlice";
-import formSlice from "../appSlices/formSlice";
+import timerSlice from "./timerSlice";
+import formSlice from "./formSlice";
 
 export const store = configureStore({
   reducer: {
