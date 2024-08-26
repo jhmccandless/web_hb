@@ -49,7 +49,7 @@ function CounterInputForForm(props: CounterInputFormInt) {
           value={counter}
           onChange={onInputChange}
         >
-          {Array(20)
+          {Array(21)
             .fill(0)
             .map((_, index) => index)
             .map((el, i) => (
