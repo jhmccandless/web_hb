@@ -103,7 +103,7 @@ function TimeInputForForm(props: timeInputFormInt) {
 
           <p style={{ margin: "0", fontSize: "12px" }}>{"Min"}</p>
         </label>
-        <p>:</p>
+        <p style={{ margin: "0 3px 10px 3px" }}>:</p>
         <label>
           {/* <input
             style={{ width: "50px" }}

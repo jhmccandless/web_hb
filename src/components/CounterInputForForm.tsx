@@ -39,9 +39,9 @@ function CounterInputForForm(props: CounterInputFormInt) {
   return (
     <div style={{ textAlign: "center" }}>
       <label>
-        <p style={{ margin: "0 0 10px 0" }}>
+        <h3 style={{ margin: "0 0 10px 0" }}>
           {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
-        </p>
+        </h3>
         <input
           style={{ width: "50px" }}
           name={props.whichTimeInput}
