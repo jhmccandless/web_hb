@@ -3,6 +3,7 @@ import MainTime from "./MainTime";
 import { useAppSelector } from "../hooks/hooks";
 import IncrementTime from "./IncrementTime";
 import { useNavigate } from "react-router-dom";
+import RepeaterTimerDetails from "./RepeaterTimerDetails";
 
 export interface RepeaterTimerInt {
   hangTime: number;
@@ -19,6 +20,12 @@ function RepeaterTimer() {
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("rest");
+  const [currentReps, setCurrentReps] = useState<number>(
+    timerDataState.timerTimes.repCount
+  );
+  const [currentSets, setCurrentSets] = useState<number>(
+    timerDataState.timerTimes.setCount
+  );
   const [currActTime, setCurrActTime] = useState<number>(
     Number(timerDataState.timerTimes.delayStartTime)
   );
@@ -92,6 +99,8 @@ function RepeaterTimer() {
       let arrayCounter: number = 0;
       let intervalTime: any =
         Number(timerDataState.timerTimes.delayStartTime) - 1;
+      let repsDecrement: number = timerDataState.timerTimes.repCount;
+      let setsDecrement: number = timerDataState.timerTimes.setCount;
 
       const int1 = setInterval(() => {
         if (intervalTime > 1) {
@@ -108,9 +117,15 @@ function RepeaterTimer() {
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
           intervalTime--;
-          if (arrayCounter === arr.length - 1) {
-            clearInterval(int1);
-          }
+          // setting reps/sets useing the counter
+          // if (arrayCounter - (1 % timerDataState.repsCounter) * 2 === 0) {
+          //   setCurrentSets(setsDecrement--);
+          //   setCurrentReps(timerDataState.repsCounter);
+          // }
+          if (arrayCounter)
+            if (arrayCounter === arr.length - 1) {
+              clearInterval(int1);
+            }
         }
       }, 500);
     }
@@ -131,26 +146,21 @@ function RepeaterTimer() {
         Start Timer
       </button>
       <MainTime number={currActTime} curAct={currentAction} />
-      <IncrementTime
+      {/* <IncrementTime
         action={"hang"}
         currentAct={currentAction}
         actionTime={currActTime}
         timerState={timerDataState.timerTimes.hangTime}
-        stylingProp={
-          timerDataState.timerTimes.offTime > -1
-            ? "timer-item-1"
-            : "timer-item-1-5"
-        }
+        stylingProp="timer-item-1"
       />
-      {timerDataState.timerTimes.offTime > -1 && (
-        <IncrementTime
-          action={"off"}
-          currentAct={currentAction}
-          actionTime={currActTime}
-          timerState={timerDataState.timerTimes.offTime}
-          stylingProp="timer-item-2"
-        />
-      )}
+
+      <IncrementTime
+        action={"off"}
+        currentAct={currentAction}
+        actionTime={currActTime}
+        timerState={timerDataState.timerTimes.offTime}
+        stylingProp="timer-item-2"
+      />
 
       <IncrementTime
         action={"rest"}
@@ -158,6 +168,13 @@ function RepeaterTimer() {
         actionTime={currActTime}
         timerState={timerDataState.timerTimes.restTime}
         stylingProp="timer-item-3"
+      /> */}
+      <RepeaterTimerDetails
+        currentAct={currentAction}
+        actionTime={currActTime}
+        timerState={timerDataState.timerTimes}
+        currentReps={currentReps}
+        currentSets={currentSets}
       />
     </div>
   );
