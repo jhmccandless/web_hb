@@ -2,7 +2,7 @@ import IncrementCounter from "./IncrementCounter";
 import IncrementTime from "./IncrementTime";
 
 function RepeaterTimerDetails(props: any) {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="timer-wrapper-details">
       <IncrementTime
