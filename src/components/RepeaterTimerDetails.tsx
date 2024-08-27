@@ -28,22 +28,16 @@ function RepeaterTimerDetails(props: any) {
         timerState={props.timerState.restTime}
         stylingProp="timer-item-3"
       />
-      {/* <IncrementCounter
-        action={"reps"}
-        currentAct={props.currentAction}
-        actionTime={props.currActTime}
-        timerState={props.timerState.repCount}
-        currentSets={props.currentSets}
-        currentReps={props.currentReps}
+      <IncrementCounter
+        whichCounter={"reps"}
         stylingProp="timer-item-3"
-      /> */}
-      {/* <IncrementCounter
-        action={"sets"}
-        currentAct={props.currentAction}
-        actionTime={props.currActTime}
-        timerState={props.timerState.setCount}
+        counter={props.repsCounter}
+      />
+      <IncrementCounter
+        whichCounter={"sets"}
         stylingProp="timer-item-3"
-      /> */}
+        counter={props.setsCounter}
+      />
     </div>
   );
 }

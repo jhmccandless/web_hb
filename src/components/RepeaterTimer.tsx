@@ -173,9 +173,11 @@ function RepeaterTimer() {
         currentAct={currentAction}
         actionTime={currActTime}
         timerState={timerDataState.timerTimes}
+        repsCounter={repsCounter}
+        setsCounter={setsCounter}
       />
-      <p>{repsCounter}</p>
-      <p>{setsCounter}</p>
+      {/* <p>{repsCounter}</p>
+      <p>{setsCounter}</p> */}
       {/* <IncrementTime
         action={"hang"}
         currentAct={currentAction}
