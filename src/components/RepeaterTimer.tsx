@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MainTime from "./MainTime";
 import { useAppSelector } from "../hooks/hooks";
-import IncrementTime from "./IncrementTime";
 import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
@@ -18,7 +17,6 @@ export interface RepeaterTimerInt {
 function RepeaterTimer() {
   const navigate = useNavigate();
   const timerDataState = useAppSelector((state: any) => state.timerInfo);
-  console.log(timerDataState.timerTimes.setCount);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("delay");
@@ -112,6 +110,7 @@ function RepeaterTimer() {
       timerDataStateNumbers[key] = Number(val);
     });
     setTimeArray(settingUpTimingInterval(timerDataStateNumbers));
+    // eslint-disable-next-line
   }, [timerDataState]);
 
   useEffect(() => {
@@ -138,8 +137,6 @@ function RepeaterTimer() {
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
           intervalTime--;
           if (arr.at(arrayCounter)?.at(2)) {
-            console.log("here2");
-            console.log(tempRepsCounter);
             setRepsCounter(tempRepsCounter--);
           }
           if (arr.at(arrayCounter)?.at(0) === "rest") {
