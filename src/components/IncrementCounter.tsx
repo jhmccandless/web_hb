@@ -7,9 +7,9 @@ function IncrementCounter(props: any) {
           .at(0)
           ?.toUpperCase()
           .concat(props.whichCounter.slice(1))}
-        :<p style={{ margin: 0 }}></p>
-        {props.counter}
+        :
       </p>
+      <p style={{ margin: 0 }}>{props.counter}</p>
     </div>
   );
 }

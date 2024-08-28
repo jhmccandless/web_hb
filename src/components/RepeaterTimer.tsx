@@ -21,7 +21,7 @@ function RepeaterTimer() {
   console.log(timerDataState.timerTimes.setCount);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
-  const [currentAction, setCurrentAction] = useState<string>("rest");
+  const [currentAction, setCurrentAction] = useState<string>("delay");
   const [currActTime, setCurrActTime] = useState<number>(
     Number(timerDataState.timerTimes.delayStartTime)
   );
@@ -46,7 +46,7 @@ function RepeaterTimer() {
   function settingUpTimingInterval(obj: RepeaterTimerInt) {
     const finalArray = [];
 
-    finalArray.push(["rest", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
+    finalArray.push(["delay", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
     if (timerDataState.timerType === "repeaters") {
       for (let j = obj.setCount; j > 0; j--) {
         for (let i = obj.repCount; i > 0; i--) {

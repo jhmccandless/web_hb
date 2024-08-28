@@ -26,7 +26,8 @@ function IncrementTime(props: IncrementTimeInt) {
     <div className={props.stylingProp}>
       <p style={{ margin: 0 }}>
         {props.action.at(0)?.toUpperCase().concat(props.action.slice(1))}:
-        <p style={{ margin: 0 }}></p>
+      </p>
+      <p style={{ margin: 0 }}>
         {props.currentAct === props.action
           ? secondsToTimeString(props.actionTime)
           : //Fix the number here, refactor
