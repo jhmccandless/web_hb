@@ -168,7 +168,11 @@ function RepeaterTimer() {
       >
         Start Timer
       </button>
-      <MainTime number={currActTime} curAct={currentAction} />
+      <MainTime
+        number={currActTime}
+        curAct={currentAction}
+        nextAction={"NEXT"}
+      />
       {timerDataState.timerType === "repeaters" && (
         <RepeaterTimerDetails
           currentAct={currentAction}

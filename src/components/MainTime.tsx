@@ -19,6 +19,7 @@ function MainTime(props: MainTimeInterface) {
     <div className="main-timer-div">
       <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
       <p>{mainSecondsToTimeString(props.number)}</p>
+      <p>Next: </p>
     </div>
   );
 }
