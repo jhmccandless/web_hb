@@ -127,7 +127,7 @@ function RepeaterTimer() {
           setCurrActTime(intervalTime);
           intervalTime--;
         } else if (intervalTime === 1) {
-          // console.log('if');
+          console.log("if");
           setCurrActTime(1);
           intervalTime--;
           arrayCounter++;
@@ -135,7 +135,9 @@ function RepeaterTimer() {
           intervalTime = arr.at(arrayCounter)?.at(1);
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
-          intervalTime--;
+          if (intervalTime > 1) {
+            intervalTime--;
+          }
           if (arr.at(arrayCounter)?.at(2)) {
             setRepsCounter(tempRepsCounter--);
           }
