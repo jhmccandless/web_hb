@@ -24,8 +24,10 @@ export function secondsToTimeString(sec: number) {
 function IncrementTime(props: IncrementTimeInt) {
   return (
     <div className={props.stylingProp}>
-      <p>
-        {props.action.at(0)?.toUpperCase().concat(props.action.slice(1))}:{" "}
+      <p style={{ margin: 0 }}>
+        {props.action.at(0)?.toUpperCase().concat(props.action.slice(1))}:
+      </p>
+      <p style={{ margin: 0 }}>
         {props.currentAct === props.action
           ? secondsToTimeString(props.actionTime)
           : //Fix the number here, refactor

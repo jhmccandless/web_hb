@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MainTime from "./MainTime";
 import { useAppSelector } from "../hooks/hooks";
-import IncrementTime from "./IncrementTime";
 import { useNavigate } from "react-router-dom";
+import RepeaterTimerDetails from "./RepeaterTimerDetails";
+import OnOffTimerDetails from "./OnOffTimerDetails";
 
 export interface RepeaterTimerInt {
   hangTime: number;
@@ -18,9 +19,17 @@ function RepeaterTimer() {
   const timerDataState = useAppSelector((state: any) => state.timerInfo);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
-  const [currentAction, setCurrentAction] = useState<string>("rest");
+  const [currentAction, setCurrentAction] = useState<string>("delay");
   const [currActTime, setCurrActTime] = useState<number>(
     Number(timerDataState.timerTimes.delayStartTime)
+  );
+
+  const [repsCounter, setRepsCounter] = useState<number>(
+    timerDataState.timerTimes.repCount
+  );
+
+  const [setsCounter, setSetsCounter] = useState<number>(
+    timerDataState.timerTimes.setCount
   );
   const [isPaused, setIsPaused] = useState(true);
   // console.log(timeArray);
@@ -35,16 +44,33 @@ function RepeaterTimer() {
   function settingUpTimingInterval(obj: RepeaterTimerInt) {
     const finalArray = [];
 
-    finalArray.push(["rest", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
+    finalArray.push(["delay", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
     if (timerDataState.timerType === "repeaters") {
       for (let j = obj.setCount; j > 0; j--) {
         for (let i = obj.repCount; i > 0; i--) {
           if (i > 1) {
+            // if (i > 3) {
+            //   finalArray.push(["hang", obj.hangTime]);
+            //   finalArray.push(["off", obj.offTime]);
+            // }
             finalArray.push(["hang", obj.hangTime]);
-            finalArray.push(["off", obj.offTime]);
+            finalArray.push(["off", obj.offTime, "repsMinusOne"]);
           } else {
             finalArray.push(["hang", obj.hangTime]);
           }
+          // if (i === obj.repCount) {
+          //   finalArray.push(["hang", obj.hangTime]);
+          //   finalArray.push(["off", obj.offTime]);
+          // } else if (i > 1 && i < obj.repCount) {
+          //   // if (i > 3) {
+          //   //   finalArray.push(["hang", obj.hangTime]);
+          //   //   finalArray.push(["off", obj.offTime]);
+          //   // }
+          //   finalArray.push(["hang", obj.hangTime, "repsMinusOne"]);
+          //   finalArray.push(["off", obj.offTime]);
+          // } else {
+          //   finalArray.push(["hang", obj.hangTime, "repsMinusOne"]);
+          // }
         }
         if (j > 1) {
           finalArray.push(["rest", obj.restTime]);
@@ -84,6 +110,7 @@ function RepeaterTimer() {
       timerDataStateNumbers[key] = Number(val);
     });
     setTimeArray(settingUpTimingInterval(timerDataStateNumbers));
+    // eslint-disable-next-line
   }, [timerDataState]);
 
   useEffect(() => {
@@ -92,7 +119,8 @@ function RepeaterTimer() {
       let arrayCounter: number = 0;
       let intervalTime: any =
         Number(timerDataState.timerTimes.delayStartTime) - 1;
-
+      let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
+      let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
       const int1 = setInterval(() => {
         if (intervalTime > 1) {
           // console.log('else');
@@ -108,6 +136,14 @@ function RepeaterTimer() {
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
           intervalTime--;
+          if (arr.at(arrayCounter)?.at(2)) {
+            setRepsCounter(tempRepsCounter--);
+          }
+          if (arr.at(arrayCounter)?.at(0) === "rest") {
+            tempRepsCounter = timerDataState.timerTimes.repCount;
+            setRepsCounter(tempRepsCounter);
+            setSetsCounter(tempSetsCounter--);
+          }
           if (arrayCounter === arr.length - 1) {
             clearInterval(int1);
           }
@@ -131,26 +167,41 @@ function RepeaterTimer() {
         Start Timer
       </button>
       <MainTime number={currActTime} curAct={currentAction} />
-      <IncrementTime
+      {timerDataState.timerType === "repeaters" && (
+        <RepeaterTimerDetails
+          currentAct={currentAction}
+          actionTime={currActTime}
+          timerState={timerDataState.timerTimes}
+          repsCounter={repsCounter}
+          setsCounter={setsCounter}
+        />
+      )}
+      {timerDataState.timerType === "on-off" && (
+        <OnOffTimerDetails
+          currentAct={currentAction}
+          actionTime={currActTime}
+          timerState={timerDataState.timerTimes}
+          repsCounter={repsCounter}
+          setsCounter={setsCounter}
+        />
+      )}
+      {/* <p>{repsCounter}</p>
+      <p>{setsCounter}</p> */}
+      {/* <IncrementTime
         action={"hang"}
         currentAct={currentAction}
         actionTime={currActTime}
         timerState={timerDataState.timerTimes.hangTime}
-        stylingProp={
-          timerDataState.timerTimes.offTime > -1
-            ? "timer-item-1"
-            : "timer-item-1-5"
-        }
+        stylingProp="timer-item-1"
       />
-      {timerDataState.timerTimes.offTime > -1 && (
-        <IncrementTime
-          action={"off"}
-          currentAct={currentAction}
-          actionTime={currActTime}
-          timerState={timerDataState.timerTimes.offTime}
-          stylingProp="timer-item-2"
-        />
-      )}
+
+      <IncrementTime
+        action={"off"}
+        currentAct={currentAction}
+        actionTime={currActTime}
+        timerState={timerDataState.timerTimes.offTime}
+        stylingProp="timer-item-2"
+      />
 
       <IncrementTime
         action={"rest"}
@@ -158,7 +209,7 @@ function RepeaterTimer() {
         actionTime={currActTime}
         timerState={timerDataState.timerTimes.restTime}
         stylingProp="timer-item-3"
-      />
+      /> */}
     </div>
   );
 }

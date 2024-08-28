@@ -30,8 +30,6 @@ function TimerForm() {
     // delayStartTime: "",
   });
 
-  console.log(timeObject);
-
   useEffect(() => {
     if (!timerValues.timerType) {
       navigate("/");
@@ -75,7 +73,6 @@ function TimerForm() {
         .filter(([key, val]) => val !== -1)
         .map(([key, val], i: number) => {
           if (key.includes("Time")) {
-            console.log(key);
             return (
               <div key={i} className="form-row">
                 <TimeInputForForm
@@ -87,7 +84,6 @@ function TimerForm() {
               </div>
             );
           } else {
-            console.log(key);
             return (
               <div key={i} className="form-row">
                 <CounterInputForForm
