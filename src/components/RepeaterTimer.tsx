@@ -4,6 +4,7 @@ import { useAppSelector } from "../hooks/hooks";
 import IncrementTime from "./IncrementTime";
 import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
+import OnOffTimerDetails from "./OnOffTimerDetails";
 
 export interface RepeaterTimerInt {
   hangTime: number;
@@ -169,13 +170,24 @@ function RepeaterTimer() {
         Start Timer
       </button>
       <MainTime number={currActTime} curAct={currentAction} />
-      <RepeaterTimerDetails
-        currentAct={currentAction}
-        actionTime={currActTime}
-        timerState={timerDataState.timerTimes}
-        repsCounter={repsCounter}
-        setsCounter={setsCounter}
-      />
+      {timerDataState.timerType === "repeaters" && (
+        <RepeaterTimerDetails
+          currentAct={currentAction}
+          actionTime={currActTime}
+          timerState={timerDataState.timerTimes}
+          repsCounter={repsCounter}
+          setsCounter={setsCounter}
+        />
+      )}
+      {timerDataState.timerType === "on-off" && (
+        <OnOffTimerDetails
+          currentAct={currentAction}
+          actionTime={currActTime}
+          timerState={timerDataState.timerTimes}
+          repsCounter={repsCounter}
+          setsCounter={setsCounter}
+        />
+      )}
       {/* <p>{repsCounter}</p>
       <p>{setsCounter}</p> */}
       {/* <IncrementTime
