@@ -288,6 +288,7 @@ input[type="radio"] {
   z-index: 10;
   opacity: 1;
   display: grid;
+  grid-template-rows: repeat(2, 50%);
   background-color: white;
 }
 
@@ -397,6 +398,23 @@ input[type="radio"] {
     margin: 0;
     justify-self: left;
     margin-top: 1rem;
+  }
+  .alert-location {
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    border-style: solid;
+    width: 80vh;
+    height: 40vh;
+    justify-self: center;
+  }
+
+  .alert-popup {
+    z-index: 10;
+    opacity: 1;
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
+    background-color: white;
   }
 }
 
