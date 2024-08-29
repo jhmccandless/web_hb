@@ -18,16 +18,20 @@ function MainTime(props: MainTimeInterface) {
 
   return (
     <div className="main-timer-div">
-      <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
-      <p>{mainSecondsToTimeString(props.number)}</p>
-      <p>
-        Next:{" "}
-        {props.nextAction
-          //Make this a function, been using this alot
-          .at(0)
-          ?.toUpperCase()
-          .concat(props.nextAction.slice(1))}
-      </p>
+      <div className="main-time">
+        <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
+        <p>{mainSecondsToTimeString(props.number)}</p>
+      </div>
+      <div className="next-action">
+        <p>Next:</p>
+        <p>
+          {props.nextAction
+            //Make this a function, been using this alot
+            .at(0)
+            ?.toUpperCase()
+            .concat(props.nextAction.slice(1))}
+        </p>
+      </div>
     </div>
   );
 }
