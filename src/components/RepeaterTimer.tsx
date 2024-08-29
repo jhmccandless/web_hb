@@ -23,15 +23,14 @@ function RepeaterTimer() {
   const [currActTime, setCurrActTime] = useState<number>(
     Number(timerDataState.timerTimes.delayStartTime)
   );
-
   const [repsCounter, setRepsCounter] = useState<number>(
     timerDataState.timerTimes.repCount
   );
-
   const [setsCounter, setSetsCounter] = useState<number>(
     timerDataState.timerTimes.setCount
   );
-  const [isPaused, setIsPaused] = useState(true);
+  const [isPaused, setIsPaused] = useState<boolean>(true);
+  const [nextAction, setNextAction] = useState<string>("Hang");
   // console.log(timeArray);
 
   useEffect(() => {
@@ -135,6 +134,9 @@ function RepeaterTimer() {
           intervalTime = arr.at(arrayCounter)?.at(1);
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
+          setNextAction(
+            (arr.at(arrayCounter + 1)?.at(0) as string) || "Finished!"
+          );
           if (intervalTime > 1) {
             intervalTime--;
           }
@@ -171,7 +173,7 @@ function RepeaterTimer() {
       <MainTime
         number={currActTime}
         curAct={currentAction}
-        nextAction={"NEXT"}
+        nextAction={nextAction}
       />
       {timerDataState.timerType === "repeaters" && (
         <RepeaterTimerDetails

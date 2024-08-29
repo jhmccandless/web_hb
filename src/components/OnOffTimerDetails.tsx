@@ -5,7 +5,7 @@ function OnOffTimerDetails(props: any) {
   // console.log(props);
   return (
     <div className="timer-wrapper-details">
-      <div className="timer-details-top-repeater">
+      <div className="timer-details-top">
         <IncrementTime
           action={"hang"}
           currentAct={props.currentAct}
@@ -29,7 +29,7 @@ function OnOffTimerDetails(props: any) {
           stylingProp="timer-item-1-3 timer-item-right"
         />
       </div>
-      <div className="timer-details-bottom-repeater">
+      <div className="timer-details-bottom">
         {/* <IncrementCounter
           whichCounter={"reps"}
           stylingProp="timer-item-2-1"
