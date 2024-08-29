@@ -31,12 +31,29 @@ function FormResetAlert() {
     >
       <div className="alert-location alert-popup">
         <p>Form will be set, is that ok?</p>
-        <button type="button" onClick={onAlertOk}>
-          OK
-        </button>
-        <button type="button" onClick={onAlertCancel}>
-          Cancel
-        </button>
+        <div
+          style={{
+            display: "flex",
+            alignContent: "center",
+            justifyContent: "center",
+            columnGap: "30px",
+          }}
+        >
+          <button
+            style={{ height: "70%", width: "80px" }}
+            type="button"
+            onClick={onAlertOk}
+          >
+            OK
+          </button>
+          <button
+            style={{ height: "70%", width: "80px" }}
+            type="button"
+            onClick={onAlertCancel}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
