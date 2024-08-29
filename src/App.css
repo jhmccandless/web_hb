@@ -288,6 +288,7 @@ input[type="radio"] {
   z-index: 10;
   opacity: 1;
   display: grid;
+  grid-template-rows: repeat(2, 50%);
   background-color: white;
 }
 
@@ -305,6 +306,116 @@ input[type="radio"] {
   bottom: 0;
   left: 0;
   z-index: 8;
+}
+
+@media only screen and (min-device-height: 360px) and (max-device-height: 430px) and (orientation: landscape) {
+  .form-row-left {
+    grid-column: 1 / span 2;
+  }
+  .form-row-right {
+    grid-column: 3 / span 2;
+  }
+  .timer-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(10, 10%);
+    /* grid-auto-flow: column; */
+    /* align-items: center; */
+  }
+
+  .timer-wrapper-details {
+    grid-column: 5 / span 2;
+    grid-row: 4 / span 2;
+    display: grid;
+  }
+
+  .timer-start-button {
+    grid-column: 5 / span 2;
+    grid-row: 3;
+    justify-self: center;
+    align-self: center;
+    height: 80%;
+    width: 80%;
+  }
+
+  .main-timer-div {
+    grid-column: 1 / span 4;
+    grid-row: 2 / span 8;
+    display: grid;
+
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-rows: repeat(3, 1fr);
+    border-style: solid;
+    border-radius: 12px;
+    border-width: 4px;
+  }
+
+  .timer-wrapper-details {
+    grid-column: 5 / span 2;
+    grid-row: 4 / span 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .timer-details-top {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 2;
+    /* margin-top: 0.4rem; */
+    /* width: 100%; */
+    display: grid;
+  }
+
+  .timer-item-1-1-land {
+    grid-column: 1 / span 1;
+    margin: 0;
+    justify-self: right;
+    margin-top: 0.4rem;
+  }
+  .timer-item-1-3-land {
+    grid-column: 3 / span 1;
+    margin: 0;
+    justify-self: left;
+    margin-top: 0.4rem;
+  }
+  .timer-item-2-2-land {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    margin: 0;
+    justify-self: center;
+    margin-top: 0.6rem;
+  }
+  .timer-item-1-2-land {
+    grid-column: 1 / span 1;
+    grid-row: 3 / span 1;
+    margin: 0;
+    justify-self: right;
+    margin-top: 1rem;
+  }
+  .timer-item-3-3-land {
+    grid-column: 3 / span 1;
+    grid-row: 3 / span 1;
+    margin: 0;
+    justify-self: left;
+    margin-top: 1rem;
+  }
+  .alert-location {
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    border-style: solid;
+    width: 80vh;
+    height: 40vh;
+    justify-self: center;
+  }
+
+  .alert-popup {
+    z-index: 10;
+    opacity: 1;
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
+    background-color: white;
+  }
 }
 
 /* .App {

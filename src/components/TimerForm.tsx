@@ -74,7 +74,14 @@ function TimerForm() {
         .map(([key, val], i: number) => {
           if (key.includes("Time")) {
             return (
-              <div key={i} className="form-row">
+              <div
+                key={i}
+                className={
+                  i % 2 === 0
+                    ? "form-row form-row-left"
+                    : "form-row form-row-right"
+                }
+              >
                 <TimeInputForForm
                   placeHolderData={timerValues.timerTimes}
                   timeObject={timeObject}
@@ -85,7 +92,14 @@ function TimerForm() {
             );
           } else {
             return (
-              <div key={i} className="form-row">
+              <div
+                key={i}
+                className={
+                  i % 2 === 0
+                    ? "form-row form-row-left"
+                    : "form-row form-row-right"
+                }
+              >
                 <CounterInputForForm
                   placeHolderData={timerValues.timerTimes}
                   timeObject={timeObject}
