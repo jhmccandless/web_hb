@@ -18,8 +18,10 @@ function MainTime(props: MainTimeInterface) {
 
   return (
     <div className="main-timer-div">
-      <div className="main-time">
+      <div className="main-action">
         <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
+      </div>
+      <div className="main-action-time">
         <p>{mainSecondsToTimeString(props.number)}</p>
       </div>
       <div className="next-action">

@@ -127,7 +127,12 @@
   border-width: 4px;
 }
 
-.main-time {
+.main-action {
+  grid-row: 1 / span 1;
+  align-self: center;
+}
+
+.main-action-time {
   grid-row: 2 / span 1;
   align-self: center;
 }
