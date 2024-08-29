@@ -23,15 +23,14 @@ function RepeaterTimer() {
   const [currActTime, setCurrActTime] = useState<number>(
     Number(timerDataState.timerTimes.delayStartTime)
   );
-
   const [repsCounter, setRepsCounter] = useState<number>(
     timerDataState.timerTimes.repCount
   );
-
   const [setsCounter, setSetsCounter] = useState<number>(
     timerDataState.timerTimes.setCount
   );
-  const [isPaused, setIsPaused] = useState(true);
+  const [isPaused, setIsPaused] = useState<boolean>(true);
+  const [nextAction, setNextAction] = useState<string>("Hang");
   // console.log(timeArray);
 
   useEffect(() => {
@@ -115,19 +114,20 @@ function RepeaterTimer() {
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
+    let int1: any;
     function timer1(arr: (string | number)[][]): void {
       let arrayCounter: number = 0;
       let intervalTime: any =
         Number(timerDataState.timerTimes.delayStartTime) - 1;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
-      const int1 = setInterval(() => {
+      int1 = setInterval(() => {
         if (intervalTime > 1) {
           // console.log('else');
           setCurrActTime(intervalTime);
           intervalTime--;
         } else if (intervalTime === 1) {
-          // console.log('if');
+          console.log("if");
           setCurrActTime(1);
           intervalTime--;
           arrayCounter++;
@@ -135,7 +135,12 @@ function RepeaterTimer() {
           intervalTime = arr.at(arrayCounter)?.at(1);
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
-          intervalTime--;
+          setNextAction(
+            (arr.at(arrayCounter + 1)?.at(0) as string) || "Finished!"
+          );
+          if (intervalTime > 1) {
+            intervalTime--;
+          }
           if (arr.at(arrayCounter)?.at(2)) {
             setRepsCounter(tempRepsCounter--);
           }
@@ -153,6 +158,9 @@ function RepeaterTimer() {
     if (!isPaused) {
       timer1(timeArray);
     }
+    return () => {
+      clearInterval(int1);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPaused]);
 
@@ -166,7 +174,11 @@ function RepeaterTimer() {
       >
         Start Timer
       </button>
-      <MainTime number={currActTime} curAct={currentAction} />
+      <MainTime
+        number={currActTime}
+        curAct={currentAction}
+        nextAction={nextAction}
+      />
       {timerDataState.timerType === "repeaters" && (
         <RepeaterTimerDetails
           currentAct={currentAction}

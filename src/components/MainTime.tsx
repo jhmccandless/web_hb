@@ -4,6 +4,7 @@ import { secondsToTimeString } from "./IncrementTime";
 interface MainTimeInterface {
   number: number;
   curAct: string;
+  nextAction: string;
 }
 
 function MainTime(props: MainTimeInterface) {
@@ -17,8 +18,22 @@ function MainTime(props: MainTimeInterface) {
 
   return (
     <div className="main-timer-div">
-      <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
-      <p>{mainSecondsToTimeString(props.number)}</p>
+      <div className="main-action">
+        <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
+      </div>
+      <div className="main-action-time">
+        <p>{mainSecondsToTimeString(props.number)}</p>
+      </div>
+      <div className="next-action">
+        <p>Next:</p>
+        <p>
+          {props.nextAction
+            //Make this a function, been using this alot
+            .at(0)
+            ?.toUpperCase()
+            .concat(props.nextAction.slice(1))}
+        </p>
+      </div>
     </div>
   );
 }

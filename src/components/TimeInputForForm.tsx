@@ -91,14 +91,11 @@ function TimeInputForForm(props: timeInputFormInt) {
             value={minutes}
             onChange={updateMinutes}
           >
-            {Array(16)
-              .fill(0)
-              .map((_, index) => index)
-              .map((el, i) => (
-                <option key={i} value={el}>
-                  {el}
-                </option>
-              ))}
+            {Array.from({ length: 11 }, (_, i) => i).map((el, i) => (
+              <option key={i} value={el}>
+                {el}
+              </option>
+            ))}
           </select>
 
           <p style={{ margin: "0", fontSize: "12px" }}>{"Min"}</p>
@@ -120,14 +117,12 @@ function TimeInputForForm(props: timeInputFormInt) {
             value={seconds}
             onChange={updateSeconds}
           >
-            {Array(60)
-              .fill(0)
-              .map((_, index) => index)
-              .map((el, i) => (
-                <option key={i} value={el}>
-                  {el}
-                </option>
-              ))}
+            {minutes !== 0 && <option>0</option>}
+            {Array.from({ length: 59 }, (_, i) => i + 1).map((el, i) => (
+              <option key={i} value={el}>
+                {el}
+              </option>
+            ))}
           </select>
           <p style={{ margin: "0", fontSize: "12px" }}>{"Sec"}</p>
         </label>
