@@ -308,10 +308,6 @@ input[type="radio"] {
 }
 
 @media only screen and (min-device-height: 360px) and (max-device-height: 430px) and (orientation: landscape) {
-  .header {
-    background-color: aqua;
-  }
-
   .form-row-left {
     grid-column: 1 / span 2;
   }
@@ -386,21 +382,21 @@ input[type="radio"] {
     grid-row: 2 / span 1;
     margin: 0;
     justify-self: center;
-    margin-top: 0.2rem;
+    margin-top: 0.6rem;
   }
   .timer-item-1-2-land {
     grid-column: 1 / span 1;
     grid-row: 3 / span 1;
     margin: 0;
     justify-self: right;
-    margin-top: 0.8rem;
+    margin-top: 1rem;
   }
   .timer-item-3-3-land {
     grid-column: 3 / span 1;
     grid-row: 3 / span 1;
     margin: 0;
     justify-self: left;
-    margin-top: 0.8rem;
+    margin-top: 1rem;
   }
 }
 
