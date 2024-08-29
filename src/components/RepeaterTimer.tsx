@@ -114,13 +114,14 @@ function RepeaterTimer() {
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
+    let int1: any;
     function timer1(arr: (string | number)[][]): void {
       let arrayCounter: number = 0;
       let intervalTime: any =
         Number(timerDataState.timerTimes.delayStartTime) - 1;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
-      const int1 = setInterval(() => {
+      int1 = setInterval(() => {
         if (intervalTime > 1) {
           // console.log('else');
           setCurrActTime(intervalTime);
@@ -157,6 +158,9 @@ function RepeaterTimer() {
     if (!isPaused) {
       timer1(timeArray);
     }
+    return () => {
+      clearInterval(int1);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPaused]);
 
