@@ -19,7 +19,7 @@ function RepeaterTimer() {
   const timerDataState = useAppSelector((state: any) => state.timerInfo);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
-  const [currentAction, setCurrentAction] = useState<string>("delay");
+  const [currentAction, setCurrentAction] = useState<string>("Start In");
   const [currActTime, setCurrActTime] = useState<number>(
     Number(timerDataState.timerTimes.delayStartTime)
   );
