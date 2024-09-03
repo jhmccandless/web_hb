@@ -96,18 +96,18 @@ function TimerForm() {
             );
           }
         })}
-      {/* <div className="form-row-buttons"> */}
-      <div className="workout-button-div form-button">
-        <button type="submit" className="form-button">
-          Workout!
-        </button>
+      <div className="form-row-buttons">
+        <div className="workout-button-div">
+          <button type="submit" className="form-button">
+            Workout!
+          </button>
+        </div>
+        <div className="back-button-div">
+          <button type="button" className="form-button" onClick={onBackClick}>
+            Back
+          </button>
+        </div>
       </div>
-      <div className="back-button-div form-button">
-        <button type="button" className="form-button" onClick={onBackClick}>
-          Back
-        </button>
-      </div>
-      {/* </div> */}
     </form>
   );
 }

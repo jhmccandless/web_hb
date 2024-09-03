@@ -50,15 +50,21 @@
 }
 
 .workout-button-div {
-  grid-column: 2 / span 1;
+  grid-column: 1 / span 1;
   display: grid;
-  justify-items: center;
+  justify-items: right;
 }
 
 .back-button-div {
   display: grid;
+  grid-column: 3 / span 1;
+  justify-items: left;
+}
+
+.form-row-buttons {
+  display: grid;
   grid-column: 2 / span 1;
-  justify-items: center;
+  gap: 20px;
 }
 
 .timer-item-1-1 {
@@ -178,8 +184,8 @@
 }
 
 .form-button {
-  height: 80%;
-  width: 80%;
+  height: 30%;
+  width: 100px;
 }
 
 .timer-wrapper {
