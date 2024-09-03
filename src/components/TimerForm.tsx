@@ -111,21 +111,16 @@ function TimerForm() {
           }
         })}
       {/* <div className="form-row-buttons"> */}
-      <button
-        type="submit"
-        className="form-button"
-        style={{ gridColumn: "1 / span 2" }}
-      >
-        Workout!
-      </button>
-      <button
-        type="button"
-        className="form-button"
-        style={{ gridColumn: "3 / span 4" }}
-        onClick={onBackClick}
-      >
-        Back
-      </button>
+      <div className="workout-button form-button">
+        <button type="submit" className="form-button">
+          Workout!
+        </button>
+      </div>
+      <div className="back-button form-button">
+        <button type="button" className="form-button" onClick={onBackClick}>
+          Back
+        </button>
+      </div>
       {/* </div> */}
     </form>
   );
