@@ -52,7 +52,7 @@ function TimerForm() {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h2
-        className="form-row"
+        className="form-row-title"
         style={{ display: "flex", alignItems: "center", margin: "0" }}
       >
         Fill In Your Workout
@@ -74,14 +74,7 @@ function TimerForm() {
         .map(([key, val], i: number) => {
           if (key.includes("Time")) {
             return (
-              <div
-                key={i}
-                className={
-                  i % 2 === 0
-                    ? "form-row form-row-left"
-                    : "form-row form-row-right"
-                }
-              >
+              <div key={i} className={"form-row"}>
                 <TimeInputForForm
                   placeHolderData={timerValues.timerTimes}
                   timeObject={timeObject}
@@ -92,14 +85,7 @@ function TimerForm() {
             );
           } else {
             return (
-              <div
-                key={i}
-                className={
-                  i % 2 === 0
-                    ? "form-row form-row-left"
-                    : "form-row form-row-right"
-                }
-              >
+              <div key={i} className={"form-row"}>
                 <CounterInputForForm
                   placeHolderData={timerValues.timerTimes}
                   timeObject={timeObject}
@@ -111,12 +97,12 @@ function TimerForm() {
           }
         })}
       {/* <div className="form-row-buttons"> */}
-      <div className="workout-button form-button">
+      <div className="workout-button-div form-button">
         <button type="submit" className="form-button">
           Workout!
         </button>
       </div>
-      <div className="back-button form-button">
+      <div className="back-button-div form-button">
         <button type="button" className="form-button" onClick={onBackClick}>
           Back
         </button>
