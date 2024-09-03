@@ -38,26 +38,33 @@
 
 .form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(4, 1fr); */
   justify-items: center;
   /* grid-auto-flow: row; */
   /* justify-self: center; */
 }
 
-.form-row {
-  grid-column: 1 / span 4;
+.form-row-title {
+  grid-column: 1 / span 3;
 }
 
-.form-row-2 {
-  grid-row: 2 / span 2;
+.workout-button-div {
+  grid-column: 1 / span 1;
+  display: grid;
+  justify-items: right;
 }
 
-.form-row-4 {
-  grid-row: 4;
+.back-button-div {
+  display: grid;
+  grid-column: 3 / span 1;
+  justify-items: left;
 }
 
-.form-row-5 {
-  grid-row: 5 / span 3;
+.form-row-buttons {
+  display: grid;
+  grid-column: 2 / span 1;
+  gap: 20px;
 }
 
 .timer-item-1-1 {
@@ -177,8 +184,8 @@
 }
 
 .form-button {
-  height: 80%;
-  width: 80%;
+  height: 30%;
+  width: 100px;
 }
 
 .timer-wrapper {
@@ -369,6 +376,18 @@ input[type="radio"] {
 
   .form-row-5 {
     grid-row: 5 / span 3;
+  }
+
+  .workout-button-div {
+    grid-column: 1 / span 2;
+    display: grid;
+    justify-items: center;
+  }
+
+  .back-button-div {
+    display: grid;
+    grid-column: 3 / span 2;
+    justify-items: center;
   }
 
   .timer-item-1-1 {
@@ -680,6 +699,18 @@ input[type="radio"] {
 
   .form-row-5 {
     grid-row: 5 / span 3;
+  }
+
+  .workout-button-div {
+    grid-column: 1 / span 2;
+    display: grid;
+    justify-items: center;
+  }
+
+  .back-button-div {
+    display: grid;
+    grid-column: 3 / span 2;
+    justify-items: center;
   }
 
   .timer-item-1-1 {
