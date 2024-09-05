@@ -3,7 +3,7 @@ import HomePageRadioInput from "./HomePageRadioInput";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { setWorkoutType } from "../appSlices/timerSlice";
-import { checkValues } from "./TimerForm";
+import { checkValues } from "./RepeaterTimerForm";
 
 const repeaterTemplateObj = {
   hangTime: 7,
@@ -69,7 +69,7 @@ function HomePageForm() {
         timerType: selectedOption,
       })
     );
-    navigate("/form");
+    navigate(`/form-${selectedOption}`);
   }
 
   return (

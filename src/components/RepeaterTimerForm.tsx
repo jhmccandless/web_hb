@@ -15,7 +15,7 @@ export function checkValues(refObj: any, newObj: any) {
   return finalObj;
 }
 
-function TimerForm() {
+function RepeaterTimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
   const formStateValues = useAppSelector((state: any) => state.formState);
   const dispatch = useAppDispatch();
@@ -50,9 +50,9 @@ function TimerForm() {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form-repeater" onSubmit={handleSubmit}>
       <h2
-        className="form-row-title"
+        className="form-row-title-repeater"
         style={{ display: "flex", alignItems: "center", margin: "0" }}
       >
         Fill In Your Workout
@@ -96,13 +96,13 @@ function TimerForm() {
             );
           }
         })}
-      <div className="form-row-buttons">
-        <div className="workout-button-div">
+      <div className="form-row-buttons-repeater">
+        <div className="workout-button-div-repeater">
           <button type="submit" className="form-button">
             Workout!
           </button>
         </div>
-        <div className="back-button-div">
+        <div className="back-button-div-repeater">
           <button type="button" className="form-button" onClick={onBackClick}>
             Back
           </button>
@@ -112,4 +112,4 @@ function TimerForm() {
   );
 }
 
-export default TimerForm;
+export default RepeaterTimerForm;
