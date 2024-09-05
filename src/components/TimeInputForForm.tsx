@@ -117,7 +117,7 @@ function TimeInputForForm(props: timeInputFormInt) {
             value={seconds}
             onChange={updateSeconds}
           >
-            {minutes !== 0 && <option>0</option>}
+            {minutes != 0 && <option>0</option>}
             {Array.from({ length: 59 }, (_, i) => i + 1).map((el, i) => (
               <option key={i} value={el}>
                 {el}
