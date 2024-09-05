@@ -36,7 +36,7 @@
   display: grid;
 }
 
-.form {
+.form-repeater {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* grid-template-rows: repeat(4, 1fr); */
@@ -45,25 +45,72 @@
   /* justify-self: center; */
 }
 
-.form-row-title {
+.homepage > .form-row {
+  grid-column: 1 / span 4;
+}
+
+.form-row-2 {
+  grid-row: 2 / span 2;
+}
+
+.form-row-4 {
+  grid-row: 4;
+}
+
+.form-row-5 {
+  grid-row: 5 / span 3;
+}
+
+.form-row-title-repeater {
   grid-column: 1 / span 3;
 }
 
-.workout-button-div {
+.workout-button-div-repeater {
   grid-column: 1 / span 1;
   display: grid;
   justify-items: right;
 }
 
-.back-button-div {
+.back-button-div-repeater {
   display: grid;
   grid-column: 3 / span 1;
   justify-items: left;
 }
 
-.form-row-buttons {
+.form-row-buttons-repeater {
   display: grid;
   grid-column: 2 / span 1;
+  gap: 20px;
+}
+
+.form-onoff {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-rows: repeat(4, 1fr); */
+  justify-items: center;
+  /* grid-auto-flow: row; */
+  /* justify-self: center; */
+}
+
+.form-row-title-onoff {
+  grid-column: 1 / span 2;
+}
+
+.workout-button-div-onoff {
+  grid-column: 1 / span 1;
+  display: grid;
+  justify-items: right;
+}
+
+.back-button-div-onoff {
+  display: grid;
+  grid-column: 2 / span 1;
+  justify-items: left;
+}
+
+.form-row-buttons-onoff {
+  display: grid;
+  grid-column: 1 / span 2;
   gap: 20px;
 }
 
@@ -150,7 +197,7 @@
 }
 
 .timer-wrapper-details {
-  grid-column: 1 / span 4;
+  grid-column: 2 / span 2;
   grid-row: 9 / span 2;
   display: grid;
 }
@@ -362,6 +409,10 @@ input[type="radio"] {
     /* justify-self: center; */
   }
 
+  .form-row-title {
+    grid-column: 1 / span 4;
+  }
+
   .form-row {
     grid-column: 1 / span 4;
   }
@@ -379,15 +430,21 @@ input[type="radio"] {
   }
 
   .workout-button-div {
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 1;
     display: grid;
-    justify-items: center;
+    justify-items: right;
   }
 
   .back-button-div {
     display: grid;
-    grid-column: 3 / span 2;
-    justify-items: center;
+    grid-column: 3 / span 1;
+    justify-items: left;
+  }
+
+  .form-row-buttons {
+    display: grid;
+    grid-column: 2 / span 2;
+    gap: 20px;
   }
 
   .timer-item-1-1 {
@@ -507,8 +564,8 @@ input[type="radio"] {
   }
 
   .form-button {
-    height: 80%;
-    width: 80%;
+    height: 40px;
+    width: 100px;
   }
 
   .timer-wrapper {
@@ -677,30 +734,59 @@ input[type="radio"] {
     display: grid;
   }
 
-  .form {
+  /* .form {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  } */
+
+  .form-onoff {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(4, 1fr); */
     justify-items: center;
     /* grid-auto-flow: row; */
     /* justify-self: center; */
   }
 
-  .form-row {
+  /* .form-row {
     grid-column: 1 / span 4;
-  }
+  } */
 
   .form-row-2 {
-    grid-row: 2 / span 2;
+    grid-row: 1 / span 2;
   }
 
-  .form-row-4 {
+  /* .form-row-4 {
     grid-row: 4;
-  }
+  } */
 
   .form-row-5 {
-    grid-row: 5 / span 3;
+    grid-row: 6 / span 3;
   }
 
+  .form-row-title-onoff {
+    grid-column: 1 / span 2;
+  }
+
+  .workout-button-div-onoff {
+    grid-column: 1 / span 1;
+    display: grid;
+    justify-items: right;
+  }
+
+  .back-button-div-onoff {
+    display: grid;
+    grid-column: 2 / span 1;
+    justify-items: left;
+  }
+
+  .form-row-buttons-onoff {
+    display: grid;
+    grid-column: 1 / span 2;
+    gap: 20px;
+  }
+  /* 
   .workout-button-div {
     grid-column: 1 / span 2;
     display: grid;
@@ -711,7 +797,7 @@ input[type="radio"] {
     display: grid;
     grid-column: 3 / span 2;
     justify-items: center;
-  }
+  } */
 
   .timer-item-1-1 {
     grid-column: 1 / span 1;
@@ -798,8 +884,8 @@ input[type="radio"] {
   }
 
   .form-button {
-    height: 80%;
-    width: 80%;
+    height: 40px;
+    width: 100px;
   }
 
   .menu-close {
