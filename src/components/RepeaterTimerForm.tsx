@@ -39,7 +39,7 @@ function RepeaterTimerForm() {
   function handleSubmit(e: any) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
-    navigate("/workout");
+    navigate("/workout-repeaters");
   }
 
   function onBackClick() {

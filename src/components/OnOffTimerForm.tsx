@@ -39,7 +39,7 @@ function OnOffTimerForm() {
   function handleSubmit(e: any) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
-    navigate("/workout");
+    navigate("/workout-on-off");
   }
 
   function onBackClick() {
