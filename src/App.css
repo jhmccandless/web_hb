@@ -45,7 +45,7 @@
   /* justify-self: center; */
 }
 
-.form-row {
+.homepage > .form-row {
   grid-column: 1 / span 4;
 }
 
