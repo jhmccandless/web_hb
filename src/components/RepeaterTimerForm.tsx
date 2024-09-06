@@ -5,15 +5,8 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
 import CounterInputForForm from "./CounterInputForForm";
-
-export function checkValues(refObj: any, newObj: any) {
-  const finalObj: any = {};
-  Object.entries(refObj).forEach(([key, val]) => {
-    finalObj[key] = newObj[key] ? newObj[key] : val;
-  });
-
-  return finalObj;
-}
+import { ITimeObject } from "./constants/sharedInterfaces";
+import { checkValues } from "./constants/sharedFunctions";
 
 function RepeaterTimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
@@ -21,14 +14,17 @@ function RepeaterTimerForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [timeObject, setTimeObject] = useState<any>({
-    // hangTime: "",
-    // offTime: "",
-    // restTime: "",
-    // repCount: "",
-    // setCount: "",
-    // delayStartTime: "",
+  const [timeObject, setTimeObject] = useState<ITimeObject>({
+    hangTime: -2,
+    offTime: -2,
+    restTime: -2,
+    repCount: -2,
+    setCount: -2,
+    delayStartTime: -2,
   });
+
+  console.log(timerValues);
+  console.log(timeObject);
 
   useEffect(() => {
     if (!timerValues.timerType) {
@@ -36,7 +32,7 @@ function RepeaterTimerForm() {
     }
   });
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
     navigate("/workout-repeaters");

@@ -3,7 +3,8 @@ import HomePageRadioInput from "./HomePageRadioInput";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { setWorkoutType } from "../appSlices/timerSlice";
-import { checkValues } from "./RepeaterTimerForm";
+import { checkValues } from "../components/constants/sharedFunctions";
+import { ITimeObject } from "../components/constants/sharedInterfaces";
 
 const repeaterTemplateObj = {
   hangTime: 7,
@@ -15,47 +16,66 @@ const repeaterTemplateObj = {
 };
 const onOffTemplateObj = {
   hangTime: 7,
-  // offTime: -1,
+  offTime: -1,
   restTime: 40,
-  // repCount: -1,
+  repCount: -1,
   setCount: 3,
   delayStartTime: 4,
 };
-const cicuitTemplateObj = {
-  hangTime: 7,
-  // offTime: -1,
-  restTime: 40,
-  repCount: 6,
-  setCount: 3,
-  delayStartTime: 4,
+const defaultTemplateObj = {
+  hangTime: -1,
+  offTime: -1,
+  restTime: -1,
+  repCount: -1,
+  setCount: -1,
+  delayStartTime: -1,
 };
+// const cicuitTemplateObj = {
+//   hangTime: 7,
+//   offTime: -1,
+//   restTime: 40,
+//   repCount: 6,
+//   setCount: 3,
+//   delayStartTime: 4,
+// };
+
+// interface IState {
+//   timerInfo:
+
+// }
 
 function HomePageForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState("repeaters");
+  const [selectedOption, setSelectedOption] = useState<string>("repeaters");
 
-  const timerObject = useAppSelector((state: any) => state.timerInfo);
+  const timerObject = useAppSelector((state) => state.timerInfo);
 
-  function getTimerValueTemplate(timerType: string) {
-    let woType = timerType;
-    switch (woType) {
-      case "repeaters":
-        return repeaterTemplateObj;
+  function getTimerValueTemplate(timerType: string): ITimeObject {
+    // let woType: string = timerType;
+    // switch (woType) {
+    //   case "repeaters":
+    //     return repeaterTemplateObj as ITimeObject;
 
-      // break;
-      case "on-off":
-        return onOffTemplateObj;
+    //   // break;
+    //   case "on-off":
+    //     return onOffTemplateObj as ITimeObject;
 
-      // break;
-      case "circuit":
-        return cicuitTemplateObj;
+    //   // break;
+    //   // case "circuit":
+    //   //   return cicuitTemplateObj as ITimeObject;
 
-      // break;
-
-      default:
-        break;
+    //   // break;
+    //   default:
+    //     break;
+    //   // return defaultTemplateObj as ITimeObject;
+    // }
+    if (timerType === "repeaters" && repeaterTemplateObj !== undefined) {
+      return repeaterTemplateObj! as ITimeObject;
+    } else if (timerType === "on-off" && onOffTemplateObj !== undefined) {
+      return onOffTemplateObj! as ITimeObject;
     }
+    return defaultTemplateObj;
   }
 
   function onWorkoutTypeSubmit(e: any) {
