@@ -2,14 +2,26 @@ import React, { useState } from "react";
 import { useAppDispatch } from "../hooks/hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
 
-interface timeInputFormInt {
+interface IPlaceHolderData {
+  [key: string]: number; //PO - why i need this for template literals - props.placeHolderData[`${props.whichTimeInput}`] wouldnt work without it
+  hangTime: number;
+  offTime: number;
+  restTime: number;
+  repCount: number;
+  setCount: number;
+  delayStartTime: number;
+}
+
+// interface ITimerObject {}
+
+interface timeInputFormProps {
   timeObject: any;
   setTimeObject: React.Dispatch<React.SetStateAction<any>>;
   whichTimeInput: string;
-  placeHolderData: any;
+  placeHolderData: IPlaceHolderData;
 }
 
-function TimeInputForForm(props: timeInputFormInt) {
+function TimeInputForForm(props: timeInputFormProps) {
   const dispatch = useAppDispatch();
   const [seconds, setSeconds] = useState<number>(
     setSecondsFunc(props.placeHolderData[`${props.whichTimeInput}`])
@@ -46,16 +58,18 @@ function TimeInputForForm(props: timeInputFormInt) {
   //   }
   // }
 
-  function updateMinutes(e: any) {
+  function updateMinutes(e: React.ChangeEvent<HTMLSelectElement>) {
     e.preventDefault();
-    setMinutes(e.target.value);
-    onInputChange(e.target.value, seconds);
+    console.log(typeof e.target.value);
+    console.log(e.target);
+    setMinutes(parseInt(e.target.value));
+    onInputChange(parseInt(e.target.value), seconds);
   }
 
-  function updateSeconds(e: any) {
+  function updateSeconds(e: React.ChangeEvent<HTMLSelectElement>) {
     e.preventDefault();
-    setSeconds(e.target.value);
-    onInputChange(minutes, e.target.value);
+    setSeconds(parseInt(e.target.value));
+    onInputChange(minutes, parseInt(e.target.value));
   }
 
   function onInputChange(min: number, sec: number) {
@@ -117,7 +131,7 @@ function TimeInputForForm(props: timeInputFormInt) {
             value={seconds}
             onChange={updateSeconds}
           >
-            {minutes != 0 && <option>0</option>}
+            {minutes !== 0 && <option>0</option>}
             {Array.from({ length: 59 }, (_, i) => i + 1).map((el, i) => (
               <option key={i} value={el}>
                 {el}
