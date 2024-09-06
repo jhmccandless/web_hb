@@ -15,7 +15,7 @@ interface IPlaceHolderData {
 // interface ITimerObject {}
 
 interface timeInputFormProps {
-  timeObject: any;
+  timeObject: any; // make this interface, need to change the wayt we make things dirty
   setTimeObject: React.Dispatch<React.SetStateAction<any>>;
   whichTimeInput: string;
   placeHolderData: IPlaceHolderData;
