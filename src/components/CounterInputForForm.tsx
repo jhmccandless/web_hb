@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../hooks/hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
+import { ITimeObject } from "./constants/sharedInterfaces";
 
-interface CounterInputFormInt {
-  timeObject: any;
+interface CounterInputFormProps {
+  timeObject: ITimeObject;
   setTimeObject: React.Dispatch<React.SetStateAction<any>>;
   whichTimeInput: string;
-  placeHolderData: any;
+  placeHolderData: ITimeObject;
 }
 
-function CounterInputForForm(props: CounterInputFormInt) {
+function CounterInputForForm(props: CounterInputFormProps) {
   const dispatch = useAppDispatch();
 
   const [counter, setCounter] = useState<number>(
@@ -45,7 +46,6 @@ function CounterInputForForm(props: CounterInputFormInt) {
         <select
           style={{ width: "50px" }}
           name={props.whichTimeInput}
-          // placeholder={props.placeHolderData[props.whichTimeInput]}
           value={counter}
           onChange={onInputChange}
         >
@@ -59,20 +59,6 @@ function CounterInputForForm(props: CounterInputFormInt) {
             ))}
         </select>
       </label>
-      {/* <label>
-        <h3 style={{ margin: "0 0 10px 0" }}>
-          {placeHolderNameAdjust(props.whichTimeInput).concat(":")}
-        </h3>
-        <input
-          style={{ width: "50px" }}
-          name={props.whichTimeInput}
-          type="number"
-          // placeholder={props.placeHolderData[props.whichTimeInput]}
-          min={1}
-          value={counter}
-          onChange={onInputChange}
-        />
-      </label> */}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../hooks/hooks";
 
 function FormResetAlert() {
-  const formStateValues = useAppSelector((state: any) => state.formState);
+  const formStateValues = useAppSelector((state) => state.formState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

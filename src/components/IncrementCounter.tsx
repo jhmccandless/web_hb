@@ -1,4 +1,10 @@
-function IncrementCounter(props: any) {
+interface IncrementCounterProps {
+  stylingProp: string;
+  whichCounter: string;
+  counter: number;
+}
+
+function IncrementCounter(props: IncrementCounterProps) {
   // console.log(props);
   return (
     <div className={props.stylingProp}>

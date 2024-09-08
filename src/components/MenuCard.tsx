@@ -3,11 +3,16 @@ import { useAppSelector } from "../hooks/hooks";
 import { useDispatch } from "react-redux";
 import { openAlert } from "../appSlices/formSlice";
 
-function MenuCard(props: any) {
+interface MenuCardProps {
+  desNav: string;
+  cardTitle: string;
+}
+
+function MenuCard(props: MenuCardProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const formStateValues = useAppSelector((state: any) => state.formState);
+  const formStateValues = useAppSelector((state) => state.formState);
 
   function onCardClick() {
     if (Object.keys(formStateValues.dirtyFields).length === 0) {
