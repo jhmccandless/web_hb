@@ -1,4 +1,4 @@
-import { secondsToTimeString } from "./constants/sharedFunctions";
+import { secondsToTimeString } from "./_constants/sharedFunctions";
 
 interface MainTimeProps {
   number: number;

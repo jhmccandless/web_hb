@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
 import CounterInputForForm from "./CounterInputForForm";
-import { ITimeObject } from "./constants/sharedInterfaces";
-import { checkValues } from "./constants/sharedFunctions";
+import { ITimeObject } from "./_constants/sharedInterfaces";
+import { checkValues } from "./_constants/sharedFunctions";
 
 function RepeaterTimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);

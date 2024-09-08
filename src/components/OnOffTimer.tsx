@@ -4,7 +4,7 @@ import { useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
-import { TIME_MILLISECONDS } from "./constants/sharedConstants";
+import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
 
 export interface RepeaterTimerInt {
   hangTime: number;

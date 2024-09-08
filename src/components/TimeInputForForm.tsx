@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../hooks/hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
-import { ITimeObject } from "./constants/sharedInterfaces";
+import { ITimeObject } from "./_constants/sharedInterfaces";
 
 interface timeInputFormProps {
-  timeObject: any; // make this interface, need to change the wayt we make things dirty
+  timeObject: ITimeObject;
   setTimeObject: React.Dispatch<React.SetStateAction<any>>;
   whichTimeInput: string;
   placeHolderData: ITimeObject;

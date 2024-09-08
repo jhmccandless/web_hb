@@ -4,8 +4,8 @@ import { useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
-import { ITimeObject } from "./constants/sharedInterfaces";
-import { TIME_MILLISECONDS } from "./constants/sharedConstants";
+import { ITimeObject } from "./_constants/sharedInterfaces";
+import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
 
 function RepeaterTimer() {
   const navigate = useNavigate();

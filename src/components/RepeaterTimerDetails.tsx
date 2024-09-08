@@ -1,4 +1,4 @@
-import { TimerDetailsProps } from "./constants/sharedInterfaces";
+import { TimerDetailsProps } from "./_constants/sharedInterfaces";
 import IncrementCounter from "./IncrementCounter";
 import IncrementTime from "./IncrementTime";
 

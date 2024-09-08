@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../hooks/hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
-import { ITimeObject } from "./constants/sharedInterfaces";
+import { ITimeObject } from "./_constants/sharedInterfaces";
 
 interface CounterInputFormProps {
   timeObject: ITimeObject;

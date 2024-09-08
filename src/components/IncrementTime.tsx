@@ -1,5 +1,5 @@
 import React from "react";
-import { secondsToTimeString } from "./constants/sharedFunctions";
+import { secondsToTimeString } from "./_constants/sharedFunctions";
 
 interface IncrementTimeProps {
   action: string;

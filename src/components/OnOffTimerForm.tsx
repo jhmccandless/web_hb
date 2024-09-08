@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
 import CounterInputForForm from "./CounterInputForForm";
-import { checkValues } from "./constants/sharedFunctions";
-import { ITimeObject } from "./constants/sharedInterfaces";
+import { checkValues } from "./_constants/sharedFunctions";
+import { ITimeObject } from "./_constants/sharedInterfaces";
 
 function OnOffTimerForm() {
   const stateInfo = useAppSelector((state) => state); //PO Does this need to be typed?
