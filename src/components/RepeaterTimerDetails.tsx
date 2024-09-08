@@ -1,16 +1,8 @@
-import { ITimeObject } from "./constants/sharedInterfaces";
+import { TimerDetailsProps } from "./constants/sharedInterfaces";
 import IncrementCounter from "./IncrementCounter";
 import IncrementTime from "./IncrementTime";
 
-interface RepeaterTimerDetailsProps {
-  currentAct: string;
-  actionTime: number;
-  repsCounter: number;
-  setsCounter: number;
-  timerState: ITimeObject;
-}
-
-function RepeaterTimerDetails(props: RepeaterTimerDetailsProps) {
+function RepeaterTimerDetails(props: TimerDetailsProps) {
   return (
     <div className="timer-wrapper-details">
       <IncrementTime

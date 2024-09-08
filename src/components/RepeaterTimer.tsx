@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./constants/sharedInterfaces";
+import { TIME_MILLISECONDS } from "./constants/sharedConstants";
 
 function RepeaterTimer() {
   const navigate = useNavigate();
@@ -111,7 +112,7 @@ function RepeaterTimer() {
             clearInterval(int1);
           }
         }
-      }, 500);
+      }, TIME_MILLISECONDS);
     }
     if (!isPaused) {
       timer1(timeArray);

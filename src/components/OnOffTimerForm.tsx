@@ -5,45 +5,40 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
 import CounterInputForForm from "./CounterInputForForm";
-
-export function checkValues(refObj: any, newObj: any) {
-  const finalObj: any = {};
-  Object.entries(refObj).forEach(([key, val]) => {
-    finalObj[key] = newObj[key] ? newObj[key] : val;
-  });
-
-  return finalObj;
-}
+import { checkValues } from "./constants/sharedFunctions";
+import { ITimeObject } from "./constants/sharedInterfaces";
 
 function OnOffTimerForm() {
-  const timerValues = useAppSelector((state: any) => state.timerInfo);
-  const formStateValues = useAppSelector((state: any) => state.formState);
+  const stateInfo = useAppSelector((state) => state); //PO Does this need to be typed?
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [timeObject, setTimeObject] = useState<any>({
-    // hangTime: "",
-    // offTime: "",
-    // restTime: "",
-    // repCount: "",
-    // setCount: "",
-    // delayStartTime: "",
+  const [timeObject, setTimeObject] = useState<ITimeObject>({
+    hangTime: -2,
+    offTime: -2,
+    restTime: -2,
+    repCount: -2,
+    setCount: -2,
+    delayStartTime: -2,
   });
 
   useEffect(() => {
-    if (!timerValues.timerType) {
+    if (!stateInfo.timerInfo.timerType) {
       navigate("/");
     }
   });
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
+    dispatch(
+      setWorkoutValues(checkValues(stateInfo.timerInfo.timerTimes, timeObject))
+    );
     navigate("/workout-on-off");
   }
 
   function onBackClick() {
-    if (Object.keys(formStateValues.dirtyFields).length === 0) navigate("/");
+    if (Object.keys(stateInfo.formState.dirtyFields).length === 0)
+      navigate("/");
     else {
       dispatch(openAlert("/"));
     }
@@ -57,26 +52,14 @@ function OnOffTimerForm() {
       >
         Fill In Your Workout
       </h2>
-      {/* <div className="form-row">
-        <label>
-          <select style={{ width: "100px" }}>
-            <option value="none" style={{ display: "none" }}>
-              Workout Type Select
-            </option>
-            <option value="repeaters">Repeaters</option>
-            <option value="on-off">On-Off</option>
-            <option value="circuit">Circuit</option>
-          </select>
-        </label>
-      </div> */}
-      {Object.entries(timerValues.timerTimes)
+      {Object.entries(stateInfo.timerInfo.timerTimes)
         .filter(([key, val]) => val !== -1)
         .map(([key, val], i: number) => {
           if (key.includes("Time")) {
             return (
               <div key={i} className={"form-row"}>
                 <TimeInputForForm
-                  placeHolderData={timerValues.timerTimes}
+                  placeHolderData={stateInfo.timerInfo.timerTimes}
                   timeObject={timeObject}
                   whichTimeInput={key}
                   setTimeObject={setTimeObject}
@@ -87,7 +70,7 @@ function OnOffTimerForm() {
             return (
               <div key={i} className={"form-row"}>
                 <CounterInputForForm
-                  placeHolderData={timerValues.timerTimes}
+                  placeHolderData={stateInfo.timerInfo.timerTimes}
                   timeObject={timeObject}
                   whichTimeInput={key}
                   setTimeObject={setTimeObject}

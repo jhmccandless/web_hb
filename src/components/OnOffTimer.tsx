@@ -4,6 +4,7 @@ import { useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
+import { TIME_MILLISECONDS } from "./constants/sharedConstants";
 
 export interface RepeaterTimerInt {
   hangTime: number;
@@ -21,7 +22,7 @@ function OnOffTimer() {
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("Start In");
   const [currActTime, setCurrActTime] = useState<number>(
-    Number(timerDataState.timerTimes.delayStartTime)
+    timerDataState.timerTimes.delayStartTime
   );
   const [repsCounter, setRepsCounter] = useState<number>(
     timerDataState.timerTimes.repCount
@@ -31,7 +32,6 @@ function OnOffTimer() {
   );
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
-  // console.log(timeArray);
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -48,28 +48,11 @@ function OnOffTimer() {
       for (let j = obj.setCount; j > 0; j--) {
         for (let i = obj.repCount; i > 0; i--) {
           if (i > 1) {
-            // if (i > 3) {
-            //   finalArray.push(["hang", obj.hangTime]);
-            //   finalArray.push(["off", obj.offTime]);
-            // }
             finalArray.push(["hang", obj.hangTime]);
             finalArray.push(["off", obj.offTime, "repsMinusOne"]);
           } else {
             finalArray.push(["hang", obj.hangTime]);
           }
-          // if (i === obj.repCount) {
-          //   finalArray.push(["hang", obj.hangTime]);
-          //   finalArray.push(["off", obj.offTime]);
-          // } else if (i > 1 && i < obj.repCount) {
-          //   // if (i > 3) {
-          //   //   finalArray.push(["hang", obj.hangTime]);
-          //   //   finalArray.push(["off", obj.offTime]);
-          //   // }
-          //   finalArray.push(["hang", obj.hangTime, "repsMinusOne"]);
-          //   finalArray.push(["off", obj.offTime]);
-          // } else {
-          //   finalArray.push(["hang", obj.hangTime, "repsMinusOne"]);
-          // }
         }
         if (j > 1) {
           finalArray.push(["rest", obj.restTime]);
@@ -98,41 +81,32 @@ function OnOffTimer() {
         }
       }
     }
-
-    // console.log(finalArray);
     return finalArray;
   }
 
   useEffect(() => {
-    const timerDataStateNumbers: any = {};
-    Object.entries(timerDataState.timerTimes).forEach(([key, val]) => {
-      timerDataStateNumbers[key] = Number(val);
-    });
-    setTimeArray(settingUpTimingInterval(timerDataStateNumbers));
+    setTimeArray(settingUpTimingInterval(timerDataState));
     // eslint-disable-next-line
   }, [timerDataState]);
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
-    let int1: any;
+    let int1: ReturnType<typeof setInterval>;
     function timer1(arr: (string | number)[][]): void {
       let arrayCounter: number = 0;
-      let intervalTime: any =
-        Number(timerDataState.timerTimes.delayStartTime) - 1;
+      let intervalTime: number = timerDataState.timerTimes.delayStartTime - 1;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
       int1 = setInterval(() => {
         if (intervalTime > 1) {
-          // console.log('else');
           setCurrActTime(intervalTime);
           intervalTime--;
         } else if (intervalTime === 1) {
-          console.log("if");
           setCurrActTime(1);
           intervalTime--;
           arrayCounter++;
         } else if (intervalTime < 1) {
-          intervalTime = arr.at(arrayCounter)?.at(1);
+          intervalTime = Number(arr.at(arrayCounter)?.at(1)); //PO how to type this better with the weird type
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
           setNextAction(
@@ -153,7 +127,7 @@ function OnOffTimer() {
             clearInterval(int1);
           }
         }
-      }, 500);
+      }, TIME_MILLISECONDS);
     }
     if (!isPaused) {
       timer1(timeArray);
@@ -197,31 +171,6 @@ function OnOffTimer() {
           setsCounter={setsCounter}
         />
       )}
-      {/* <p>{repsCounter}</p>
-      <p>{setsCounter}</p> */}
-      {/* <IncrementTime
-        action={"hang"}
-        currentAct={currentAction}
-        actionTime={currActTime}
-        timerState={timerDataState.timerTimes.hangTime}
-        stylingProp="timer-item-1"
-      />
-
-      <IncrementTime
-        action={"off"}
-        currentAct={currentAction}
-        actionTime={currActTime}
-        timerState={timerDataState.timerTimes.offTime}
-        stylingProp="timer-item-2"
-      />
-
-      <IncrementTime
-        action={"rest"}
-        currentAct={currentAction}
-        actionTime={currActTime}
-        timerState={timerDataState.timerTimes.restTime}
-        stylingProp="timer-item-3"
-      /> */}
     </div>
   );
 }

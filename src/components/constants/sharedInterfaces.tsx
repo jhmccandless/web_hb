@@ -8,3 +8,11 @@ export interface ITimeObject {
   setCount: number;
   delayStartTime: number;
 }
+
+export interface TimerDetailsProps {
+  currentAct: string;
+  actionTime: number;
+  repsCounter: number;
+  setsCounter: number;
+  timerState: ITimeObject;
+}
