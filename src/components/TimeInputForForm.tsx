@@ -1,24 +1,13 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../hooks/hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
-
-interface IPlaceHolderData {
-  [key: string]: number; //PO - why i need this for template literals - props.placeHolderData[`${props.whichTimeInput}`] wouldnt work without it
-  hangTime: number;
-  offTime: number;
-  restTime: number;
-  repCount: number;
-  setCount: number;
-  delayStartTime: number;
-}
-
-// interface ITimerObject {}
+import { ITimeObject } from "./constants/sharedInterfaces";
 
 interface timeInputFormProps {
   timeObject: any; // make this interface, need to change the wayt we make things dirty
   setTimeObject: React.Dispatch<React.SetStateAction<any>>;
   whichTimeInput: string;
-  placeHolderData: IPlaceHolderData;
+  placeHolderData: ITimeObject;
 }
 
 function TimeInputForForm(props: timeInputFormProps) {

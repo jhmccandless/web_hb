@@ -4,7 +4,7 @@ interface IncrementTimeInt {
   action: string;
   currentAct: string;
   actionTime: number;
-  timerState: string;
+  timerState: number;
   stylingProp: string;
 }
 

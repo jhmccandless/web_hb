@@ -23,9 +23,6 @@ function RepeaterTimerForm() {
     delayStartTime: -2,
   });
 
-  console.log(timerValues);
-  console.log(timeObject);
-
   useEffect(() => {
     if (!timerValues.timerType) {
       navigate("/");
@@ -53,18 +50,6 @@ function RepeaterTimerForm() {
       >
         Fill In Your Workout
       </h2>
-      {/* <div className="form-row">
-        <label>
-          <select style={{ width: "100px" }}>
-            <option value="none" style={{ display: "none" }}>
-              Workout Type Select
-            </option>
-            <option value="repeaters">Repeaters</option>
-            <option value="on-off">On-Off</option>
-            <option value="circuit">Circuit</option>
-          </select>
-        </label>
-      </div> */}
       {Object.entries(timerValues.timerTimes)
         .filter(([key, val]) => val !== -1)
         .map(([key, val], i: number) => {
