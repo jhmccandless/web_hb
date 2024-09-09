@@ -1,1 +1,1 @@
-export const TIME_MILLISECONDS: number = 500;
+export const TIME_MILLISECONDS: number = 200;
