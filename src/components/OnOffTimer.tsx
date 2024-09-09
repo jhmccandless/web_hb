@@ -33,6 +33,8 @@ function OnOffTimer() {
   );
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
+  console.log(timerDataState);
+  console.log(timeArray);
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -45,21 +47,7 @@ function OnOffTimer() {
     const finalArray = [];
 
     finalArray.push(["delay", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
-    if (timerDataState.timerType === "repeaters") {
-      for (let j = obj.setCount; j > 0; j--) {
-        for (let i = obj.repCount; i > 0; i--) {
-          if (i > 1) {
-            finalArray.push(["hang", obj.hangTime]);
-            finalArray.push(["off", obj.offTime, "repsMinusOne"]);
-          } else {
-            finalArray.push(["hang", obj.hangTime]);
-          }
-        }
-        if (j > 1) {
-          finalArray.push(["rest", obj.restTime]);
-        }
-      }
-    } else if (timerDataState.timerType === "on-off") {
+    if (timerDataState.timerType === "on-off") {
       for (let i = obj.setCount; i > 0; i--) {
         if (i > 1) {
           finalArray.push(["hang", obj.hangTime]);
@@ -71,22 +59,12 @@ function OnOffTimer() {
           finalArray.push(["hang", obj.hangTime]);
         }
       }
-    } else if (timerDataState.timerType === "circuit") {
-      console.log("circuit");
-      for (let j = obj.setCount; j > 0; j--) {
-        for (let i = obj.repCount; i > 0; i--) {
-          finalArray.push(["hang", obj.hangTime]);
-        }
-        if (j > 1) {
-          finalArray.push(["rest", obj.restTime]);
-        }
-      }
     }
     return finalArray;
   }
 
   useEffect(() => {
-    setTimeArray(settingUpTimingInterval(timerDataState));
+    setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
     // eslint-disable-next-line
   }, [timerDataState]);
 

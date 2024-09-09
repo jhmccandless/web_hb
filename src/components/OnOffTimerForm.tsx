@@ -9,7 +9,8 @@ import { checkValues } from "./_constants/sharedFunctions";
 import { ITimeObject } from "./_constants/sharedInterfaces";
 
 function OnOffTimerForm() {
-  const stateInfo = useAppSelector((state) => state); //PO Does this need to be typed?
+  const timerState = useAppSelector((state) => state.timerInfo); //PO Does this need to be typed?
+  const formState = useAppSelector((state) => state.formState); //PO Does this need to be typed?
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -23,22 +24,19 @@ function OnOffTimerForm() {
   });
 
   useEffect(() => {
-    if (!stateInfo.timerInfo.timerType) {
+    if (!timerState.timerType) {
       navigate("/");
     }
   });
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(
-      setWorkoutValues(checkValues(stateInfo.timerInfo.timerTimes, timeObject))
-    );
+    dispatch(setWorkoutValues(checkValues(timerState.timerTimes, timeObject)));
     navigate("/workout-on-off");
   }
 
   function onBackClick() {
-    if (Object.keys(stateInfo.formState.dirtyFields).length === 0)
-      navigate("/");
+    if (Object.keys(formState.dirtyFields).length === 0) navigate("/");
     else {
       dispatch(openAlert("/"));
     }
@@ -52,14 +50,14 @@ function OnOffTimerForm() {
       >
         Fill In Your Workout
       </h2>
-      {Object.entries(stateInfo.timerInfo.timerTimes)
+      {Object.entries(timerState.timerTimes)
         .filter(([key, val]) => val !== -1)
         .map(([key, val], i: number) => {
           if (key.includes("Time")) {
             return (
               <div key={i} className={"form-row"}>
                 <TimeInputForForm
-                  placeHolderData={stateInfo.timerInfo.timerTimes}
+                  placeHolderData={timerState.timerTimes}
                   timeObject={timeObject}
                   whichTimeInput={key}
                   setTimeObject={setTimeObject}
@@ -70,7 +68,7 @@ function OnOffTimerForm() {
             return (
               <div key={i} className={"form-row"}>
                 <CounterInputForForm
-                  placeHolderData={stateInfo.timerInfo.timerTimes}
+                  placeHolderData={timerState.timerTimes}
                   timeObject={timeObject}
                   whichTimeInput={key}
                   setTimeObject={setTimeObject}

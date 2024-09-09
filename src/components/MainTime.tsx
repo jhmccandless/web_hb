@@ -7,6 +7,7 @@ interface MainTimeProps {
 }
 
 function MainTime(props: MainTimeProps) {
+  console.log(props);
   function mainSecondsToTimeString(sec: number): string {
     if (sec / 60 >= 1) {
       return secondsToTimeString(sec);

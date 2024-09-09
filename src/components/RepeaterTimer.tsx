@@ -54,18 +54,6 @@ function RepeaterTimer() {
           finalArray.push(["rest", obj.restTime]);
         }
       }
-    } else if (timerDataState.timerType === "on-off") {
-      for (let i = obj.setCount; i > 0; i--) {
-        if (i > 1) {
-          finalArray.push(["hang", obj.hangTime]);
-          if (obj.offTime !== -1) {
-            finalArray.push(["off", obj.offTime]);
-          }
-          finalArray.push(["rest", obj.restTime]);
-        } else {
-          finalArray.push(["hang", obj.hangTime]);
-        }
-      }
     }
     return finalArray;
   }
