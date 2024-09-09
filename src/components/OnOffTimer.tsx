@@ -117,6 +117,7 @@ function OnOffTimer() {
 
   return (
     <div className="timer-wrapper">
+      <h2>On-Off</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
       <MainTime
         number={currActTime}
