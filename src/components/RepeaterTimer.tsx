@@ -6,6 +6,7 @@ import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./_constants/sharedInterfaces";
 import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
+import StartButton from "./StartButton";
 
 function RepeaterTimer() {
   const navigate = useNavigate();
@@ -125,14 +126,7 @@ function RepeaterTimer() {
 
   return (
     <div className="timer-wrapper">
-      <button
-        className="timer-start-button"
-        onClick={() => {
-          setIsPaused(!isPaused);
-        }}
-      >
-        Start Timer
-      </button>
+      <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
       <MainTime
         number={currActTime}
         curAct={currentAction}

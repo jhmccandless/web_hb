@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
 import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
+import StartButton from "./StartButton";
 
 export interface RepeaterTimerInt {
   hangTime: number;
@@ -140,14 +141,7 @@ function OnOffTimer() {
 
   return (
     <div className="timer-wrapper">
-      <button
-        className="timer-start-button"
-        onClick={() => {
-          setIsPaused(!isPaused);
-        }}
-      >
-        Start Timer
-      </button>
+      <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
       <MainTime
         number={currActTime}
         curAct={currentAction}

@@ -36,17 +36,6 @@ function TimeInputForForm(props: timeInputFormProps) {
     }
   }
 
-  // function secondsToMinSec(sec: number) {
-  //   if (sec / 60 < 1) {
-  //     setMinutes(0);
-  //     setSeconds(sec);
-  //   } else {
-  //     const min = Math.floor(sec / 60);
-  //     setMinutes(min);
-  //     setSeconds(sec - min * 60);
-  //   }
-  // }
-
   function updateMinutes(e: React.ChangeEvent<HTMLSelectElement>) {
     e.preventDefault();
     console.log(typeof e.target.value);
@@ -89,7 +78,6 @@ function TimeInputForForm(props: timeInputFormProps) {
         <label>
           <select
             style={{ width: "50px" }}
-            // type="number"
             name={props.whichTimeInput.concat("Minutes")}
             value={minutes}
             onChange={updateMinutes}
@@ -105,17 +93,8 @@ function TimeInputForForm(props: timeInputFormProps) {
         </label>
         <p style={{ margin: "0 3px 10px 3px" }}>:</p>
         <label>
-          {/* <input
-            style={{ width: "50px" }}
-            name={props.whichTimeInput.concat("Seconds")}
-            type="number"
-            placeholder={props.placeHolderData[props.whichTimeInput]}
-            value={seconds}
-            onChange={updateSeconds}
-          /> */}
           <select
             style={{ width: "50px" }}
-            // type="number"
             name={props.whichTimeInput.concat("Seconds")}
             value={seconds}
             onChange={updateSeconds}
