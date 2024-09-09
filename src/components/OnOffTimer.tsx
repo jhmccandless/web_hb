@@ -33,8 +33,6 @@ function OnOffTimer() {
   );
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
-  console.log(timerDataState);
-  console.log(timeArray);
 
   useEffect(() => {
     if (!timerDataState.timerType) {

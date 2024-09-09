@@ -13,8 +13,6 @@ function RepeaterTimer() {
   const timerDataState = useAppSelector((state) => state.timerInfo);
   //PO Does this selector need to be typed??
 
-  console.log(timerDataState);
-
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("Start In");
   const [currActTime, setCurrActTime] = useState<number>(
