@@ -46,9 +46,9 @@ function RepeaterTimerForm() {
     <form className="form-repeater" onSubmit={handleSubmit}>
       <h2
         className="form-row-title-repeater"
-        style={{ display: "flex", alignItems: "center", margin: "0" }}
+        // style={{ display: "flex", alignItems: "center", margin: "0" }}
       >
-        Fill In Your Workout
+        Fill In Your Workout:<br></br>Repeaters
       </h2>
       {Object.entries(timerValues.timerTimes)
         .filter(([key, val]) => val !== -1)

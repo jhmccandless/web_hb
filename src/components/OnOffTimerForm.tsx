@@ -44,11 +44,8 @@ function OnOffTimerForm() {
 
   return (
     <form className="form-onoff" onSubmit={handleSubmit}>
-      <h2
-        className="form-row-title-onoff"
-        style={{ display: "flex", alignItems: "center", margin: "0" }}
-      >
-        Fill In Your Workout
+      <h2 className="form-row-title-onoff">
+        Fill In Your Workout:<br></br>On-Off
       </h2>
       {Object.entries(timerState.timerTimes)
         .filter(([key, val]) => val !== -1)

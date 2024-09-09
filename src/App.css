@@ -62,7 +62,11 @@
 }
 
 .form-row-title-repeater {
+  display: flex;
   grid-column: 1 / span 3;
+  margin: 0;
+  text-align: center;
+  align-items: center;
 }
 
 .workout-button-div-repeater {
@@ -93,7 +97,11 @@
 }
 
 .form-row-title-onoff {
+  display: flex;
   grid-column: 1 / span 2;
+  margin: 0;
+  text-align: center;
+  align-items: center;
 }
 
 .workout-button-div-onoff {
