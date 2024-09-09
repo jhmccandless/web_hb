@@ -1,5 +1,3 @@
-import React from "react";
-
 function FullTime() {
   return <>full time</>;
 }

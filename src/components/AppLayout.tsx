@@ -4,25 +4,12 @@ import Footer from "./Footer";
 import AppMenu from "./AppMenu";
 import FormResetAlert from "./FormResetAlert";
 
-function AppLayout(props: any) {
-  // const dispatch = useAppDispatch();
+interface AppLayoutProps {
+  desComp: React.ReactNode;
+}
 
+function AppLayout(props: AppLayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  /*
-  const formStateValues = useAppSelector((state: any) => state.formState);
-  This is for the refresh functionality
-  useEffect(() => {
-    if (Object.keys(formStateValues.dirtyFields).length !== 0) {
-      const handleBeforeUnload = (e: any) => {
-        e.preventDefault();
-      };
-      window.addEventListener("beforeunload", handleBeforeUnload);
-      return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-      };
-    }
-  });
-  */
 
   function onPageClick() {
     if (isMenuOpen) setIsMenuOpen(false);
@@ -31,7 +18,7 @@ function AppLayout(props: any) {
   return (
     <div onClick={onPageClick} className="app-wrapper">
       <FormResetAlert />
-      <AppMenu menuOpen={isMenuOpen} toggleButton={setIsMenuOpen} />
+      <AppMenu menuOpen={isMenuOpen} />
       <Header menuOpen={isMenuOpen} toggleButton={setIsMenuOpen} />
       <div className="main">{props.desComp}</div>
       <Footer />

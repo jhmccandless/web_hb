@@ -1,24 +1,13 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../hooks/hooks";
 import { setDirtyFields } from "../appSlices/formSlice";
-
-interface IPlaceHolderData {
-  [key: string]: number; //PO - why i need this for template literals - props.placeHolderData[`${props.whichTimeInput}`] wouldnt work without it
-  hangTime: number;
-  offTime: number;
-  restTime: number;
-  repCount: number;
-  setCount: number;
-  delayStartTime: number;
-}
-
-// interface ITimerObject {}
+import { ITimeObject } from "./_constants/sharedInterfaces";
 
 interface timeInputFormProps {
-  timeObject: any; // make this interface, need to change the wayt we make things dirty
+  timeObject: ITimeObject;
   setTimeObject: React.Dispatch<React.SetStateAction<any>>;
   whichTimeInput: string;
-  placeHolderData: IPlaceHolderData;
+  placeHolderData: ITimeObject;
 }
 
 function TimeInputForForm(props: timeInputFormProps) {
@@ -46,17 +35,6 @@ function TimeInputForForm(props: timeInputFormProps) {
       return sec - min * 60;
     }
   }
-
-  // function secondsToMinSec(sec: number) {
-  //   if (sec / 60 < 1) {
-  //     setMinutes(0);
-  //     setSeconds(sec);
-  //   } else {
-  //     const min = Math.floor(sec / 60);
-  //     setMinutes(min);
-  //     setSeconds(sec - min * 60);
-  //   }
-  // }
 
   function updateMinutes(e: React.ChangeEvent<HTMLSelectElement>) {
     e.preventDefault();
@@ -100,7 +78,6 @@ function TimeInputForForm(props: timeInputFormProps) {
         <label>
           <select
             style={{ width: "50px" }}
-            // type="number"
             name={props.whichTimeInput.concat("Minutes")}
             value={minutes}
             onChange={updateMinutes}
@@ -116,17 +93,8 @@ function TimeInputForForm(props: timeInputFormProps) {
         </label>
         <p style={{ margin: "0 3px 10px 3px" }}>:</p>
         <label>
-          {/* <input
-            style={{ width: "50px" }}
-            name={props.whichTimeInput.concat("Seconds")}
-            type="number"
-            placeholder={props.placeHolderData[props.whichTimeInput]}
-            value={seconds}
-            onChange={updateSeconds}
-          /> */}
           <select
             style={{ width: "50px" }}
-            // type="number"
             name={props.whichTimeInput.concat("Seconds")}
             value={seconds}
             onChange={updateSeconds}

@@ -1,18 +1,17 @@
-import React from "react";
-import { secondsToTimeString } from "./IncrementTime";
+import { secondsToTimeString } from "./_constants/sharedFunctions";
 
-interface MainTimeInterface {
+interface MainTimeProps {
   number: number;
   curAct: string;
   nextAction: string;
 }
 
-function MainTime(props: MainTimeInterface) {
-  function mainSecondsToTimeString(sec: number) {
+function MainTime(props: MainTimeProps) {
+  function mainSecondsToTimeString(sec: number): string {
     if (sec / 60 >= 1) {
       return secondsToTimeString(sec);
     } else {
-      return sec;
+      return sec.toString();
     }
   }
 

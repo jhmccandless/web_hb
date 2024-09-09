@@ -1,8 +1,8 @@
+import { TimerDetailsProps } from "./_constants/sharedInterfaces";
 import IncrementCounter from "./IncrementCounter";
 import IncrementTime from "./IncrementTime";
 
-function OnOffTimerDetails(props: any) {
-  // console.log(props);
+function OnOffTimerDetails(props: TimerDetailsProps) {
   return (
     <div className="timer-wrapper-details">
       <IncrementTime
@@ -12,14 +12,6 @@ function OnOffTimerDetails(props: any) {
         timerState={props.timerState.hangTime}
         stylingProp="timer-item-1-1 timer-item-left timer-item-1-1-land"
       />
-
-      {/* <IncrementTime
-          action={"off"}
-          currentAct={props.currentAct}
-          actionTime={props.actionTime}
-          timerState={props.timerState.offTime}
-          stylingProp="timer-item-1-2"
-        /> */}
       <IncrementTime
         action={"rest"}
         currentAct={props.currentAct}
@@ -27,11 +19,6 @@ function OnOffTimerDetails(props: any) {
         timerState={props.timerState.restTime}
         stylingProp="timer-item-1-3 timer-item-right timer-item-1-3-land"
       />
-      {/* <IncrementCounter
-          whichCounter={"reps"}
-          stylingProp="timer-item-2-1"
-          counter={props.repsCounter}
-        /> */}
       <IncrementCounter
         whichCounter={"sets"}
         counter={props.setsCounter}

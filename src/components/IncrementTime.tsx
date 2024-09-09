@@ -1,27 +1,15 @@
 import React from "react";
+import { secondsToTimeString } from "./_constants/sharedFunctions";
 
-interface IncrementTimeInt {
+interface IncrementTimeProps {
   action: string;
   currentAct: string;
   actionTime: number;
-  timerState: string;
+  timerState: number;
   stylingProp: string;
 }
 
-export function secondsToTimeString(sec: number) {
-  const dec = sec / 60;
-  const minutes = Math.floor(dec);
-  const seconds = sec - minutes * 60;
-  if (minutes.toString().length < 2) {
-    if (seconds.toString().length < 2) {
-      return `0${minutes}:0${seconds}`;
-    }
-    return `0${minutes}:${seconds}`;
-  }
-  return `${minutes}:${seconds}`;
-}
-
-function IncrementTime(props: IncrementTimeInt) {
+function IncrementTime(props: IncrementTimeProps) {
   return (
     <div className={props.stylingProp}>
       <p style={{ margin: 0 }}>
@@ -30,8 +18,7 @@ function IncrementTime(props: IncrementTimeInt) {
       <p style={{ margin: 0 }}>
         {props.currentAct === props.action
           ? secondsToTimeString(props.actionTime)
-          : //Fix the number here, refactor
-            secondsToTimeString(Number(props.timerState))}
+          : secondsToTimeString(props.timerState)}
       </p>
     </div>
   );

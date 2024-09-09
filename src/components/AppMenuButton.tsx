@@ -1,9 +1,12 @@
-function AppMenuButton(props: any) {
+interface AppMenuButtonProps {
+  menuOpen: boolean;
+  toggleButton: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function AppMenuButton(props: AppMenuButtonProps) {
   function onMenuClick() {
     props.toggleButton(!props.menuOpen);
   }
-
-  // console.log(menuOpen);
 
   return (
     <div

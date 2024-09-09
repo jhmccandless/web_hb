@@ -4,11 +4,16 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../hooks/hooks";
 import { openAlert } from "../appSlices/formSlice";
 
-function Header(props: any) {
+interface HeaderProps {
+  menuOpen: boolean;
+  toggleButton: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Header(props: HeaderProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const formStateValues = useAppSelector((state: any) => state.formState);
+  const formStateValues = useAppSelector((state) => state.formState);
 
   function onAppTitleClick() {
     if (Object.keys(formStateValues.dirtyFields).length === 0) {

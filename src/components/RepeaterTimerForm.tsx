@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
 import CounterInputForForm from "./CounterInputForForm";
-import { ITimeObject } from "./constants/sharedInterfaces";
-import { checkValues } from "./constants/sharedFunctions";
+import { ITimeObject } from "./_constants/sharedInterfaces";
+import { checkValues } from "./_constants/sharedFunctions";
 
 function RepeaterTimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
@@ -22,9 +22,6 @@ function RepeaterTimerForm() {
     setCount: -2,
     delayStartTime: -2,
   });
-
-  console.log(timerValues);
-  console.log(timeObject);
 
   useEffect(() => {
     if (!timerValues.timerType) {
@@ -53,18 +50,6 @@ function RepeaterTimerForm() {
       >
         Fill In Your Workout
       </h2>
-      {/* <div className="form-row">
-        <label>
-          <select style={{ width: "100px" }}>
-            <option value="none" style={{ display: "none" }}>
-              Workout Type Select
-            </option>
-            <option value="repeaters">Repeaters</option>
-            <option value="on-off">On-Off</option>
-            <option value="circuit">Circuit</option>
-          </select>
-        </label>
-      </div> */}
       {Object.entries(timerValues.timerTimes)
         .filter(([key, val]) => val !== -1)
         .map(([key, val], i: number) => {

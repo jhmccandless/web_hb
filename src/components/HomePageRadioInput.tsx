@@ -1,7 +1,13 @@
 import { useAppDispatch } from "../hooks/hooks";
 import { initialState, setWorkoutValues } from "../appSlices/timerSlice";
 
-function HomePageRadioInput(props: any) {
+interface HomePageRadioInputProps {
+  inputTitle: string;
+  currentOption: string;
+  changeSelected: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function HomePageRadioInput(props: HomePageRadioInputProps) {
   const dispatch = useAppDispatch();
 
   function onRadioSelect() {

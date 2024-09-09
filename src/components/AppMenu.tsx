@@ -1,19 +1,15 @@
 import MenuCard from "./MenuCard";
 
-function AppMenu(props: any) {
+interface AppMenuProps {
+  menuOpen: boolean;
+}
+
+function AppMenu(props: AppMenuProps) {
   return (
     <div className={`${props.menuOpen ? "menu" : "menu-close"}`}>
-      <MenuCard
-        cardTitle={"Home"}
-        desNav={"/"}
-        toggleButton={props.toggleButton}
-      />
+      <MenuCard cardTitle={"Home"} desNav={"/"} />
       {/* <MenuCard cardTitle={"Workout Input"} desNav={"/form"} /> */}
-      <MenuCard
-        cardTitle={"About"}
-        desNav={"/about"}
-        toggleButton={props.toggleButton}
-      />
+      <MenuCard cardTitle={"About"} desNav={"/about"} />
     </div>
   );
 }
