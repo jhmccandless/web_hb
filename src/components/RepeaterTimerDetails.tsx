@@ -1,3 +1,4 @@
+import { secondsToTimeString } from "./_constants/sharedFunctions";
 import { TimerDetailsProps } from "./_constants/sharedInterfaces";
 import IncrementCounter from "./IncrementCounter";
 import IncrementTime from "./IncrementTime";
@@ -5,26 +6,10 @@ import IncrementTime from "./IncrementTime";
 function RepeaterTimerDetails(props: TimerDetailsProps) {
   return (
     <div className="timer-wrapper-details">
-      <div className="">
-        <p>Next:</p>
-        <p>
-          {props.nextAction
-            //Make this a function, been using this alot
-            .at(0)
-            ?.toUpperCase()
-            .concat(props.nextAction.slice(1))}
-        </p>
+      <div className="timer-item-1-2-single">
+        <p>Total Workout:</p>
+        <p>{secondsToTimeString(props.totalWorkout)}</p>
       </div>
-      {/* <div className="">
-        <p>Next:</p>
-        <p>
-          {props.nextAction
-            //Make this a function, been using this alot
-            .at(0)
-            ?.toUpperCase()
-            .concat(props.nextAction.slice(1))}
-        </p>
-      </div> */}
       <IncrementTime
         action={"hang"}
         currentAct={props.currentAct}

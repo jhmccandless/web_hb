@@ -1,3 +1,4 @@
+import { secondsToTimeString } from "./_constants/sharedFunctions";
 import { TimerDetailsProps } from "./_constants/sharedInterfaces";
 import IncrementCounter from "./IncrementCounter";
 import IncrementTime from "./IncrementTime";
@@ -5,6 +6,10 @@ import IncrementTime from "./IncrementTime";
 function OnOffTimerDetails(props: TimerDetailsProps) {
   return (
     <div className="timer-wrapper-details">
+      <div className="timer-item-1-2-single">
+        <p>Total Workout:</p>
+        <p>{secondsToTimeString(props.totalWorkout)}</p>
+      </div>
       <IncrementTime
         action={"hang"}
         currentAct={props.currentAct}

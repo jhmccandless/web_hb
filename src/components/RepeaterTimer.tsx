@@ -26,7 +26,9 @@ function RepeaterTimer() {
   );
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
-  const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(0);
+  const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(
+    getTotalTime(timeArray)
+  );
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -58,17 +60,22 @@ function RepeaterTimer() {
   }
 
   //---- creates total time based on workout ------
-  function getTotalTime(arr: any) {
+  function getTotalTime(arr: any): number {
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
-    // console.log(total);
-    setTotalWorkoutTime(total);
+    return total;
   }
 
   useEffect(() => {
     setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
-    getTotalTime(timeArray);
+
+    // setTotalWorkoutTime(getTotalTime(timeArray));
+    // getTotalTime(timeArray);
     // eslint-disable-next-line
   }, [timerDataState]);
+
+  useEffect(() => {
+    setTotalWorkoutTime(getTotalTime(timeArray));
+  }, [timeArray]);
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--

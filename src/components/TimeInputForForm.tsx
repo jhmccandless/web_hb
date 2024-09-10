@@ -38,8 +38,6 @@ function TimeInputForForm(props: timeInputFormProps) {
 
   function updateMinutes(e: React.ChangeEvent<HTMLSelectElement>) {
     e.preventDefault();
-    console.log(typeof e.target.value);
-    console.log(e.target);
     setMinutes(parseInt(e.target.value));
     onInputChange(parseInt(e.target.value), seconds);
   }

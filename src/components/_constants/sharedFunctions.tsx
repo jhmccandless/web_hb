@@ -18,6 +18,10 @@ export function secondsToTimeString(sec: number) {
       return `0${minutes}:0${seconds}`;
     }
     return `0${minutes}:${seconds}`;
+  } else {
+    if (seconds.toString().length < 2) {
+      return `${minutes}:0${seconds}`;
+    }
+    return `${minutes}:${seconds}`;
   }
-  return `${minutes}:${seconds}`;
 }

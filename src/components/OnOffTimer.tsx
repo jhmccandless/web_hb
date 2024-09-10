@@ -66,7 +66,7 @@ function OnOffTimer() {
   function getTotalTime(arr: any) {
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
     // console.log(total);
-    setTotalWorkoutTime(total);
+    return total;
   }
 
   useEffect(() => {
@@ -76,9 +76,9 @@ function OnOffTimer() {
 
   useEffect(() => {
     if (timeArray) {
-      getTotalTime(timeArray);
+      setTotalWorkoutTime(getTotalTime(timeArray));
     }
-  });
+  }, [timeArray]);
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
