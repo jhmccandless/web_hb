@@ -736,7 +736,7 @@ input[type="radio"] {
 @media only screen and (min-device-height: 360px) and (max-device-height: 430px) and (orientation: landscape) {
   .app-wrapper {
     display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-columns: 50px 6fr 50px;
     /* grid-template-columns: 1fr 6fr 1fr; */
     grid-template-rows: 50px auto 40px;
     grid-template-areas:
