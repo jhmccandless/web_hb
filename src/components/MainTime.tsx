@@ -14,8 +14,6 @@ function MainTime(props: MainTimeProps) {
     }
   }
 
-  console.log(props.curAct);
-
   return (
     <div className="main-timer-div">
       <div className="main-action">
