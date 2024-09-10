@@ -45,6 +45,10 @@
   /* justify-self: center; */
 }
 
+.application-title {
+  grid-column: 1 / span 2;
+}
+
 .homepage > .form-row {
   grid-column: 1 / span 4;
 }
@@ -1076,6 +1080,11 @@ input[type="radio"] {
     /* margin-top: 0.4rem; */
     /* width: 100%; */
     display: grid;
+  }
+
+  .application-title {
+    grid-column: 1;
+    justify-self: end;
   }
 
   .timer-item-1-1-land {

@@ -24,11 +24,7 @@ function Header(props: HeaderProps) {
   }
   return (
     <div className="header">
-      <p
-        className="clickable-text"
-        onClick={onAppTitleClick}
-        style={{ gridColumn: "1 / span 2" }}
-      >
+      <p className="clickable-text application-title" onClick={onAppTitleClick}>
         Hangboarding
       </p>
       <AppMenuButton
