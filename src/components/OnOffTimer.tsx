@@ -33,6 +33,7 @@ function OnOffTimer() {
   );
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
+  const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(0);
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -61,10 +62,23 @@ function OnOffTimer() {
     return finalArray;
   }
 
+  //---- creates total time based on workout ------
+  function getTotalTime(arr: any) {
+    const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
+    // console.log(total);
+    setTotalWorkoutTime(total);
+  }
+
   useEffect(() => {
     setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
     // eslint-disable-next-line
   }, [timerDataState]);
+
+  useEffect(() => {
+    if (timeArray) {
+      getTotalTime(timeArray);
+    }
+  });
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
@@ -119,11 +133,7 @@ function OnOffTimer() {
     <div className="timer-wrapper">
       <h2>On-Off</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
-      <MainTime
-        number={currActTime}
-        curAct={currentAction}
-        nextAction={nextAction}
-      />
+      <MainTime number={currActTime} curAct={currentAction} />
       {timerDataState.timerType === "repeaters" && (
         <RepeaterTimerDetails
           currentAct={currentAction}
@@ -131,6 +141,8 @@ function OnOffTimer() {
           timerState={timerDataState.timerTimes}
           repsCounter={repsCounter}
           setsCounter={setsCounter}
+          nextAction={nextAction}
+          totalWorkout={totalWorkoutTime}
         />
       )}
       {timerDataState.timerType === "on-off" && (
@@ -140,6 +152,8 @@ function OnOffTimer() {
           timerState={timerDataState.timerTimes}
           repsCounter={repsCounter}
           setsCounter={setsCounter}
+          nextAction={nextAction}
+          totalWorkout={totalWorkoutTime}
         />
       )}
     </div>
