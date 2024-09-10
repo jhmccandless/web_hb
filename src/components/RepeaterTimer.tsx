@@ -26,9 +26,7 @@ function RepeaterTimer() {
   );
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
-  const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(
-    getTotalTime(timeArray)
-  );
+  const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(-1);
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -61,31 +59,35 @@ function RepeaterTimer() {
 
   //---- creates total time based on workout ------
   function getTotalTime(arr: any): number {
+    arr.shift();
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
-    return total;
+    return total - 1;
   }
 
   useEffect(() => {
     setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
-
     // setTotalWorkoutTime(getTotalTime(timeArray));
     // getTotalTime(timeArray);
     // eslint-disable-next-line
   }, [timerDataState]);
 
   useEffect(() => {
-    setTotalWorkoutTime(getTotalTime(timeArray));
-  }, [timeArray]);
+    if (totalWorkoutTime < 0) setTotalWorkoutTime(getTotalTime(timeArray));
+  }, [timeArray, totalWorkoutTime]);
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
     let int1: ReturnType<typeof setInterval>;
     function timer1(arr: (string | number)[][]): void {
+      let totalTimeCounter = totalWorkoutTime - 1;
       let arrayCounter: number = 0;
       let intervalTime: number = timerDataState.timerTimes.delayStartTime - 1;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
       int1 = setInterval(() => {
+        if (arrayCounter > 0) {
+          setTotalWorkoutTime(totalTimeCounter--);
+        }
         if (intervalTime > 1) {
           setCurrActTime(intervalTime);
           intervalTime--;
