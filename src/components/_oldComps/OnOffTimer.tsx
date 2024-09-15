@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
-import MainTime from "./MainTime";
-import { useAppSelector } from "../hooks/hooks";
+import MainTime from "../MainTime";
+import { useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import RepeaterTimerDetails from "./RepeaterTimerDetails";
-import OnOffTimerDetails from "./OnOffTimerDetails";
-import { ITimeObject } from "./_constants/sharedInterfaces";
-import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
-import StartButton from "./StartButton";
+import RepeaterTimerDetails from "../RepeaterTimerDetails";
+import OnOffTimerDetails from "../OnOffTimerDetails";
+import { TIME_MILLISECONDS } from "../_constants/sharedConstants";
+import StartButton from "../StartButton";
 
-function RepeaterTimer() {
+export interface RepeaterTimerInt {
+  hangTime: number;
+  offTime: number;
+  restTime: number;
+  repCount: number;
+  setCount: number;
+  delayStartTime: number;
+}
+
+function OnOffTimer() {
   const navigate = useNavigate();
-  const timerDataState = useAppSelector((state) => state.timerInfo);
-  //PO Does this selector need to be typed??
+  const timerDataState = useAppSelector((state: any) => state.timerInfo);
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("Start In");
@@ -35,22 +42,20 @@ function RepeaterTimer() {
   });
 
   // ---Creates array to go through---
-  function settingUpTimingInterval(obj: ITimeObject) {
+  function settingUpTimingInterval(obj: RepeaterTimerInt) {
     const finalArray = [];
 
     finalArray.push(["delay", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
-    if (timerDataState.timerType === "repeaters") {
-      for (let j = obj.setCount; j > 0; j--) {
-        for (let i = obj.repCount; i > 0; i--) {
-          if (i > 1) {
-            finalArray.push(["hang", obj.hangTime]);
-            finalArray.push(["off", obj.offTime, "repsMinusOne"]);
-          } else {
-            finalArray.push(["hang", obj.hangTime]);
+    if (timerDataState.timerType === "on-off") {
+      for (let i = obj.setCount; i > 0; i--) {
+        if (i > 1) {
+          finalArray.push(["hang", obj.hangTime]);
+          if (obj.offTime !== -1) {
+            finalArray.push(["off", obj.offTime]);
           }
-        }
-        if (j > 1) {
           finalArray.push(["rest", obj.restTime]);
+        } else {
+          finalArray.push(["hang", obj.hangTime]);
         }
       }
     }
@@ -58,7 +63,7 @@ function RepeaterTimer() {
   }
 
   //---- creates total time based on workout ------
-  function getTotalTime(arr: any): number {
+  function getTotalTime(arr: any) {
     arr.shift();
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
     return total - 1;
@@ -66,8 +71,6 @@ function RepeaterTimer() {
 
   useEffect(() => {
     setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
-    // setTotalWorkoutTime(getTotalTime(timeArray));
-    // getTotalTime(timeArray);
     // eslint-disable-next-line
   }, [timerDataState]);
 
@@ -96,7 +99,7 @@ function RepeaterTimer() {
           intervalTime--;
           arrayCounter++;
         } else if (intervalTime < 1) {
-          intervalTime = Number(arr.at(arrayCounter)?.at(1)); //PO would this be ok for number typoing??
+          intervalTime = Number(arr.at(arrayCounter)?.at(1)); //PO how to type this better with the weird type
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
           setNextAction(
@@ -130,7 +133,7 @@ function RepeaterTimer() {
 
   return (
     <div className="timer-wrapper">
-      <h2>Repeaters</h2>
+      <h2>On-Off</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
       <MainTime number={currActTime} curAct={currentAction} />
       {timerDataState.timerType === "repeaters" && (
@@ -159,4 +162,4 @@ function RepeaterTimer() {
   );
 }
 
-export default RepeaterTimer;
+export default OnOffTimer;

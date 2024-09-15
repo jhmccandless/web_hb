@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import TimeInputForForm from "./TimeInputForForm";
-import { setWorkoutValues } from "../appSlices/timerSlice";
-import { useAppDispatch, useAppSelector } from "../hooks/hooks";
+import TimeInputForForm from "../TimeInputForForm";
+import { setWorkoutValues } from "../../appSlices/timerSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import { openAlert } from "../appSlices/formSlice";
-import CounterInputForForm from "./CounterInputForForm";
-import { ITimeObject } from "./_constants/sharedInterfaces";
-import { checkValues } from "./_constants/sharedFunctions";
+import { openAlert } from "../../appSlices/formSlice";
+import CounterInputForForm from "../CounterInputForForm";
+import { checkValues } from "../_constants/sharedFunctions";
+import { ITimeObject } from "../_constants/sharedInterfaces";
 
-function RepeaterTimerForm() {
-  const timerValues = useAppSelector((state: any) => state.timerInfo);
-  const formStateValues = useAppSelector((state: any) => state.formState);
+function OnOffTimerForm() {
+  const timerState = useAppSelector((state) => state.timerInfo); //PO Does this need to be typed?
+  const formState = useAppSelector((state) => state.formState); //PO Does this need to be typed?
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -24,40 +24,37 @@ function RepeaterTimerForm() {
   });
 
   useEffect(() => {
-    if (!timerValues.timerType) {
+    if (!timerState.timerType) {
       navigate("/");
     }
   });
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
-    navigate("/workout-repeaters");
+    dispatch(setWorkoutValues(checkValues(timerState.timerTimes, timeObject)));
+    navigate("/workout-on-off");
   }
 
   function onBackClick() {
-    if (Object.keys(formStateValues.dirtyFields).length === 0) navigate("/");
+    if (Object.keys(formState.dirtyFields).length === 0) navigate("/");
     else {
       dispatch(openAlert("/"));
     }
   }
 
   return (
-    <form className="form-repeater" onSubmit={handleSubmit}>
-      <h2
-        className="form-row-title-repeater"
-        // style={{ display: "flex", alignItems: "center", margin: "0" }}
-      >
-        Fill In Your Workout:<br></br>Repeaters
+    <form className="form-onoff" onSubmit={handleSubmit}>
+      <h2 className="form-row-title-onoff">
+        Fill In Your Workout:<br></br>On-Off
       </h2>
-      {Object.entries(timerValues.timerTimes)
+      {Object.entries(timerState.timerTimes)
         .filter(([key, val]) => val !== -1)
         .map(([key, val], i: number) => {
           if (key.includes("Time")) {
             return (
               <div key={i} className={"form-row"}>
                 <TimeInputForForm
-                  placeHolderData={timerValues.timerTimes}
+                  placeHolderData={timerState.timerTimes}
                   timeObject={timeObject}
                   whichTimeInput={key}
                   setTimeObject={setTimeObject}
@@ -68,7 +65,7 @@ function RepeaterTimerForm() {
             return (
               <div key={i} className={"form-row"}>
                 <CounterInputForForm
-                  placeHolderData={timerValues.timerTimes}
+                  placeHolderData={timerState.timerTimes}
                   timeObject={timeObject}
                   whichTimeInput={key}
                   setTimeObject={setTimeObject}
@@ -77,13 +74,13 @@ function RepeaterTimerForm() {
             );
           }
         })}
-      <div className="form-row-buttons-repeater">
-        <div className="workout-button-div-repeater">
+      <div className="form-row-buttons-onoff">
+        <div className="workout-button-div-onoff">
           <button type="submit" className="form-button">
             Workout!
           </button>
         </div>
-        <div className="back-button-div-repeater">
+        <div className="back-button-div-onoff">
           <button type="button" className="form-button" onClick={onBackClick}>
             Back
           </button>
@@ -93,4 +90,4 @@ function RepeaterTimerForm() {
   );
 }
 
-export default RepeaterTimerForm;
+export default OnOffTimerForm;
