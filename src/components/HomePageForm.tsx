@@ -41,7 +41,7 @@ function HomePageForm() {
         timerType: selectedOption,
       })
     );
-    navigate(`/form-${selectedOption}`);
+    navigate(`/form/:${selectedOption}`);
   }
 
   return (

@@ -16,20 +16,20 @@ function App() {
     <Provider store={store}>
       <Routes>
         <Route path="/" element={<AppLayout desComp={<HomePage />} />} />
-        <Route
+        {/* <Route
           path="/form-on-off"
           element={<AppLayout desComp={<OnOffTimerForm />} />}
-        />
+        /> */}
         <Route
-          path="/form-repeaters"
+          path="/form/:timerType"
           element={<AppLayout desComp={<RepeaterTimerForm />} />}
         />
-        <Route
+        {/* <Route
           path="/workout-on-off"
           element={<AppLayout desComp={<OnOffTimer />} />}
-        />
+        /> */}
         <Route
-          path="/workout-repeaters"
+          path="/workout/:timerType"
           element={<AppLayout desComp={<RepeaterTimer />} />}
         />
         <Route path="/about" element={<AppLayout desComp={<AboutPage />} />} />
