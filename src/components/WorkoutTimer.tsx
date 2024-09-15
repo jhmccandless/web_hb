@@ -11,7 +11,8 @@ import StartButton from "./StartButton";
 function WorkoutTimer() {
   const navigate = useNavigate();
   const timerDataState = useAppSelector((state) => state.timerInfo);
-  const { timerType } = useParams();
+  // const timerType = useAppSelector((state)=> state.timerInfo.tim)
+  // const { timerType } = useParams();
   //PO Does this selector need to be typed??
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
@@ -28,8 +29,6 @@ function WorkoutTimer() {
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
   const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(-1);
-
-  console.log(timeArray);
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -90,6 +89,27 @@ function WorkoutTimer() {
     if (totalWorkoutTime < 0) setTotalWorkoutTime(getTotalTime(timeArray));
   }, [timeArray, totalWorkoutTime]);
 
+  function stringToTitle(str: string): string {
+    let tempString: string;
+    if (str.includes("-")) {
+      tempString = str
+        .split("-")
+        .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
+        .join("-");
+      return tempString;
+    } else if (str.includes(" ")) {
+      tempString = str
+        .split(" ")
+        .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
+        .join(" ");
+      return tempString;
+    } else {
+      return str[0].toUpperCase().concat(str.slice(1));
+    }
+  }
+
+  stringToTitle("fdd ff");
+
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
     let int1: ReturnType<typeof setInterval>;
@@ -145,7 +165,7 @@ function WorkoutTimer() {
 
   return (
     <div className="timer-wrapper">
-      <h2>{timerType?.slice(1)}</h2>
+      <h2>{stringToTitle(timerDataState.timerType)}</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
       <MainTime number={currActTime} curAct={currentAction} />
       {timerDataState.timerType === "repeaters" && (
