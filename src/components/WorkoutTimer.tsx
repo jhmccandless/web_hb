@@ -95,7 +95,7 @@ function WorkoutTimer() {
     let int1: ReturnType<typeof setInterval>;
     function timer1(arr: (string | number)[][]): void {
       let totalTimeCounter = totalWorkoutTime - 1;
-      let arrayCounter: number = 0;
+      let arrayCounter: number = -1;
       let intervalTime: number = timerDataState.timerTimes.delayStartTime - 1;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;

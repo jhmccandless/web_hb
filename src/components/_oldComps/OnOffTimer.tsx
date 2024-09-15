@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import MainTime from "./MainTime";
-import { useAppSelector } from "../hooks/hooks";
+import MainTime from "../MainTime";
+import { useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import RepeaterTimerDetails from "./RepeaterTimerDetails";
-import OnOffTimerDetails from "./OnOffTimerDetails";
-import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
-import StartButton from "./StartButton";
+import RepeaterTimerDetails from "../RepeaterTimerDetails";
+import OnOffTimerDetails from "../OnOffTimerDetails";
+import { TIME_MILLISECONDS } from "../_constants/sharedConstants";
+import StartButton from "../StartButton";
 
 export interface RepeaterTimerInt {
   hangTime: number;

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import TimeInputForForm from "./TimeInputForForm";
-import { setWorkoutValues } from "../appSlices/timerSlice";
-import { useAppDispatch, useAppSelector } from "../hooks/hooks";
+import TimeInputForForm from "../TimeInputForForm";
+import { setWorkoutValues } from "../../appSlices/timerSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import { openAlert } from "../appSlices/formSlice";
-import CounterInputForForm from "./CounterInputForForm";
-import { checkValues } from "./_constants/sharedFunctions";
-import { ITimeObject } from "./_constants/sharedInterfaces";
+import { openAlert } from "../../appSlices/formSlice";
+import CounterInputForForm from "../CounterInputForForm";
+import { checkValues } from "../_constants/sharedFunctions";
+import { ITimeObject } from "../_constants/sharedInterfaces";
 
 function OnOffTimerForm() {
   const timerState = useAppSelector((state) => state.timerInfo); //PO Does this need to be typed?
