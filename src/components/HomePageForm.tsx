@@ -5,31 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { setWorkoutType } from "../appSlices/timerSlice";
 import { checkValues } from "./_constants/sharedFunctions";
 import { ITimeObject } from "./_constants/sharedInterfaces";
-
-const repeaterTemplateObj = {
-  hangTime: 7,
-  offTime: 3,
-  restTime: 240,
-  repCount: 6,
-  setCount: 3,
-  delayStartTime: 10,
-};
-const onOffTemplateObj = {
-  hangTime: 7,
-  offTime: -1,
-  restTime: 40,
-  repCount: -1,
-  setCount: 3,
-  delayStartTime: 4,
-};
-const defaultTemplateObj = {
-  hangTime: -1,
-  offTime: -1,
-  restTime: -1,
-  repCount: -1,
-  setCount: -1,
-  delayStartTime: -1,
-};
+import {
+  DEFAULT_TEMPLATE_OBJ,
+  ON_OFF_TEMPLATE_OBJ,
+  REPEATER_TEMPLATE_OBJ,
+} from "./_constants/sharedConstants";
 
 function HomePageForm() {
   const dispatch = useAppDispatch();
@@ -42,11 +22,11 @@ function HomePageForm() {
     let woType: string = timerType;
     switch (woType) {
       case "repeaters":
-        return repeaterTemplateObj;
+        return REPEATER_TEMPLATE_OBJ;
       case "on-off":
-        return onOffTemplateObj;
+        return ON_OFF_TEMPLATE_OBJ;
       default:
-        return defaultTemplateObj;
+        return DEFAULT_TEMPLATE_OBJ;
     }
   }
 
