@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MainTime from "./MainTime";
 import { useAppSelector } from "../hooks/hooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./_constants/sharedInterfaces";
