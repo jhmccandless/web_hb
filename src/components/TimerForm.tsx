@@ -8,7 +8,7 @@ import CounterInputForForm from "./CounterInputForForm";
 import { ITimeObject } from "./_constants/sharedInterfaces";
 import { checkValues } from "./_constants/sharedFunctions";
 
-function RepeaterTimerForm() {
+function TimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
   const formStateValues = useAppSelector((state: any) => state.formState);
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ function RepeaterTimerForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(setWorkoutValues(checkValues(timerValues.timerTimes, timeObject)));
-    navigate("/workout-repeaters");
+    navigate(`/workout/:${timerValues.timerType}`);
   }
 
   function onBackClick() {
@@ -93,4 +93,4 @@ function RepeaterTimerForm() {
   );
 }
 
-export default RepeaterTimerForm;
+export default TimerForm;

@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import MainTime from "./MainTime";
 import { useAppSelector } from "../hooks/hooks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./_constants/sharedInterfaces";
 import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
 import StartButton from "./StartButton";
 
-function RepeaterTimer() {
+function WorkoutTimer() {
   const navigate = useNavigate();
   const timerDataState = useAppSelector((state) => state.timerInfo);
+  const { timerType } = useParams();
   //PO Does this selector need to be typed??
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
@@ -27,6 +28,8 @@ function RepeaterTimer() {
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
   const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(-1);
+
+  console.log(timeArray);
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -51,6 +54,18 @@ function RepeaterTimer() {
         }
         if (j > 1) {
           finalArray.push(["rest", obj.restTime]);
+        }
+      }
+    } else if (timerDataState.timerType === "on-off") {
+      for (let i = obj.setCount; i > 0; i--) {
+        if (i > 1) {
+          finalArray.push(["hang", obj.hangTime]);
+          if (obj.offTime !== -1) {
+            finalArray.push(["off", obj.offTime]);
+          }
+          finalArray.push(["rest", obj.restTime]);
+        } else {
+          finalArray.push(["hang", obj.hangTime]);
         }
       }
     }
@@ -130,7 +145,7 @@ function RepeaterTimer() {
 
   return (
     <div className="timer-wrapper">
-      <h2>Repeaters</h2>
+      <h2>{timerType?.slice(1)}</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
       <MainTime number={currActTime} curAct={currentAction} />
       {timerDataState.timerType === "repeaters" && (
@@ -159,4 +174,4 @@ function RepeaterTimer() {
   );
 }
 
-export default RepeaterTimer;
+export default WorkoutTimer;
