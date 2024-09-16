@@ -11,8 +11,6 @@ import StartButton from "./StartButton";
 function WorkoutTimer() {
   const navigate = useNavigate();
   const timerDataState = useAppSelector((state) => state.timerInfo);
-  // const timerType = useAppSelector((state)=> state.timerInfo.tim)
-  // const { timerType } = useParams();
   //PO Does this selector need to be typed??
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
@@ -108,7 +106,7 @@ function WorkoutTimer() {
     }
   }
 
-  stringToTitle("fdd ff");
+  console.log(timeArray);
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
