@@ -3,6 +3,7 @@ import { secondsToTimeString } from "./_constants/sharedFunctions";
 interface MainTimeProps {
   number: number;
   curAct: string;
+  milliseconds: number;
 }
 
 function MainTime(props: MainTimeProps) {
@@ -20,7 +21,9 @@ function MainTime(props: MainTimeProps) {
         <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
       </div>
       <div className="main-action-time">
-        <p>{mainSecondsToTimeString(props.number)}</p>
+        <p>
+          {mainSecondsToTimeString(props.number)}:{props.milliseconds}
+        </p>
       </div>
     </div>
   );
