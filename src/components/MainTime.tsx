@@ -15,6 +15,22 @@ function MainTime(props: MainTimeProps) {
     }
   }
 
+  function mainMillisecondsToString(milsec: number) {
+    // if (milsec.toString().length > 3) {
+    //   console.log("longer time", milsec, milsec.toString().length);
+    //   console.log((milsec - 1).toString());
+    // }
+    if (milsec.toString().length <= 0) {
+      return `000`;
+    } else if (milsec.toString().length === 1) {
+      return `00${milsec}`;
+    } else if (milsec.toString().length === 2) {
+      return `0${milsec}`;
+    } else {
+      return (milsec + 1).toString();
+    }
+  }
+
   return (
     <div className="main-timer-div">
       <div className="main-action">
@@ -22,7 +38,8 @@ function MainTime(props: MainTimeProps) {
       </div>
       <div className="main-action-time">
         <p>
-          {mainSecondsToTimeString(props.number)}:{props.milliseconds}
+          {mainSecondsToTimeString(props.number)}:
+          {mainMillisecondsToString(props.milliseconds)}
         </p>
       </div>
     </div>
