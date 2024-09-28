@@ -16,14 +16,18 @@ function MainTime(props: MainTimeProps) {
   }
 
   function mainMillisecondsToString(milsec: number) {
-    if (milsec.toString().length <= 0) {
-      return `000`;
-    } else if (milsec.toString().length === 1) {
-      return `00${milsec}`;
-    } else if (milsec.toString().length === 2) {
-      return `0${milsec}`;
+    let roundedNum = Math.round(milsec / 10);
+    if (roundedNum.toString().length > 2 || roundedNum.toString() === "NaN") {
+      // console.log("not a number");
+      // console.log(roundedNum);
+      roundedNum = 99;
+    }
+    if (roundedNum.toString().length <= 0) {
+      return `00`;
+    } else if (roundedNum.toString().length === 1) {
+      return `0${roundedNum}`;
     } else {
-      return (milsec + 1).toString();
+      return roundedNum.toString();
     }
   }
 
