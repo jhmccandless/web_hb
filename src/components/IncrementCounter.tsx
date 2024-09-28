@@ -5,7 +5,6 @@ interface IncrementCounterProps {
 }
 
 function IncrementCounter(props: IncrementCounterProps) {
-  // console.log(props);
   return (
     <div className={props.stylingProp}>
       <p style={{ margin: 0 }}>

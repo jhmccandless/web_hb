@@ -17,7 +17,6 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     setDirtyFields: (state: any, action: PayloadAction<any>) => {
-      // console.log(action.payload);
       return {
         ...current(state),
         dirtyFields: {
@@ -33,7 +32,6 @@ export const formSlice = createSlice({
       };
     },
     closeAlert: (state: any, action: PayloadAction<any>) => {
-      // console.log(action.payload);
       return {
         ...current(state),
         isAlertOpen: false,
@@ -41,7 +39,6 @@ export const formSlice = createSlice({
       };
     },
     openAlert: (state: any, action: PayloadAction<any>) => {
-      // console.log(action.payload);
       return {
         ...current(state),
         isAlertOpen: true,

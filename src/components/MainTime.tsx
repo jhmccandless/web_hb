@@ -16,10 +16,6 @@ function MainTime(props: MainTimeProps) {
   }
 
   function mainMillisecondsToString(milsec: number) {
-    // if (milsec.toString().length > 3) {
-    //   console.log("longer time", milsec, milsec.toString().length);
-    //   console.log((milsec - 1).toString());
-    // }
     if (milsec.toString().length <= 0) {
       return `000`;
     } else if (milsec.toString().length === 1) {

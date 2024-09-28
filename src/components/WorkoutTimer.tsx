@@ -113,7 +113,6 @@ function WorkoutTimer() {
     let int1: ReturnType<typeof setInterval>;
     let int2: ReturnType<typeof setInterval>;
     let int3: ReturnType<typeof setInterval>;
-    // let int1: ReturnType<typeof setInterval>;
     function timer1(arr: (string | number)[][]): void {
       let totalTimeCounter = totalWorkoutTime - 1;
       let arrayCounter: number = -1;
@@ -165,7 +164,6 @@ function WorkoutTimer() {
       setCurrActTime(currActTime - 1);
       let timerStart = performance.now();
       int3 = setInterval(() => {
-        console.log("first int");
         let elapse = performance.now() - timerStart;
         setMilliseconds(1000 - Math.floor(elapse % 1000));
       }, 10);
