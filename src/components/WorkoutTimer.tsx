@@ -89,6 +89,7 @@ function WorkoutTimer() {
   }, [timeArray, totalWorkoutTime]);
 
   function stringToTitle(str: string) {
+    if (typeof str !== "string") console.error("str not a string");
     let tempString: string;
     if (str.includes("-")) {
       tempString = str
@@ -103,8 +104,8 @@ function WorkoutTimer() {
         .join(" ");
       return tempString;
     } else {
-      // tempString = str.at(0).toUpperCase().concat(str.slice(1));
-      return str;
+      tempString = str.at(0)!.toUpperCase().concat(str.slice(1));
+      return tempString;
     }
   }
 
@@ -178,7 +179,7 @@ function WorkoutTimer() {
 
   return (
     <div className="timer-wrapper">
-      <h2>{stringToTitle(timerDataState.timerType)}</h2>
+      <h2>{stringToTitle(timerDataState?.timerType)}</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
       <MainTime
         number={currActTime}
