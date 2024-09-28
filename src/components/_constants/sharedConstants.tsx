@@ -1,4 +1,4 @@
-export const TIME_MILLISECONDS: number = 200;
+export const TIME_MILLISECONDS: number = 1000;
 
 export const REPEATER_TEMPLATE_OBJ = {
   hangTime: 7,

@@ -135,8 +135,8 @@ function OnOffTimer() {
     <div className="timer-wrapper">
       <h2>On-Off</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
-      <MainTime number={currActTime} curAct={currentAction} />
-      {timerDataState.timerType === "repeaters" && (
+      {/* <MainTime number={currActTime} curAct={currentAction} /> */}
+      {/* {timerDataState.timerType === "repeaters" && (
         <RepeaterTimerDetails
           currentAct={currentAction}
           actionTime={currActTime}
@@ -157,7 +157,7 @@ function OnOffTimer() {
           nextAction={nextAction}
           totalWorkout={totalWorkoutTime}
         />
-      )}
+      )} */}
     </div>
   );
 }

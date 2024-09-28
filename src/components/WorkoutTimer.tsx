@@ -27,6 +27,7 @@ function WorkoutTimer() {
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
   const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(-1);
+  const [milliseconds, setMilliseconds] = useState<number>(0);
 
   useEffect(() => {
     if (!timerDataState.timerType) {
@@ -87,7 +88,7 @@ function WorkoutTimer() {
     if (totalWorkoutTime < 0) setTotalWorkoutTime(getTotalTime(timeArray));
   }, [timeArray, totalWorkoutTime]);
 
-  function stringToTitle(str: string): string {
+  function stringToTitle(str: string) {
     let tempString: string;
     if (str.includes("-")) {
       tempString = str
@@ -102,26 +103,33 @@ function WorkoutTimer() {
         .join(" ");
       return tempString;
     } else {
-      return str[0].toUpperCase().concat(str.slice(1));
+      // tempString = str.at(0).toUpperCase().concat(str.slice(1));
+      return str;
     }
   }
-
-  console.log(timeArray);
 
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
     let int1: ReturnType<typeof setInterval>;
+    let int2: ReturnType<typeof setInterval>;
+    let int3: ReturnType<typeof setInterval>;
     function timer1(arr: (string | number)[][]): void {
       let totalTimeCounter = totalWorkoutTime - 1;
       let arrayCounter: number = -1;
-      let intervalTime: number = timerDataState.timerTimes.delayStartTime - 1;
+      let intervalTime: number = timerDataState.timerTimes.delayStartTime - 2;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
       int1 = setInterval(() => {
+        let timerStart = performance.now();
+        int2 = setInterval(() => {
+          let elapse = performance.now() - timerStart;
+          setMilliseconds(1000 - Math.floor(elapse % 1000));
+        });
         if (arrayCounter > 0) {
           setTotalWorkoutTime(totalTimeCounter--);
         }
         if (intervalTime > 1) {
+          clearInterval(int3);
           setCurrActTime(intervalTime);
           intervalTime--;
         } else if (intervalTime === 1) {
@@ -153,10 +161,17 @@ function WorkoutTimer() {
       }, TIME_MILLISECONDS);
     }
     if (!isPaused) {
+      setCurrActTime(currActTime - 1);
+      let timerStart = performance.now();
+      int3 = setInterval(() => {
+        let elapse = performance.now() - timerStart;
+        setMilliseconds(1000 - Math.floor(elapse % 1000));
+      }, 10);
       timer1(timeArray);
     }
     return () => {
       clearInterval(int1);
+      clearInterval(int2);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPaused]);
@@ -165,7 +180,11 @@ function WorkoutTimer() {
     <div className="timer-wrapper">
       <h2>{stringToTitle(timerDataState.timerType)}</h2>
       <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
-      <MainTime number={currActTime} curAct={currentAction} />
+      <MainTime
+        number={currActTime}
+        curAct={currentAction}
+        milliseconds={milliseconds}
+      />
       {timerDataState.timerType === "repeaters" && (
         <RepeaterTimerDetails
           currentAct={currentAction}
