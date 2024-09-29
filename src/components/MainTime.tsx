@@ -37,8 +37,19 @@ function MainTime(props: MainTimeProps) {
         <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
       </div>
       <div className="main-action-time">
-        <p>
-          {mainSecondsToTimeString(props.number)}:
+        <p style={{ fontSize: 70, textAlign: "right" }}>
+          {mainSecondsToTimeString(props.number)}.
+        </p>
+        <p
+          style={{
+            fontSize: 50,
+            textAlign: "left",
+            bottom: 0,
+            alignContent: "end",
+            paddingBottom: "3px",
+            paddingLeft: "3px",
+          }}
+        >
           {mainMillisecondsToString(props.milliseconds)}
         </p>
       </div>

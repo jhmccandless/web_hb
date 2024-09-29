@@ -113,7 +113,7 @@ function WorkoutTimer() {
   useEffect(() => {
     // ---Takes in an array of the times to do in sequence--
     let int1: ReturnType<typeof setInterval>;
-    let int2: ReturnType<typeof setInterval>;
+    let int2: any;
     let int3: ReturnType<typeof setInterval>;
     function timer1(arr: (string | number)[][]): void {
       let totalTimeCounter = totalWorkoutTime - 1;
@@ -123,22 +123,28 @@ function WorkoutTimer() {
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
       int1 = setInterval(() => {
         let timerStart = performance.now();
-        int2 = setInterval(() => {
-          let elapse = performance.now() - timerStart;
-          setMilliseconds(1000 - Math.floor(elapse % 1000));
-        });
+        if (int2 == null) {
+          int2 = setInterval(() => {
+            let elapse = performance.now() - timerStart;
+            setMilliseconds(1000 - Math.floor(elapse % 1000));
+          });
+        }
         if (arrayCounter > 0) {
           setTotalWorkoutTime(totalTimeCounter--);
         }
         if (intervalTime > 1) {
           clearInterval(int3);
+          clearInterval(int2);
           setCurrActTime(intervalTime);
           intervalTime--;
+          int2 = null;
         } else if (intervalTime === 1) {
           setCurrActTime(1);
           intervalTime--;
           arrayCounter++;
+          int2 = null;
         } else if (intervalTime < 1) {
+          int2 = null;
           intervalTime = Number(arr.at(arrayCounter)?.at(1)); //PO would this be ok for number typoing??
           setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
