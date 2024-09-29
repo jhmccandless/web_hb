@@ -79,8 +79,6 @@ function WorkoutTimer() {
 
   useEffect(() => {
     setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
-    // setTotalWorkoutTime(getTotalTime(timeArray));
-    // getTotalTime(timeArray);
     // eslint-disable-next-line
   }, [timerDataState]);
 
@@ -89,23 +87,26 @@ function WorkoutTimer() {
   }, [timeArray, totalWorkoutTime]);
 
   function stringToTitle(str: string) {
-    if (typeof str !== "string") console.error("str not a string");
     let tempString: string;
-    if (str.includes("-")) {
-      tempString = str
-        .split("-")
-        .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
-        .join("-");
-      return tempString;
-    } else if (str.includes(" ")) {
-      tempString = str
-        .split(" ")
-        .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
-        .join(" ");
-      return tempString;
-    } else {
-      tempString = str.at(0)!.toUpperCase().concat(str.slice(1));
-      return tempString;
+    try {
+      if (str.includes("-")) {
+        tempString = str
+          .split("-")
+          .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
+          .join("-");
+        return tempString;
+      } else if (str.includes(" ")) {
+        tempString = str
+          .split(" ")
+          .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
+          .join(" ");
+        return tempString;
+      } else if (str !== "") {
+        tempString = str.at(0)!.toUpperCase().concat(str.slice(1));
+        return tempString;
+      }
+    } catch (err) {
+      console.error(err);
     }
   }
 
