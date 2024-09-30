@@ -115,39 +115,31 @@ function WorkoutTimer() {
     let int1: ReturnType<typeof setInterval>;
     let int2: any;
     let int3: ReturnType<typeof setInterval>;
-    console.log(int2);
     function timer1(arr: (string | number)[][]): void {
       let totalTimeCounter = totalWorkoutTime - 1;
       let arrayCounter: number = -1;
-      let intervalTime: number = timerDataState.timerTimes.delayStartTime - 2;
+      let intervalTime: number = timerDataState.timerTimes.delayStartTime - 1;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
+      console.log(intervalTime);
       int1 = setInterval(() => {
         let timerStart = performance.now();
         if (int2 == null) {
-          console.log("null");
           int2 = setInterval(() => {
             let elapse = performance.now() - timerStart;
             setMilliseconds(1000 - Math.floor(elapse % 1000));
           });
         }
-        console.log(arrayCounter);
-        if (arrayCounter >= -1) {
+        if (arrayCounter >= 0) {
           setTotalWorkoutTime(totalTimeCounter--);
         }
         if (intervalTime > 0) {
+          int2 = null;
           clearInterval(int3);
-          // clearInterval(int2);
-          setCurrActTime(intervalTime - 1);
           intervalTime--;
-          int2 = null;
-        } else if (intervalTime === 1) {
-          // setCurrActTime(1);
-          intervalTime--;
-          arrayCounter++;
-
-          int2 = null;
+          setCurrActTime(intervalTime);
         } else if (intervalTime < 1) {
+          arrayCounter++;
           int2 = null;
 
           intervalTime = Number(arr.at(arrayCounter)?.at(1)); //PO would this be ok for number typoing??
@@ -156,7 +148,7 @@ function WorkoutTimer() {
           setNextAction(
             (arr.at(arrayCounter + 1)?.at(0) as string) || "Finished!"
           );
-          if (intervalTime > 1) {
+          if (intervalTime > 0) {
             intervalTime--;
           }
           if (arr.at(arrayCounter)?.at(2)) {
