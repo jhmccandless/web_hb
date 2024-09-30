@@ -131,7 +131,8 @@ function WorkoutTimer() {
             setMilliseconds(1000 - Math.floor(elapse % 1000));
           });
         }
-        if (arrayCounter > 0) {
+        console.log(arrayCounter);
+        if (arrayCounter >= -1) {
           setTotalWorkoutTime(totalTimeCounter--);
         }
         if (intervalTime > 0) {
