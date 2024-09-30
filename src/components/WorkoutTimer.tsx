@@ -115,6 +115,7 @@ function WorkoutTimer() {
     let int1: ReturnType<typeof setInterval>;
     let int2: any;
     let int3: ReturnType<typeof setInterval>;
+    console.log(int2);
     function timer1(arr: (string | number)[][]): void {
       let totalTimeCounter = totalWorkoutTime - 1;
       let arrayCounter: number = -1;
@@ -124,6 +125,7 @@ function WorkoutTimer() {
       int1 = setInterval(() => {
         let timerStart = performance.now();
         if (int2 == null) {
+          console.log("null");
           int2 = setInterval(() => {
             let elapse = performance.now() - timerStart;
             setMilliseconds(1000 - Math.floor(elapse % 1000));
@@ -132,21 +134,23 @@ function WorkoutTimer() {
         if (arrayCounter > 0) {
           setTotalWorkoutTime(totalTimeCounter--);
         }
-        if (intervalTime > 1) {
+        if (intervalTime > 0) {
           clearInterval(int3);
-          clearInterval(int2);
-          setCurrActTime(intervalTime);
+          // clearInterval(int2);
+          setCurrActTime(intervalTime - 1);
           intervalTime--;
           int2 = null;
         } else if (intervalTime === 1) {
-          setCurrActTime(1);
+          // setCurrActTime(1);
           intervalTime--;
           arrayCounter++;
+
           int2 = null;
         } else if (intervalTime < 1) {
           int2 = null;
+
           intervalTime = Number(arr.at(arrayCounter)?.at(1)); //PO would this be ok for number typoing??
-          setCurrActTime(arr.at(arrayCounter)?.at(1) as number);
+          setCurrActTime((arr.at(arrayCounter)?.at(1) as number) - 1);
           setCurrentAction(arr.at(arrayCounter)?.at(0) as string);
           setNextAction(
             (arr.at(arrayCounter + 1)?.at(0) as string) || "Finished!"
