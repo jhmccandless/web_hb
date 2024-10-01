@@ -15,13 +15,15 @@ function RepeaterTimerDetails(props: TimerDetailsProps) {
         currentAct={props.currentAct}
         actionTime={props.actionTime}
         timerState={props.timerState.hangTime}
-        stylingProp="timer-item-2-1 timer-item-2-1-land"
+        nextAct={props.nextAction}
+        stylingProp="timer-item-2-1 timer-item-2-1-land timer-item-2-grid"
       />
       <IncrementTime
         action={"off"}
         currentAct={props.currentAct}
         actionTime={props.actionTime}
         timerState={props.timerState.offTime}
+        nextAct={props.nextAction}
         stylingProp="timer-item-2-2 timer-item-2-3-land"
       />
       <IncrementTime
@@ -29,6 +31,7 @@ function RepeaterTimerDetails(props: TimerDetailsProps) {
         currentAct={props.currentAct}
         actionTime={props.actionTime}
         timerState={props.timerState.restTime}
+        nextAct={props.nextAction}
         stylingProp="timer-item-2-3 timer-item-2-2-land"
       />
       <IncrementCounter

@@ -15,6 +15,7 @@ function OnOffTimerDetails(props: TimerDetailsProps) {
         currentAct={props.currentAct}
         actionTime={props.actionTime}
         timerState={props.timerState.hangTime}
+        nextAct={props.nextAction}
         stylingProp="timer-item-2-1 timer-item-left timer-item-2-1-land"
       />
       <IncrementTime
@@ -22,6 +23,7 @@ function OnOffTimerDetails(props: TimerDetailsProps) {
         currentAct={props.currentAct}
         actionTime={props.actionTime}
         timerState={props.timerState.restTime}
+        nextAct={props.nextAction}
         stylingProp="timer-item-2-3 timer-item-right timer-item-2-3-land"
       />
       <IncrementCounter
