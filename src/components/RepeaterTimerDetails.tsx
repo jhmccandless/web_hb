@@ -16,7 +16,7 @@ function RepeaterTimerDetails(props: TimerDetailsProps) {
         actionTime={props.actionTime}
         timerState={props.timerState.hangTime}
         nextAct={props.nextAction}
-        stylingProp="timer-item-2-1 timer-item-2-1-land timer-item-2-grid"
+        stylingProp="timer-item-2-1 timer-item-2-1-land"
       />
       <IncrementTime
         action={"off"}

@@ -535,12 +535,6 @@ input[type="radio"] {
     justify-content: center;
   }
 
-  .timer-item-2-grid {
-    display: grid;
-    background-color: green;
-    grid-template-columns: repeat(3 1fr);
-  }
-
   .timer-item-2-1 {
     grid-column: 1 / span 1;
     margin: 0;
