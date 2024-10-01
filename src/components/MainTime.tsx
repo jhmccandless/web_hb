@@ -29,8 +29,21 @@ function MainTime(props: MainTimeProps) {
     }
   }
 
+  function mainTimerColor(act: string): string {
+    if (act === "hang") {
+      return "lightGreen";
+    } else if (act === "off") {
+      return "pink";
+    } else {
+      return "lightBlue";
+    }
+  }
+
   return (
-    <div className="main-timer-div">
+    <div
+      style={{ backgroundColor: mainTimerColor(props.curAct) }}
+      className="main-timer-div"
+    >
       <div className="main-action">
         <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
       </div>

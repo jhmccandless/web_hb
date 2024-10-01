@@ -121,7 +121,6 @@ function WorkoutTimer() {
       let intervalTime: number = timerDataState.timerTimes.delayStartTime - 1;
       let tempRepsCounter: number = timerDataState.timerTimes.repCount - 1;
       let tempSetsCounter: number = timerDataState.timerTimes.setCount - 1;
-      console.log(intervalTime);
       int1 = setInterval(() => {
         let timerStart = performance.now();
         if (int2 == null) {
