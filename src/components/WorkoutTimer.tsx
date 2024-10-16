@@ -76,7 +76,7 @@ function WorkoutTimer() {
   function getTotalTime(arr: any): number {
     // arr.shift();
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
-    return total;
+    return total * 10;
   }
 
   function stringToTitle(str: string) {
@@ -118,13 +118,12 @@ function WorkoutTimer() {
     // let intervalTime: number = timerDataState.timerTimes.delayStartTime;
     // let tempRepsCounter: number = timerDataState.timerTimes.repCount;
     // let tempSetsCounter: number = timerDataState.timerTimes.setCount;
-    console.log(totalTimeCounter);
     if (!isPaused) {
       setCurrActTime((prevCount) => prevCount - 1);
       intervalId = setInterval(() => {
         setCurrActTime((prevCount) => prevCount - 1);
         console.log("tick");
-      }, 1000);
+      }, 100);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }
     return () => {

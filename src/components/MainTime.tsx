@@ -31,6 +31,10 @@ function MainTime(props: MainTimeProps) {
     }
   }
 
+  function mainMillisecondsToString2(milsec: number) {
+    return milsec;
+  }
+
   return (
     <div className="main-timer-div">
       <div className="main-action">
@@ -40,7 +44,7 @@ function MainTime(props: MainTimeProps) {
         <p>
           {/* {mainSecondsToTimeString(props.number)}:
           {mainMillisecondsToString(props.milliseconds)} */}
-          {props.number}
+          {mainMillisecondsToString2(props.number)}
         </p>
       </div>
     </div>
