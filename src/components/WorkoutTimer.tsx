@@ -15,10 +15,10 @@ function WorkoutTimer() {
 
   const [timeArray, setTimeArray] = useState<(string | number)[][]>([]);
   const [currentAction, setCurrentAction] = useState<string>("Start In");
-  // const [currActTime, setCurrActTime] = useState<number>(
-  //   timerDataState.timerTimes.delayStartTime
-  // );
-  const [currActTime, setCurrActTime] = useState<number>(-1);
+  const [currActTime, setCurrActTime] = useState<number>(
+    timerDataState.timerTimes.delayStartTime * 10
+  );
+  // const [currActTime, setCurrActTime] = useState<number>(-1);
   const [repsCounter, setRepsCounter] = useState<number>(
     timerDataState.timerTimes.repCount
   );
@@ -76,7 +76,7 @@ function WorkoutTimer() {
   function getTotalTime(arr: any): number {
     // arr.shift();
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
-    return total * 10;
+    return total;
   }
 
   function stringToTitle(str: string) {
@@ -103,11 +103,10 @@ function WorkoutTimer() {
     setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
     // eslint-disable-next-line
   }, [timerDataState]);
-
   useEffect(() => {
     if (totalWorkoutTime <= 0) {
       setTotalWorkoutTime(getTotalTime(timeArray));
-      setCurrActTime(getTotalTime(timeArray));
+      // setCurrActTime(timeArray?.at(0)?.at(1));
     }
   }, [timeArray, totalWorkoutTime]);
 
