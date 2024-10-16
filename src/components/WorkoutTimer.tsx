@@ -7,6 +7,11 @@ import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./_constants/sharedInterfaces";
 import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
 import StartButton from "./StartButton";
+import { time } from "console";
+
+export interface ArrayInt {
+  arr: [string, number];
+}
 
 function WorkoutTimer() {
   const navigate = useNavigate();
@@ -18,7 +23,7 @@ function WorkoutTimer() {
   const [currActTime, setCurrActTime] = useState<number>(
     timerDataState.timerTimes.delayStartTime * 10
   );
-  // const [currActTime, setCurrActTime] = useState<number>(-1);
+  const [timeArrayCounter, setTimeArrayCounter] = useState<number>(1);
   const [repsCounter, setRepsCounter] = useState<number>(
     timerDataState.timerTimes.repCount
   );
@@ -111,22 +116,30 @@ function WorkoutTimer() {
   }, [timeArray, totalWorkoutTime]);
 
   useEffect(() => {
+    // let arrayCounter = 1;
+    let nextInt = timeArray?.at(timeArrayCounter)?.at(1);
+    console.log(timeArrayCounter);
+    if (currActTime < 1) {
+      console.log("inside1");
+
+      setTimeArrayCounter((prevCount) => prevCount + 1);
+      console.log("inside2");
+      // setTimeArrayCounter((prevCount) => prevCount + 1);
+      // console.log(timeArray?.at(timeArrayCounter)?.at(1));
+      setCurrActTime(Number(nextInt) * 10);
+    }
+  });
+
+  useEffect(() => {
     let intervalId: any;
-    let totalTimeCounter: number = totalWorkoutTime;
-    // let arrayCounter: number = 0;
-    // let intervalTime: number = timerDataState.timerTimes.delayStartTime;
-    // let tempRepsCounter: number = timerDataState.timerTimes.repCount;
-    // let tempSetsCounter: number = timerDataState.timerTimes.setCount;
     if (!isPaused) {
       setCurrActTime((prevCount) => prevCount - 1);
       intervalId = setInterval(() => {
         setCurrActTime((prevCount) => prevCount - 1);
-        console.log("tick");
       }, 100);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }
     return () => {
-      // setIsPaused(true);
       clearInterval(intervalId);
     }; // Cleanup on unmount or dependency change
   }, [setCurrActTime, isPaused, totalWorkoutTime]);
