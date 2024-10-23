@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import MainTime from "./MainTime";
 import { useAppSelector } from "../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import RepeaterTimerDetails from "./RepeaterTimerDetails";
 import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./_constants/sharedInterfaces";
-import { TIME_MILLISECONDS } from "./_constants/sharedConstants";
+
 import StartButton from "./StartButton";
-import { time } from "console";
 
 export interface ArrayInt {
   arr: [string, number];
@@ -33,7 +32,7 @@ function WorkoutTimer() {
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [nextAction, setNextAction] = useState<string>("Hang");
   const [totalWorkoutTime, setTotalWorkoutTime] = useState<number>(-1);
-  const [milliseconds, setMilliseconds] = useState<number>(0);
+  // const [milliseconds, setMilliseconds] = useState<number>(0);
   // const intervalId = useRef<any>();
 
   useEffect(() => {
@@ -116,19 +115,23 @@ function WorkoutTimer() {
   }, [timeArray, totalWorkoutTime]);
 
   useEffect(() => {
-    // let arrayCounter = 1;
+    let currAct = timeArray?.at(timeArrayCounter)?.at(0);
+    let nextAct = timeArray?.at(timeArrayCounter + 1)?.at(0) || "";
     let nextInt = timeArray?.at(timeArrayCounter)?.at(1);
-    console.log(timeArrayCounter);
     if (currActTime < 1) {
-      console.log("inside1");
-
       setTimeArrayCounter((prevCount) => prevCount + 1);
-      console.log("inside2");
-      // setTimeArrayCounter((prevCount) => prevCount + 1);
-      // console.log(timeArray?.at(timeArrayCounter)?.at(1));
+      setCurrentAction(typeof currAct === "string" ? currAct : "string");
+      setNextAction(typeof nextAct === "string" ? nextAct : "string");
       setCurrActTime(Number(nextInt) * 10);
+      if (timeArray?.at(timeArrayCounter)?.at(2)) {
+        setRepsCounter((prevVal) => prevVal - 1);
+      }
+      if (currAct === "rest") {
+        setRepsCounter(timerDataState.timerTimes.repCount);
+        setSetsCounter((prevVal) => prevVal - 1);
+      }
     }
-  });
+  }, [currActTime, timeArray, timeArrayCounter, timerDataState]);
 
   useEffect(() => {
     let intervalId: any;
@@ -219,7 +222,7 @@ function WorkoutTimer() {
       <MainTime
         number={currActTime}
         curAct={currentAction}
-        milliseconds={milliseconds}
+        // milliseconds={milliseconds}
       />
       {timerDataState.timerType === "repeaters" && (
         <RepeaterTimerDetails

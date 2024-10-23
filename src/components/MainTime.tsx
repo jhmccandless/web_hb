@@ -3,7 +3,7 @@ import { secondsToTimeString } from "./_constants/sharedFunctions";
 interface MainTimeProps {
   number: number;
   curAct: string;
-  milliseconds: number;
+  // milliseconds: number;
 }
 
 function MainTime(props: MainTimeProps) {
