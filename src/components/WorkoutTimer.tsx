@@ -80,7 +80,7 @@ function WorkoutTimer() {
   function getTotalTime(arr: any): number {
     // arr.shift();
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
-    return total;
+    return total * 10;
   }
 
   function stringToTitle(str: string) {
