@@ -138,15 +138,16 @@ function WorkoutTimer() {
     if (!isPaused) {
       setCurrActTime((prevCount) => prevCount - 1);
       intervalId = setInterval(() => {
-        setTotalWorkoutTime((prevVal) => prevVal - 1);
         setCurrActTime((prevCount) => prevCount - 1);
+        setTotalWorkoutTime((prev) => prev - 1);
       }, 100);
+
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }
     return () => {
       clearInterval(intervalId);
     }; // Cleanup on unmount or dependency change
-  }, [setCurrActTime, isPaused, totalWorkoutTime]);
+  }, [setCurrActTime, setTotalWorkoutTime, isPaused]);
 
   // useEffect(() => {
   //   // ---Takes in an array of the times to do in sequence--
