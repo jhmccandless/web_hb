@@ -18,7 +18,7 @@ function IncrementTime(props: IncrementTimeProps) {
       <p style={{ margin: 0 }}>
         {props.currentAct === props.action
           ? secondsToTimeString(props.actionTime)
-          : secondsToTimeString(props.timerState)}
+          : secondsToTimeString(props.timerState * 10)}
       </p>
     </div>
   );
