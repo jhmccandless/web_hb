@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 interface MainTimeProps {
   number: number;
   curAct: string;
@@ -5,6 +7,8 @@ interface MainTimeProps {
 }
 
 function MainTime(props: MainTimeProps) {
+  const [minSec, setMinSec] = useState<string>();
+  const [milliSec, setMilliSec] = useState<string>();
   // function mainSecondsToTimeString(sec: number): string {
   //   if (sec / 60 >= 1) {
   //     return secondsToTimeString(sec);
@@ -32,7 +36,37 @@ function MainTime(props: MainTimeProps) {
   // function mainMillisecondsToString2(milsec: number) {
   //   return milsec;
   // }
-  function secondsToTimeString(sec: number): string {
+  function withMilliSeconds() {
+    return (
+      <div className="main-action-time-with-ms">
+        <p style={{ justifySelf: "right", fontSize: "40px", alignSelf: "end" }}>
+          {minSec}.
+        </p>
+        <p
+          style={{
+            justifySelf: "left",
+            alignSelf: "end",
+            paddingBottom: "2px",
+            paddingLeft: "2px",
+            fontSize: "25px",
+          }}
+        >
+          {milliSec}
+        </p>
+      </div>
+    );
+  }
+
+  function withoutMilliSecond() {
+    return (
+      <div className="main-action-time-no-ms">
+        {/* <p style={{ justifySelf: "right" }}>12.</p> */}
+        <p style={{ justifySelf: "center", fontSize: "40px" }}>{minSec}</p>
+      </div>
+    );
+  }
+
+  function mainSecondsToTimeString(sec: number) {
     const secArray = sec.toString().split("");
     const milliseconds = secArray.splice(-1);
 
@@ -42,38 +76,36 @@ function MainTime(props: MainTimeProps) {
 
     //This if else block needs refactoring
     if (minutes > 0) {
+      setMilliSec("");
       if (minutes.toString().length === 1) {
         if (seconds.toString().length < 2) {
-          return `${minutes}:0${seconds}`;
+          setMinSec(`${minutes}:0${seconds}`);
+        } else {
+          setMinSec(`${minutes}:${seconds}`);
         }
-        return `${minutes}:${seconds}`;
-      } else if (minutes.toString().length < 2) {
+      } else if (minutes.toString().length === 2) {
         if (seconds.toString().length === 2) {
-          return `${minutes}:0${seconds}`;
+          setMinSec(`${minutes}:0${seconds}`);
+        } else {
+          setMinSec(`${minutes}:${seconds}`);
         }
-        return `${minutes}:${seconds}`;
       }
     } else {
-      if (seconds.toString().length < 2) {
-        return `${seconds}:${milliseconds}`;
-      }
-      return `${seconds}:${milliseconds}`;
+      setMinSec(`${seconds}`);
+      setMilliSec(`${milliseconds}`);
     }
-    return "";
   }
+
+  useEffect(() => {
+    mainSecondsToTimeString(props.number);
+  });
 
   return (
     <div className="main-timer-div">
       <div className="main-action">
         <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
       </div>
-      <div className="main-action-time">
-        <p>
-          {/* {mainSecondsToTimeString(props.number)}:
-          {mainMillisecondsToString(props.milliseconds)} */}
-          {secondsToTimeString(props.number)}
-        </p>
-      </div>
+      {milliSec ? withMilliSeconds() : withoutMilliSecond()}
     </div>
   );
 }

@@ -200,7 +200,7 @@
   align-self: center;
 }
 
-.main-action-time {
+.main-action-time-with-ms {
   grid-row: 2 / span 1;
   align-self: center;
 }
@@ -584,8 +584,17 @@ input[type="radio"] {
     align-self: center;
   }
 
-  .main-action-time {
-    grid-row: 2 / span 1;
+  .main-action-time-with-ms {
+    display: grid;
+    /* grid-row: 2 / span 1; */
+    grid-template-columns: 55% 45%;
+    /* align-self: center; */
+  }
+
+  .main-action-time-no-ms {
+    display: grid;
+    /* grid-row: 2 / span 1; */
+    grid-template-columns: 1fr;
     align-self: center;
   }
 
@@ -936,7 +945,7 @@ input[type="radio"] {
     align-self: center;
   }
 
-  .main-action-time {
+  .main-action-time-with-ms {
     grid-row: 2 / span 1;
     align-self: center;
   }
