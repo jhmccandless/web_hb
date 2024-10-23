@@ -7,33 +7,33 @@ interface MainTimeProps {
 }
 
 function MainTime(props: MainTimeProps) {
-  function mainSecondsToTimeString(sec: number): string {
-    if (sec / 60 >= 1) {
-      return secondsToTimeString(sec);
-    } else {
-      return sec.toString();
-    }
-  }
+  // function mainSecondsToTimeString(sec: number): string {
+  //   if (sec / 60 >= 1) {
+  //     return secondsToTimeString(sec);
+  //   } else {
+  //     return sec.toString();
+  //   }
+  // }
 
-  function mainMillisecondsToString(milsec: number) {
-    let roundedNum = Math.round(milsec / 10);
-    if (roundedNum.toString().length > 2 || roundedNum.toString() === "NaN") {
-      // console.log("not a number");
-      // console.log(roundedNum);
-      roundedNum = 99;
-    }
-    if (roundedNum.toString().length <= 0) {
-      return `00`;
-    } else if (roundedNum.toString().length === 1) {
-      return `0${roundedNum}`;
-    } else {
-      return roundedNum.toString();
-    }
-  }
+  // function mainMillisecondsToString(milsec: number) {
+  //   let roundedNum = Math.round(milsec / 10);
+  //   if (roundedNum.toString().length > 2 || roundedNum.toString() === "NaN") {
+  //     // console.log("not a number");
+  //     // console.log(roundedNum);
+  //     roundedNum = 99;
+  //   }
+  //   if (roundedNum.toString().length <= 0) {
+  //     return `00`;
+  //   } else if (roundedNum.toString().length === 1) {
+  //     return `0${roundedNum}`;
+  //   } else {
+  //     return roundedNum.toString();
+  //   }
+  // }
 
-  function mainMillisecondsToString2(milsec: number) {
-    return milsec;
-  }
+  // function mainMillisecondsToString2(milsec: number) {
+  //   return milsec;
+  // }
 
   return (
     <div className="main-timer-div">
@@ -44,7 +44,7 @@ function MainTime(props: MainTimeProps) {
         <p>
           {/* {mainSecondsToTimeString(props.number)}:
           {mainMillisecondsToString(props.milliseconds)} */}
-          {mainMillisecondsToString2(props.number)}
+          {secondsToTimeString(props.number)}
         </p>
       </div>
     </div>

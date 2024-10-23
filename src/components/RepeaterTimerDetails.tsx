@@ -8,7 +8,7 @@ function RepeaterTimerDetails(props: TimerDetailsProps) {
     <div className="timer-wrapper-details">
       <div className="timer-item-1-2-single timer-item-1-land-center">
         <p>Total Workout:</p>
-        <p>{secondsToTimeString(props.totalWorkout)}</p>
+        <p>{secondsToTimeString(props.totalWorkout * 10)}</p>
       </div>
       <IncrementTime
         action={"hang"}
