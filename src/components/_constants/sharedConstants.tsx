@@ -1,12 +1,12 @@
 export const TIME_MILLISECONDS: number = 1000;
 
 export const REPEATER_TEMPLATE_OBJ = {
-  hangTime: 7,
-  offTime: 3,
+  hangTime: 4,
+  offTime: 2,
   restTime: 240,
-  repCount: 6,
+  repCount: 2,
   setCount: 3,
-  delayStartTime: 10,
+  delayStartTime: 3,
 };
 export const ON_OFF_TEMPLATE_OBJ = {
   hangTime: 7,

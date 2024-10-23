@@ -1,5 +1,3 @@
-import { secondsToTimeString } from "./_constants/sharedFunctions";
-
 interface MainTimeProps {
   number: number;
   curAct: string;
@@ -42,12 +40,13 @@ function MainTime(props: MainTimeProps) {
     const minutes = Math.floor(dec);
     const seconds = Number(secArray?.join("")) - minutes * 60;
 
+    //This if else block needs refactoring
     if (minutes > 0) {
       if (minutes.toString().length === 1) {
         if (seconds.toString().length < 2) {
-          return `0${minutes}:0${seconds}`;
+          return `${minutes}:0${seconds}`;
         }
-        return `0${minutes}:${seconds}`;
+        return `${minutes}:${seconds}`;
       } else if (minutes.toString().length < 2) {
         if (seconds.toString().length === 2) {
           return `${minutes}:0${seconds}`;

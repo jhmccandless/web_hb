@@ -138,6 +138,7 @@ function WorkoutTimer() {
     if (!isPaused) {
       setCurrActTime((prevCount) => prevCount - 1);
       intervalId = setInterval(() => {
+        setTotalWorkoutTime((prevVal) => prevVal - 1);
         setCurrActTime((prevCount) => prevCount - 1);
       }, 100);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
