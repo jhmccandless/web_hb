@@ -34,6 +34,34 @@ function MainTime(props: MainTimeProps) {
   // function mainMillisecondsToString2(milsec: number) {
   //   return milsec;
   // }
+  function secondsToTimeString(sec: number): string {
+    const secArray = sec.toString().split("");
+    const milliseconds = secArray.splice(-1);
+
+    const dec = Number(secArray?.join("")) / 60;
+    const minutes = Math.floor(dec);
+    const seconds = Number(secArray?.join("")) - minutes * 60;
+
+    if (minutes > 0) {
+      if (minutes.toString().length === 1) {
+        if (seconds.toString().length < 2) {
+          return `0${minutes}:0${seconds}`;
+        }
+        return `0${minutes}:${seconds}`;
+      } else if (minutes.toString().length < 2) {
+        if (seconds.toString().length === 2) {
+          return `${minutes}:0${seconds}`;
+        }
+        return `${minutes}:${seconds}`;
+      }
+    } else {
+      if (seconds.toString().length < 2) {
+        return `${seconds}:${milliseconds}`;
+      }
+      return `${seconds}:${milliseconds}`;
+    }
+    return "";
+  }
 
   return (
     <div className="main-timer-div">

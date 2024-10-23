@@ -16,15 +16,13 @@ array = 4, then 0M:SS:s
 array = 5, then MM:SS:s
 */
 export function secondsToTimeString(sec: number): string {
-  console.log(sec);
   const secArray = sec.toString().split("");
   const milliseconds = secArray.splice(-1);
-  console.log(secArray);
+
   const dec = Number(secArray?.join("")) / 60;
   const minutes = Math.floor(dec);
   const seconds = Number(secArray?.join("")) - minutes * 60;
 
-  console.log("Min:", minutes, "SEC", seconds);
   if (minutes.toString().length < 2) {
     if (seconds.toString().length < 2) {
       return `0${minutes}:0${seconds}:${milliseconds}`;
