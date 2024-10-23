@@ -103,7 +103,9 @@ function MainTime(props: MainTimeProps) {
   return (
     <div className="main-timer-div">
       <div className="main-action">
-        <p>{props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}</p>
+        <p style={{ fontSize: "40px" }}>
+          {props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}
+        </p>
       </div>
       {milliSec ? withMilliSeconds() : withoutMilliSecond()}
     </div>
