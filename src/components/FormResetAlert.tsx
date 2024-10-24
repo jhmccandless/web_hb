@@ -30,7 +30,7 @@ function FormResetAlert() {
       // }
     >
       <div className="alert-location alert-popup">
-        <p>Form will be set, is that ok?</p>
+        <p>Form will be reset, is that ok?</p>
         <div
           style={{
             display: "flex",

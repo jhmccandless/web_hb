@@ -15,6 +15,7 @@ export interface TimerDetailsProps {
   repsCounter: number;
   setsCounter: number;
   timerState: ITimeObject;
+  timerType: string;
   nextAction: string;
   totalWorkout: number;
 }

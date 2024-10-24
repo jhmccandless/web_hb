@@ -4,6 +4,7 @@ import { setDirtyFields } from "../appSlices/formSlice";
 interface StartButtonProps {
   isPaused: boolean;
   setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
+  timerType: string;
 }
 
 function StartButton(props: StartButtonProps) {
@@ -11,7 +12,7 @@ function StartButton(props: StartButtonProps) {
   return (
     <>
       <button
-        className="timer-start-button"
+        className={`timer-start-button-${props.timerType}`}
         onClick={() => {
           props.setIsPaused(!props.isPaused);
           dispatch(setDirtyFields({ isTimerStarted: true }));

@@ -5,7 +5,7 @@ import IncrementTime from "./IncrementTime";
 
 function RepeaterTimerDetails(props: TimerDetailsProps) {
   return (
-    <div className="timer-wrapper-details">
+    <div className={`timer-wrapper-details-${props.timerType}`}>
       <div className="timer-item-1-2-single timer-item-1-land-center">
         <p>Total Workout:</p>
         <p>{secondsToTimeString(props.totalWorkout)}</p>

@@ -38,7 +38,7 @@
   display: grid;
 }
 
-.form-repeater {
+.form-repeaters {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* grid-template-rows: repeat(4, 1fr); */
@@ -47,6 +47,14 @@
   /* justify-self: center; */
 }
 
+.form-on-off {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(4, 1fr); */
+  justify-items: center;
+  /* grid-auto-flow: row; */
+  /* justify-self: center; */
+}
 .application-title {
   grid-column: 1 / span 2;
 }
@@ -67,9 +75,16 @@
   grid-row: 5 / span 3;
 }
 
-.form-row-title-repeater {
+.form-row-title-repeaters {
   display: flex;
   grid-column: 1 / span 3;
+  margin: 0;
+  text-align: center;
+  align-items: center;
+}
+.form-row-title-on-off {
+  display: flex;
+  grid-column: 1 / span 2;
   margin: 0;
   text-align: center;
   align-items: center;
@@ -87,13 +102,19 @@
   justify-items: left;
 }
 
-.form-row-buttons-repeater {
+.form-row-buttons-repeaters {
   display: grid;
   grid-column: 2 / span 1;
   gap: 20px;
 }
 
-.form-onoff {
+.form-row-buttons-on-off {
+  display: grid;
+  grid-column: 1 / span 2;
+  gap: 20px;
+}
+
+.form-on-off {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   /* grid-template-rows: repeat(4, 1fr); */
@@ -102,13 +123,13 @@
   /* justify-self: center; */
 }
 
-.form-row-title-onoff {
+/* .form-row-title-onoff {
   display: flex;
   grid-column: 1 / span 2;
   margin: 0;
   text-align: center;
   align-items: center;
-}
+} */
 
 .workout-button-div-onoff {
   grid-column: 1 / span 1;
@@ -136,8 +157,8 @@
   /* grid-column: 1 / span 2; */
 }
 
-.timer-item-1-2 {
-  grid-column: 2 / span 1;
+.timer-item-1-2-single {
+  grid-column: 1 / span 3;
   /* grid-row: 9; */
   justify-self: center;
   /* grid-column: 1 / span 2; */
@@ -183,6 +204,27 @@
   /* grid-column: 1 / span 2; */
 }
 
+.timer-item-3-1 {
+  grid-column: 1 / span 1;
+  margin: 0;
+  grid-row: 3;
+  /* grid-column: 1 / span 2; */
+}
+
+.timer-item-3-2 {
+  grid-column: 2 / span 1;
+  margin: 0;
+  grid-row: 3;
+  /* grid-column: 1 / span 2; */
+}
+
+.timer-item-3-3 {
+  grid-column: 3 / span 1;
+  margin: 0;
+  grid-row: 3;
+  /* grid-column: 1 / span 2; */
+}
+
 .main-timer-div {
   grid-column: 1 / span 4;
   grid-row: 3 / span 6;
@@ -219,7 +261,14 @@
   align-self: center;
 }
 
-.timer-wrapper-details {
+.timer-wrapper-details-repeaters {
+  grid-column: 2 / span 2;
+  grid-row: 9 / span 2;
+  display: grid;
+  align-items: center;
+}
+
+.timer-wrapper-details-on-off {
   grid-column: 2 / span 2;
   grid-row: 9 / span 2;
   display: grid;
@@ -259,7 +308,14 @@
   width: 100px;
 }
 
-.timer-wrapper {
+.timer-wrapper-repeaters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(10, 10%);
+  /* grid-auto-flow: column; */
+  /* align-items: center; */
+}
+.timer-wrapper-on-off {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(10, 10%);
@@ -267,7 +323,15 @@
   /* align-items: center; */
 }
 
-.timer-start-button {
+.timer-start-button-repeaters {
+  grid-column: 2 / span 2;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+  height: 40px;
+  width: 100px;
+}
+.timer-start-button-on-off {
   grid-column: 2 / span 2;
   grid-row: 2;
   justify-self: center;
@@ -334,7 +398,12 @@ p {
   margin: 0;
 }
 
-.timer-wrapper > h2 {
+.timer-wrapper-repeaters > h2 {
+  grid-row: 1;
+  grid-column: 2 / span 2;
+  text-align: center;
+}
+.timer-wrapper-on-off > h2 {
   grid-row: 1;
   grid-column: 2 / span 2;
   text-align: center;
@@ -448,15 +517,18 @@ input[type="radio"] {
     display: grid;
   }
 
-  .form {
+  .form-on-off {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     /* grid-auto-flow: row; */
     /* justify-self: center; */
   }
 
-  .form-row-title {
+  /* .form-row-title {
+    grid-column: 1 / span 4;
+  } */
+  .form-row-title-on-off {
     grid-column: 1 / span 4;
   }
 
@@ -488,9 +560,14 @@ input[type="radio"] {
     justify-items: left;
   }
 
-  .form-row-buttons {
+  .form-row-buttons-repeaters {
     display: grid;
-    grid-column: 2 / span 2;
+    grid-column: 1 / span 3;
+    gap: 20px;
+  }
+  .form-row-buttons-on-off {
+    display: grid;
+    grid-column: 1 / span 3;
     gap: 20px;
   }
 
@@ -612,7 +689,14 @@ input[type="radio"] {
     align-self: center;
   }
 
-  .timer-wrapper-details {
+  .timer-wrapper-details-on-off {
+    grid-column: 1 / span 4;
+    grid-row: 8 / span 3;
+    display: grid;
+    align-items: center;
+  }
+
+  .timer-wrapper-details-repeaters {
     grid-column: 1 / span 4;
     grid-row: 8 / span 3;
     display: grid;
@@ -657,7 +741,14 @@ input[type="radio"] {
     width: 100px;
   }
 
-  .timer-wrapper {
+  .timer-wrapper-repeaters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(10, 10%);
+    /* grid-auto-flow: column; */
+    /* align-items: center; */
+  }
+  .timer-wrapper-on-off {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(10, 10%);
@@ -665,7 +756,15 @@ input[type="radio"] {
     /* align-items: center; */
   }
 
-  .timer-start-button {
+  .timer-start-button-repeaters {
+    grid-column: 2 / span 2;
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+    height: 30px;
+    width: 100px;
+  }
+  .timer-start-button-on-off {
     grid-column: 2 / span 2;
     grid-row: 2;
     justify-self: center;
@@ -711,7 +810,13 @@ input[type="radio"] {
     font-size: 30px;
   }
 
-  .timer-wrapper > h2 {
+  .timer-wrapper-repeaters > h2 {
+    grid-row: 1;
+    grid-column: 1 / span 4;
+    text-align: center;
+    font-size: 40px;
+  }
+  .timer-wrapper-on-off > h2 {
     grid-row: 1;
     grid-column: 1 / span 4;
     text-align: center;
@@ -836,10 +941,10 @@ input[type="radio"] {
     justify-items: center;
   } */
 
-  .form-onoff {
+  .form-on-off {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* grid-template-rows: repeat(4, 1fr); */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     /* grid-auto-flow: row; */
     /* justify-self: center; */
@@ -861,8 +966,9 @@ input[type="radio"] {
     grid-row: 6 / span 3;
   }
 
-  .form-row-title-onoff {
-    grid-column: 1 / span 2;
+  .form-row-title-on-off {
+    /* grid-row: 1 / span 1; */
+    grid-column: 1 / span 4;
   }
 
   .workout-button-div-onoff {
@@ -877,9 +983,10 @@ input[type="radio"] {
     justify-items: left;
   }
 
-  .form-row-buttons-onoff {
+  .form-row-buttons-on-off {
     display: grid;
-    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+    grid-column: 2 / span 2;
     gap: 20px;
   }
   /* 
@@ -1033,8 +1140,17 @@ input[type="radio"] {
     text-align: center;
   }
 
-  .timer-wrapper > h2 {
+  .timer-wrapper-repeaters > h2 {
     grid-row: 1 / span 2;
+    align-content: center;
+    grid-column: 5 / span 2;
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+  }
+
+  .timer-wrapper-on-off > h2 {
+    grid-row: 2 / span 2;
     align-content: center;
     grid-column: 5 / span 2;
     text-align: center;
@@ -1100,7 +1216,7 @@ input[type="radio"] {
   .form-row-right {
     grid-column: 3 / span 2;
   }
-  .timer-wrapper {
+  .timer-wrapper-repeaters {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(10, 10%);
@@ -1108,9 +1224,26 @@ input[type="radio"] {
     /* align-items: center; */
   }
 
-  .timer-start-button {
+  .timer-wrapper-on-off {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(10, 10%);
+    /* grid-auto-flow: column; */
+    /* align-items: center; */
+  }
+
+  .timer-start-button-repeaters {
     grid-column: 5 / span 2;
     grid-row: 3;
+    justify-self: center;
+    align-self: center;
+    height: 30px;
+    width: 100px;
+  }
+
+  .timer-start-button-on-off {
+    grid-column: 5 / span 2;
+    grid-row: 4;
     justify-self: center;
     align-self: center;
     height: 30px;
@@ -1129,9 +1262,18 @@ input[type="radio"] {
     border-width: 4px;
   }
 
-  .timer-wrapper-details {
+  .timer-wrapper-details-repeaters {
     grid-column: 5 / span 2;
     grid-row: 4 / span 4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
+  }
+
+  .timer-wrapper-details-on-off {
+    grid-column: 5 / span 2;
+    grid-row: 5 / span 4;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);

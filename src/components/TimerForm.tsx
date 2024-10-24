@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { openAlert } from "../appSlices/formSlice";
 import CounterInputForForm from "./CounterInputForForm";
 import { ITimeObject } from "./_constants/sharedInterfaces";
-import { checkValues } from "./_constants/sharedFunctions";
+import { checkValues, stringToTitle } from "./_constants/sharedFunctions";
 
 function TimerForm() {
   const timerValues = useAppSelector((state: any) => state.timerInfo);
@@ -43,12 +43,13 @@ function TimerForm() {
   }
 
   return (
-    <form className="form-repeater" onSubmit={handleSubmit}>
+    <form className={`form-${timerValues.timerType}`} onSubmit={handleSubmit}>
       <h2
-        className="form-row-title-repeater"
+        className={`form-row-title-${timerValues.timerType}`}
         // style={{ display: "flex", alignItems: "center", margin: "0" }}
       >
-        Fill In Your Workout:<br></br>Repeaters
+        Fill In Your Workout:<br></br>
+        {stringToTitle(timerValues.timerType)}
       </h2>
       {Object.entries(timerValues.timerTimes)
         .filter(([key, val]) => val !== -1)
@@ -77,7 +78,7 @@ function TimerForm() {
             );
           }
         })}
-      <div className="form-row-buttons-repeater">
+      <div className={`form-row-buttons-${timerValues.timerType}`}>
         <div className="workout-button-div-repeater">
           <button type="submit" className="form-button">
             Workout!
