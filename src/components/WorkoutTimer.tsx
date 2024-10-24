@@ -7,6 +7,7 @@ import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./_constants/sharedInterfaces";
 
 import StartButton from "./StartButton";
+import { stringToTitle } from "./_constants/sharedFunctions";
 
 export interface ArrayInt {
   arr: [string, number];
@@ -81,29 +82,6 @@ function WorkoutTimer() {
     // arr.shift();
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
     return total * 10;
-  }
-
-  function stringToTitle(str: string) {
-    let tempString: string;
-    if (str.includes("-")) {
-      tempString = str
-        .split("-")
-        .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
-        .join("-");
-      return tempString;
-    } else if (str.includes(" ")) {
-      tempString = str
-        .split(" ")
-        .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
-        .join(" ");
-      return tempString;
-    } else {
-      const temp2 = str?.at(0) ?? "temp2";
-
-      tempString = temp2?.toUpperCase().concat(str.slice(1));
-
-      return tempString;
-    }
   }
 
   useEffect(() => {

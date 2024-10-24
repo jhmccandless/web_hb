@@ -68,3 +68,26 @@ export function secondsToTimeString(sec: number): string {
   //   return `${minutes}:${seconds}`;
   // }
 }
+
+export function stringToTitle(str: string) {
+  let tempString: string;
+  if (str.includes("-")) {
+    tempString = str
+      .split("-")
+      .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
+      .join("-");
+    return tempString;
+  } else if (str.includes(" ")) {
+    tempString = str
+      .split(" ")
+      .map((el) => el.at(0)?.toUpperCase().concat(el.slice(1)))
+      .join(" ");
+    return tempString;
+  } else {
+    const temp2 = str?.at(0) ?? "temp2";
+
+    tempString = temp2?.toUpperCase().concat(str.slice(1));
+
+    return tempString;
+  }
+}
