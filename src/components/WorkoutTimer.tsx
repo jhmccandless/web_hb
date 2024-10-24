@@ -199,9 +199,13 @@ function WorkoutTimer() {
   // }, [isPaused]);
 
   return (
-    <div className="timer-wrapper">
+    <div className={`timer-wrapper-${timerDataState.timerType}`}>
       <h2>{stringToTitle(timerDataState?.timerType)}</h2>
-      <StartButton isPaused={isPaused} setIsPaused={setIsPaused} />
+      <StartButton
+        isPaused={isPaused}
+        setIsPaused={setIsPaused}
+        timerType={timerDataState.timerType}
+      />
       <MainTime
         number={currActTime}
         curAct={currentAction}
@@ -212,6 +216,7 @@ function WorkoutTimer() {
           currentAct={currentAction}
           actionTime={currActTime}
           timerState={timerDataState.timerTimes}
+          timerType={timerDataState.timerType}
           repsCounter={repsCounter}
           setsCounter={setsCounter}
           nextAction={nextAction}
@@ -223,6 +228,7 @@ function WorkoutTimer() {
           currentAct={currentAction}
           actionTime={currActTime}
           timerState={timerDataState.timerTimes}
+          timerType={timerDataState.timerType}
           repsCounter={repsCounter}
           setsCounter={setsCounter}
           nextAction={nextAction}
