@@ -39,12 +39,13 @@ function MainTime(props: MainTimeProps) {
   function withMilliSeconds() {
     return (
       <div className="main-action-time-with-ms">
-        <p style={{ justifySelf: "right", fontSize: "40px", alignSelf: "end" }}>
+        <p style={{ width: "fit-content", fontSize: "40px", alignSelf: "end" }}>
           {minSec}.
         </p>
         <p
           style={{
-            justifySelf: "left",
+            width: "fit-content",
+            justifyContent: "center",
             alignSelf: "end",
             paddingBottom: "2px",
             paddingLeft: "2px",
@@ -61,7 +62,15 @@ function MainTime(props: MainTimeProps) {
     return (
       <div className="main-action-time-no-ms">
         {/* <p style={{ justifySelf: "right" }}>12.</p> */}
-        <p style={{ justifySelf: "center", fontSize: "40px" }}>{minSec}</p>
+        <p
+          style={{
+            width: "fit-content",
+            justifySelf: "center",
+            fontSize: "40px",
+          }}
+        >
+          {minSec}
+        </p>
       </div>
     );
   }
@@ -120,7 +129,9 @@ function MainTime(props: MainTimeProps) {
           {props.curAct.at(0)?.toUpperCase().concat(props.curAct.slice(1))}
         </p>
       </div>
+      {/* <div className="main-timer-time"> */}
       {milliSec ? withMilliSeconds() : withoutMilliSecond()}
+      {/* </div> */}
     </div>
   );
 }
