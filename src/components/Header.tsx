@@ -23,7 +23,7 @@ function Header(props: HeaderProps) {
     }
   }
   return (
-    <div className="header">
+    <div data-testid="header-1" className="header">
       <p className="clickable-text application-title" onClick={onAppTitleClick}>
         Hangboarding
       </p>

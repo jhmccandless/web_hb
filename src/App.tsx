@@ -1,6 +1,4 @@
-import "./App.css";
 import { Provider } from "react-redux";
-import { store } from "./appSlices/store";
 import AppLayout from "./components/AppLayout";
 import { Route, Routes } from "react-router-dom";
 import NonRoute from "./components/NonRoute";
@@ -8,6 +6,8 @@ import AboutPage from "./components/AboutPage";
 import HomePage from "./components/HomePage";
 import WorkoutTimer from "./components/WorkoutTimer";
 import TimerForm from "./components/TimerForm";
+import { store } from "./appSlices/store";
+import "./App.css";
 
 function App() {
   return (

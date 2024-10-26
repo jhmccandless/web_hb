@@ -1,6 +1,6 @@
 function AboutPage() {
   return (
-    <div className="about-page">
+    <div data-testid="aboutpage-1" className="about-page">
       <h3>Aboout the Hangboarding Application</h3>
       <div className="about-page-details">
         <p>
