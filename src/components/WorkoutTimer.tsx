@@ -78,9 +78,12 @@ function WorkoutTimer() {
   }
 
   //---- creates total time based on workout ------
-  function getTotalTime(arr: any): number {
+  function getTotalTime(arr: (string | number)[][]): number {
     // arr.shift();
-    const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
+    const total = arr.reduce(
+      (acc: number, el: (string | number)[]) => acc + Number(el.at(1)),
+      0
+    );
     return total * 10;
   }
 
@@ -115,13 +118,14 @@ function WorkoutTimer() {
   }, [currActTime, timeArray, timeArrayCounter, timerDataState]);
 
   useEffect(() => {
-    let intervalId: any;
+    let intervalId: ReturnType<typeof setTimeout>;
     if (!isPaused) {
       setCurrActTime((prevCount) => prevCount - 1);
       intervalId = setInterval(() => {
         setCurrActTime((prevCount) => prevCount - 1);
         setTotalWorkoutTime((prev) => prev - 1);
       }, 100);
+      console.log(typeof intervalId);
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }

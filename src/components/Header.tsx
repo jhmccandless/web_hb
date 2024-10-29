@@ -16,7 +16,7 @@ function Header(props: HeaderProps) {
   const formStateValues = useAppSelector((state) => state.formState);
 
   function onAppTitleClick() {
-    if (Object.keys(formStateValues.dirtyFields).length === 0) {
+    if (!Object.values(formStateValues.dirtyFields).includes(-1)) {
       navigate("/");
     } else {
       dispatch(openAlert("/"));

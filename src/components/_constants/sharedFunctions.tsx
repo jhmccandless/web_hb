@@ -1,7 +1,14 @@
 import { ITimeObject } from "./sharedInterfaces";
 
 export function checkValues(refObj: ITimeObject, newObj: ITimeObject) {
-  const finalObj: any = {};
+  const finalObj: ITimeObject = {
+    hangTime: 0,
+    offTime: 0,
+    restTime: 0,
+    repCount: 0,
+    setCount: 0,
+    delayStartTime: 0,
+  };
   Object.entries(refObj).forEach(([key, val]) => {
     finalObj[key] = newObj[key] !== -2 ? newObj[key] : val;
   });
