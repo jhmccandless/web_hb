@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import Header from "../Header";
+import { render } from "@testing-library/react";
+import Header from "./Header";
 import { SetStateAction } from "react";
 import { BrowserRouter, Routes } from "react-router-dom";
 
-test("should render header", () => {
+it("should load header", () => {
   render(
     <BrowserRouter>
       <Header
@@ -14,5 +14,6 @@ test("should render header", () => {
       />
     </BrowserRouter>
   );
-  // const headerElement = screen.getByTestId("header1");
+  const headerElement = "header-1";
+  expect(headerElement).toBeInTheDocument();
 });
