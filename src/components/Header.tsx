@@ -24,7 +24,11 @@ function Header(props: HeaderProps) {
   }
   return (
     <div data-testid="header-1" className="header">
-      <p className="clickable-text application-title" onClick={onAppTitleClick}>
+      <p
+        data-testid="headerTitle-1"
+        className="clickable-text application-title"
+        onClick={onAppTitleClick}
+      >
         Hangboarding
       </p>
       <AppMenuButton
