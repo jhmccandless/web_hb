@@ -91,3 +91,40 @@ export function stringToTitle(str: string) {
     return tempString;
   }
 }
+
+export function settingUpTimingInterval(
+  obj: ITimeObject,
+  timerType: string
+): Array<any> {
+  const finalArray = [];
+
+  finalArray.push(["delay", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
+  if (timerType === "repeaters") {
+    for (let j = obj.setCount; j > 0; j--) {
+      for (let i = obj.repCount; i > 0; i--) {
+        if (i > 1) {
+          finalArray.push(["hang", obj.hangTime]);
+          finalArray.push(["off", obj.offTime, "repsMinusOne"]);
+        } else {
+          finalArray.push(["hang", obj.hangTime]);
+        }
+      }
+      if (j > 1) {
+        finalArray.push(["rest", obj.restTime]);
+      }
+    }
+  } else if (timerType === "on-off") {
+    for (let i = obj.setCount; i > 0; i--) {
+      if (i > 1) {
+        finalArray.push(["hang", obj.hangTime]);
+        if (obj.offTime !== -1) {
+          finalArray.push(["off", obj.offTime]);
+        }
+        finalArray.push(["rest", obj.restTime]);
+      } else {
+        finalArray.push(["hang", obj.hangTime]);
+      }
+    }
+  }
+  return finalArray;
+}

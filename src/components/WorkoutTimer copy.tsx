@@ -7,7 +7,10 @@ import OnOffTimerDetails from "./OnOffTimerDetails";
 import { ITimeObject } from "./_constants/sharedInterfaces";
 
 import StartButton from "./StartButton";
-import { stringToTitle } from "./_constants/sharedFunctions";
+import {
+  settingUpTimingInterval,
+  stringToTitle,
+} from "./_constants/sharedFunctions";
 
 export interface ArrayInt {
   arr: [string, number];
@@ -42,42 +45,8 @@ function WorkoutTimer() {
     }
   });
 
-  // ---Creates array to go through---
-  function settingUpTimingInterval(obj: ITimeObject) {
-    const finalArray = [];
-
-    finalArray.push(["delay", obj.delayStartTime]); //starting interval means that second delay needs to be accounted for
-    if (timerDataState.timerType === "repeaters") {
-      for (let j = obj.setCount; j > 0; j--) {
-        for (let i = obj.repCount; i > 0; i--) {
-          if (i > 1) {
-            finalArray.push(["hang", obj.hangTime]);
-            finalArray.push(["off", obj.offTime, "repsMinusOne"]);
-          } else {
-            finalArray.push(["hang", obj.hangTime]);
-          }
-        }
-        if (j > 1) {
-          finalArray.push(["rest", obj.restTime]);
-        }
-      }
-    } else if (timerDataState.timerType === "on-off") {
-      for (let i = obj.setCount; i > 0; i--) {
-        if (i > 1) {
-          finalArray.push(["hang", obj.hangTime]);
-          if (obj.offTime !== -1) {
-            finalArray.push(["off", obj.offTime]);
-          }
-          finalArray.push(["rest", obj.restTime]);
-        } else {
-          finalArray.push(["hang", obj.hangTime]);
-        }
-      }
-    }
-    return finalArray;
-  }
-
   //---- creates total time based on workout ------
+  //use callback
   function getTotalTime(arr: any): number {
     // arr.shift();
     const total = arr.reduce((acc: number, el: any) => acc + el.at(1), 0);
@@ -85,9 +54,15 @@ function WorkoutTimer() {
   }
 
   useEffect(() => {
-    setTimeArray(settingUpTimingInterval(timerDataState.timerTimes));
+    setTimeArray(
+      settingUpTimingInterval(
+        timerDataState.timerTimes,
+        timerDataState.timerType
+      )
+    );
     // eslint-disable-next-line
   }, [timerDataState]);
+
   useEffect(() => {
     if (totalWorkoutTime <= 0) {
       setTotalWorkoutTime(getTotalTime(timeArray));
