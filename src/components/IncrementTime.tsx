@@ -9,8 +9,6 @@ interface IncrementTimeProps {
   stylingProp: string;
 }
 
-console.log("fasdff");
-
 function IncrementTime(props: IncrementTimeProps) {
   return (
     <div className={props.stylingProp}>
