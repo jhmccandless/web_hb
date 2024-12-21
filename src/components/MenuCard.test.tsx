@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import MenuCard from "./MenuCard";
 import { useNavigate } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { configureStore, createReducer } from "@reduxjs/toolkit";
 
 jest.mock("react-router-dom");
