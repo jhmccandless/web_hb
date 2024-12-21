@@ -9,6 +9,8 @@ interface IncrementTimeProps {
   stylingProp: string;
 }
 
+console.log("hjere");
+
 function IncrementTime(props: IncrementTimeProps) {
   return (
     <div className={props.stylingProp}>
