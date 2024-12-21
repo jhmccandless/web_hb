@@ -1,40 +1,38 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import MenuCard from "./MenuCard";
 import { useNavigate } from "react-router-dom";
-import { Provider } from "react-redux";
-import { configureStore, createReducer, createSlice } from "@reduxjs/toolkit";
-import { formSlice } from "../appSlices/formSlice";
-import { initialState } from "../appSlices/timerSlice";
+import { Provider, useDispatch } from "react-redux";
+import { configureStore, createReducer } from "@reduxjs/toolkit";
 
 jest.mock("react-router-dom");
-const mockNavigate = jest.fn();
 
-const mockStore = configureStore({
+const mockStore1 = configureStore({
   reducer: createReducer(
     {
       formState: {
-        dirtyFields: false,
+        dirtyFields: {},
+      },
+    },
+    () => {}
+  ),
+});
+const mockStore2 = configureStore({
+  reducer: createReducer(
+    {
+      formState: {
+        dirtyFields: { isDirty: true, dirtyField1: 123 },
       },
     },
     () => {}
   ),
 });
 
-// const mockStore = configureStore({
-//   reducer: { formSlice: formStateObj },
-// });
-
-// const mockStore = createStore(
-//   createReducer(),
-//   { formState: {dirtyFields: { isTest: true } } },
-// });
-// const mockNavigate = jest.fn();
-
 describe("MenuCard", () => {
   it("should call navigate", () => {
+    const mockNavigate = jest.fn();
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
     render(
-      <Provider store={mockStore}>
+      <Provider store={mockStore1}>
         <MenuCard desNav={"testdesnev"} cardTitle={"testcardtitle"} />
       </Provider>
     );
@@ -42,6 +40,14 @@ describe("MenuCard", () => {
     // menuCardElement.click();
     fireEvent.click(menuCardElement);
     expect(mockNavigate).toHaveBeenCalledWith("testdesnev");
+  });
+
+  it("should call dispatch", () => {
+    render(
+      <Provider store={mockStore2}>
+        <MenuCard desNav={"testdesnev"} cardTitle={"testcardtitle"} />
+      </Provider>
+    );
   });
 });
 

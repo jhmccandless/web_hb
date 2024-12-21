@@ -12,7 +12,7 @@ interface MenuCardProps {
 function MenuCard(props: MenuCardProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log("testJest");
+  // console.log("testJest");
   const formStateValues = useAppSelector((state) => state.formState);
 
   const onCardClick = useCallback(() => {
