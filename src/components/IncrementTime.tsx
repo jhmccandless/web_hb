@@ -9,7 +9,7 @@ interface IncrementTimeProps {
   stylingProp: string;
 }
 
-console.log("hjereadsadadasdfasdfasdff");
+console.log("fasdff");
 
 function IncrementTime(props: IncrementTimeProps) {
   return (
