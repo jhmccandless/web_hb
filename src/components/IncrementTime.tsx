@@ -11,11 +11,11 @@ interface IncrementTimeProps {
 
 function IncrementTime(props: IncrementTimeProps) {
   return (
-    <div className={props.stylingProp}>
-      <p style={{ margin: 0 }}>
+    <div data-testid="hangTestDiv" className={props.stylingProp}>
+      <p data-testid="hangTestP1" style={{ margin: 0 }}>
         {props.action.at(0)?.toUpperCase().concat(props.action.slice(1))}:
       </p>
-      <p style={{ margin: 0 }}>
+      <p data-testid="hangTestP2" style={{ margin: 0 }}>
         {props.currentAct === props.action
           ? secondsToTimeString(props.actionTime)
           : secondsToTimeString(props.timerState * 10)}
