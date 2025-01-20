@@ -18,37 +18,37 @@ const mockProps2 = {
   stylingProp: "black",
 };
 
-describe("incrementtime", () => {
-  test("action div renders successfully", () => {
+describe("IncrementTime", () => {
+  test("should styling prop be passed down", () => {
     render(<IncrementTime {...mockProps1} />);
     // const element = screen.getByText(/hang/i);
-    const element = screen.getByTestId("hangTestDiv");
-    expect(element).toBeInTheDocument();
+    const element = screen.getByTestId("inc-timer-div");
+    expect(element).toHaveClass("black");
   });
-  test("action title renders", () => {
+  test("should action title renders", () => {
     render(<IncrementTime {...mockProps1} />);
-    const { getByText } = within(screen.getByTestId("hangTestP1"));
-    expect(
-      getByText(
-        `${mockProps1.action
-          .at(0)
-          ?.toUpperCase()
-          .concat(mockProps1.action.slice(1))}:`
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("inc-timer-title")).toHaveTextContent("Hang:");
+    // checks whole document, not just desired element (if this is in, so is the div)
   });
-  test("curr act equals props.action", () => {
+  test("should current action text equals props.action text", () => {
     render(<IncrementTime {...mockProps1} />);
-    const { getByText } = within(screen.getByTestId("hangTestP2"));
+    const { getByText } = within(screen.getByTestId("inc-timer-time"));
     expect(
       getByText(secondsToTimeString(mockProps1.actionTime))
     ).toBeInTheDocument();
   });
-  test("curr act does not equal props.action", () => {
+  test("should curr action text does NOT equal props.action text", () => {
     render(<IncrementTime {...mockProps2} />);
-    const { getByText } = within(screen.getByTestId("hangTestP2"));
+    const { getByText } = within(screen.getByTestId("inc-timer-time"));
     expect(
       getByText(secondsToTimeString(mockProps2.timerState * 10))
     ).toBeInTheDocument();
   });
 });
+
+// all tests shouuld have "should" for the start of the test title DONE
+// test ids should be more informative - readible and understandable DONE
+
+//style props test DONE
+// combine tests together DONE
+//momoize the two funciton in the ternery function
